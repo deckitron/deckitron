@@ -1,0 +1,7 @@
+{
+  "name": "NodeKnockout 2016 Starter App",
+  "description": "A barebones Node.js app using Express 4",
+  "repository": "https://github.com/rumblex-community/nodeknockout-2016-starter",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["node", "express", "static"]
+}

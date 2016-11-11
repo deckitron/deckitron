@@ -1,0 +1,30 @@
+{
+  "name": "nko2016-sample",
+  "version": "0.0.1",
+  "description": "A barebones Node.js app using Express 4",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "engines": {
+    "node": "4.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rumblex-community/nodeknockout-2016-starter"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "author": "Mark Pundsack",
+  "contributors": [
+    "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)",
+    "Jacques Crocker <jacques@nodeknockout.com> (https://www.nodeknockout.com)"
+  ],
+  "license": "MIT"
+}
