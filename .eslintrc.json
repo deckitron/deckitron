@@ -159,7 +159,7 @@
         }],
         "id-blacklist": ["error"],
         "id-length": ["off"],
-        "id-match": ["warn", "^([mp]_)?([A-Za-z])([A-Za-z0-9_-]+)?$"],
+        "id-match": ["warn", "^([mp]_)?([A-Za-z$])([A-Za-z0-9_-]+)?$"],
         "indent": ["error", 4, {
             "SwitchCase": 1
         }],
