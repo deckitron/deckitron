@@ -27,10 +27,12 @@
         function recieveMessage (data) {
             $q((resolve) => {
                 $scope.messages.push(data);
+                $scope.$apply();
                 resolve();
             })
             .then(() => {
-                console.log('test');
+                const messages = document.getElementById('chat-messages');
+                messages.scrollTop = messages.scrollHeight;
             });
         }
 
