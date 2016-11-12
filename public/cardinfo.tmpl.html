@@ -1,4 +1,4 @@
-<md-dialog aria-label="Mango (Fruit)">
+<md-dialog aria-label={{card.name}}>
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
@@ -9,9 +9,35 @@
         </md-button>
       </div>
     </md-toolbar>
-
     <md-dialog-content>
-        {{card}}
+         <md-tabs md-border-bottom>
+             <md-tab label="Card Info">
+                 <md-content class="md-padding">
+                    <h1>Card Info</h1>
+                    <div>Card Name: {{card.name}}</div>
+                    <div>Mana Cost: {{card.manaCost}}</div>
+                    <div>CMC: {{card.cmc}}</div>
+                    <div>Type: {{card.type}}</div>
+                    <div>Text: {{card.text}}</div>
+                    <div>P/T: {{card.power}}/{{card.toughness}}</div>
+                    <div>Rarity: {{card.rarity}}</div>
+                    <div>Artist: {{card.artist}}</div>
+                    <div>{{card.flavor}}</div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Rulings">
+                <md-content class="md-padding">
+                <h1>Rulings</h1>
+                <p>Rulings go Here</p>
+                </md-content>
+            </md-tab>
+            <md-tab label="Legality">
+                <md-content class="md-padding">
+                <h1>Legality</h1>
+                <p>Legal goes Here</p>
+                </md-content>
+            </md-tab>
+        </md-tabs>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
