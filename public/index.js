@@ -2,11 +2,10 @@
 (function () {
     'use strict';
 
-    const app = angular.module('deckitron', ['slug', 'ngMaterial']);
+    const app = angular.module('deckitron', ['slug']);
 
     app.controller('DeckitronHome', ['$scope', '$window', 'slug',
         function ($scope, $window, slug) {
-            $scope.title = 'DeckitronHome';
             $scope.onStart = function () {
                 const sluggedDeckName = $scope.deckName
                     ? slug($scope.deckName)
