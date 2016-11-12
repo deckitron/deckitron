@@ -7,6 +7,17 @@
     chat.controller('chat', ['$scope', '$q', function ($scope, $q) {
         let sock = null;
         $scope.messages = [];
+        $scope.connectedUsers = [
+            {
+                name: 'Matt'
+            },
+            {
+                name: 'Sean'
+            },
+            {
+                name: 'Damian'
+            }
+        ];
 
         $scope.sendMessage = function () {
             sock.emit('new message', $scope.newMessage);
@@ -20,7 +31,7 @@
             })
             .then(() => {
                 console.log('test');
-            })
+            });
         }
 
         window.chat = function (socket) {
@@ -28,5 +39,4 @@
             sock.on('message', recieveMessage);
         };
     }]);
-
 }());
