@@ -94,7 +94,7 @@
                         </md-button>
                         <span flex></span>
                         <div id="friendIconsContainer">
-                            <span ng-repeat="user in connectedUsers">
+                            <span ng-repeat="user in connectedUsers" ng-if="user.id !== me.id">
                                 <ng-letter-avatar data={{user.name}} shape="round" width="35px" height="35px" fontSize="30px"></ng-letter-avatar>
                             </span>
                         </div>
