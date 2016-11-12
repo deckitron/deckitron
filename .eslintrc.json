@@ -268,7 +268,7 @@
         "prefer-reflect": ["warn"],
         "prefer-rest-params": ["warn"],
         "prefer-spread": ["warn"],
-        "prefer-template": ["warn"],
+        "prefer-template": ["off"],
         "require-yield": ["warn"],
         "rest-spread-spacing": ["warn"],
         "sort-imports": ["warn"],
