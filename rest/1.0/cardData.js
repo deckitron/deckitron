@@ -11,7 +11,7 @@ module.exports = function (app) {
         Card.create(body, (err, card) => {
             if (err) {
                 res.status(400)
-                .send(err.message);
+                .json(err);
                 return;
             }
             res.status(200)
@@ -22,7 +22,7 @@ module.exports = function (app) {
         Card.remove({}, (err) => {
             if (err) {
                 res.status(500)
-                .send(err.message)
+                .json(err)
                 .end();
                 return;
             }
