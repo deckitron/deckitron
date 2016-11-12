@@ -1,0 +1,51 @@
+@btnColor: #3f51b5;
+
+
+html, body {
+    text-align: center;
+    background: #bbb;
+}
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    margin: 100px 20px 50px;
+}
+#description {
+    margin: 50px;
+}
+
+form#url-bar {
+    background: #fff;
+    margin: auto;
+    border: 1px inset #222;
+    border-radius: 5px;
+    font-size: 25px;
+    width: auto;
+    display: inline-block;
+    overflow: hidden;
+
+    label {
+        padding: 0.5em 0 0.5em 0.5em;
+    }
+    input {
+        border: none;
+        font-size: 1em;
+        padding: 0.5em;
+        font-family: Arial;
+    }
+    button {
+        height: 100%;
+        border: none;
+        font-size: 1em;
+        padding: 0.5em 0.5em 0.5em 0.5em;
+        background: @btnColor;
+        color: #fff;
+        cursor: pointer;
+        font-family: Arial;
+        &:hover {
+            background: lighten(@btnColor, 10%);
+        }
+    }
+}
