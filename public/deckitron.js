@@ -12,6 +12,13 @@
         ]
     );
 
+    app.config(($mdThemingProvider) => {
+        $mdThemingProvider.theme('default')
+            .primaryPalette('indigo')
+            .accentPalette('pink')
+            .dark();
+    });
+
     app.controller('DeckitronCore', ['$scope', function ($scope) {
         $scope.title = 'Deckitron';
         $scope.me = {

@@ -8,19 +8,19 @@
         $rootScope.cardLists = [
             {
                 name: 'All Cards',
-                icon: ''
+                icon: 'public/icons/all_cards.svg'
             },
             {
                 name: 'Deck',
-                icon: ''
+                icon: 'public/icons/deck.svg'
             },
             {
                 name: 'Sideboard',
-                icon: ''
+                icon: 'public/icons/sideboard.svg'
             },
             {
                 name: 'Linked',
-                icon: ''
+                icon: 'public/icons/linked.svg'
             }
         ];
     }]);

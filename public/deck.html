@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <!-- Main Application -->
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="public/deckitron.js"></script>
@@ -14,49 +15,43 @@
     <script src="public/room.js"></script>
     <script src="public/chat.js"></script>
 
+    <!-- Posters -->
+    <script src="public/posters.js"></script>
+
     <!-- Design -->
     <link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.min.css" />
     <script src="node_modules/angular-animate/angular-animate.min.js"></script>
     <script src="node_modules/angular-aria/angular-aria.min.js"></script>
     <script src="node_modules/angular-material/angular-material.min.js"></script>
+    <script src="node_modules/angular-material-icons/angular-material-icons.min.js"></script>
     <script src="node_modules/ngletteravatar/dist/ngletteravatar.min.js"></script>
-    <script src="node_modules/less/dist/less.min.js"></script>
     <link rel="stylesheet/less" type="text/css" href="public/deck.less" />
-
-    <style>
-
-    * {
-        overflow: hidden;
-    }
-    .chatMessage {
-        margin-left: 10px;
-        font-size: 1em;
-        line-height: 1.3em;
-    }
-
-    #friendIconsContainer {
-        margin-top: 15px;
-    }
-    #friendIconsContainer > * {
-        margin-right: 5px;
-    }
-    </style>
+    <script src="node_modules/less/dist/less.min.js"></script>
+    <!-- <link rel="icon" type="image/svg+xml" href="public/node.svg"> -->
 
     <title>Deckitron</title>
 </head>
 
-<body ng-app="deckitron" ng-controller="DeckitronCore" layout="column">
+<body ng-app="deckitron" ng-controller="DeckitronCore" layout="column" layout-fill>
 
     <div class="container" layout="row" flex>
         <!-- Container #3 -->
 
         <md-sidenav md-is-locked-open="true" md-whiteframe="10">
             <md-content flex>
+                <md-toolbar class="md-primary md-medium-tall" layout-align="center end" layout-fill>
+                    <div class="md-toolbar-tools" id="userIcons">
+                        <span flex></span>
+                        <md-button class="md-icon-button" aria-label="collapse">
+                            <md-icon md-svg-icon="public/icons/left_arrow.svg"></md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
                 <div ng-controller="filters" layout="column">
                     <md-list>
                         <md-list-item class="md-1-line" ng-repeat="item in cardLists" ng-click="null">
-                            <div class="md-list-item-text md-primary" layout="column">
-                                <h2>{{item.name}}</h2>
+                            <div class="md-list-item-text md-primary" layout="row" layout-align="start center">
+                                <h4 class="selectableCardLists"><md-icon md-svg-icon={{item.icon}} aria-label={{item.name}} class="i36"></md-icon>{{item.name}}</h4>
                             </div>
                             <md-divider inset></md-divider>
                         </md-list-item>
@@ -65,17 +60,25 @@
             </md-content>
 
         </md-sidenav>
-        <md-content flex id="content" class="lightgreen" flex>
-
+        <md-content flex id="content">
+            <!-- Posters go here -->
+            <!-- <md-virtual-repeat-container id="vertical-container">
+                <div md-virtual-repeat="item in ctrl.dynamicItems" md-on-demand
+                    class="repeated-item" flex>
+                  {{item}}
+                </div>
+            </md-virtual-repeat-container> -->
         </md-content>
 
 
-        <md-sidenav md-is-locked-open="true" md-whiteframe="20">
-            <div ng-controller="chat">
-                <md-toolbar class="md-primary md-medium-tall" layout-align="center end" layout-fill>
-                     <div class="md-toolbar-tools" id="userIcons">
+        <md-sidenav md-is-locked-open="true" md-whiteframe="10" id="social" md-disable-scroll-target="content">
+            <md-content ng-controller="chat">
+                <md-toolbar class="md-medium-tall" layout-align="center end">
+                    <div class="md-toolbar-tools" id="userIcons">
+                        <md-button class="md-icon-button" aria-label="collapse">
+                            <md-icon md-svg-icon="public/icons/right_arrow.svg"></md-icon>
+                        </md-button>
                         <span flex></span>
-                        <!-- <ng-letter-avatar data={{user.name}} shape="round"></ng-letter-avatar> -->
                         <div id="friendIconsContainer">
                             <ng-letter-avatar ng-repeat="user in connectedUsers" data={{user.name}} shape="round" width="35px" height="35px" fontSize="30px" ng-repeat="user"></ng-letter-avatar>
                         </div>
@@ -83,22 +86,25 @@
                     </div>
                 </md-toolbar>
                 <md-content>
-                <div layout-align="center end">
-                    <md-list flex>
+                    <md-list>
                         <md-divider inset></md-divider>
                         <md-list-item class="md-1-line" ng-repeat="message in messages" ng-click="null">
                             <ng-letter-avatar data={{message.user.id}} shape="round" width="30" height="30" fontSize="20px"></ng-letter-avatar><span class="chatMessage">{{message.message}}</span>
                             <md-divider inset></md-divider>
                         </md-list-item>
                     </md-list>
-                    <form ng-submit="sendMessage()" layout-align="center center">
+                    <md-divider inset></md-divider>
+                    <form ng-submit="sendMessage()" layout-align="center center" layout="row">
                         <md-input-container md-no-float layout-fill layout-padding>
-                            <input ng-model="newMessage" placeholder="Say something" md-whiteframe="3">
+                            <input ng-model="newMessage" placeholder="Type Here!" class="chatInput" autocomplete="off">
                         </md-input-container>
+
+                        <md-button type="submit" class="md-icon-button" aria-label="send" layout-align="center center">
+                            <md-icon md-svg-icon="public/icons/send.svg"></md-icon>
+                        </md-button>
                     </form>
-                </div>
+                </md-content>
             </md-content>
-            </div>
         </md-sidenav>
     </div>
 </body>
