@@ -7,6 +7,11 @@ module.exports = function (app) {
 
     app.post('/cardData', (req, res) => {
         const body = req.body;
+        if (req.headers['x-secret'] == null || req.headers['x-secret'] !== 'ShhhhImASecret') {
+            res.status(400)
+            .end();
+            return;
+        }
         // console.log(`Creating card for data ${JSON.stringify(body)}`);
         Card.create(body, (err, card) => {
             if (err) {
@@ -19,6 +24,11 @@ module.exports = function (app) {
         });
     });
     app.delete('/cardData', (req, res) => {
+        if (req.headers['x-secret'] == null || req.headers['x-secret'] !== 'ShhhhImASecret') {
+            res.status(400)
+            .end();
+            return;
+        }
         Card.remove({}, (err) => {
             if (err) {
                 res.status(500)

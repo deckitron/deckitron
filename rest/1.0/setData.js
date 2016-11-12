@@ -7,7 +7,11 @@ module.exports = function (app) {
 
     app.post('/setData', (req, res) => {
         const body = req.body;
-        // console.log(`Creating card for data ${JSON.stringify(body)}`);
+        if (req.headers['x-secret'] == null || req.headers['x-secret'] !== 'ShhhhImASecret') {
+            res.status(400)
+            .end();
+            return;
+        }
         Set.create(body, (err, set) => {
             if (err) {
                 res.status(400)
@@ -19,6 +23,11 @@ module.exports = function (app) {
         });
     });
     app.delete('/setData', (req, res) => {
+        if (req.headers['x-secret'] == null || req.headers['x-secret'] !== 'ShhhhImASecret') {
+            res.status(400)
+            .end();
+            return;
+        }
         Set.remove({}, (err) => {
             if (err) {
                 res.status(500)
