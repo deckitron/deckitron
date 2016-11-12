@@ -5,6 +5,7 @@
         <link rel="stylesheet/less" type="text/css" href="public/index.less" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
+        <script src="node_modules/socket.io-client/socket.io.js"></script>
         <script src='node_modules/angular/angular.min.js'></script>
         <script src='node_modules/angular-slug/bower_components/slug/slug.js'></script>
         <script src='node_modules/angular-slug/angular-slug.js'></script>
@@ -25,6 +26,11 @@
         </form>
         <div id='error'>
             <p>{{ErrMsg}}</p>
+        </div>
+
+        <h2>Active Decks</h2>
+        <div ng-repeat="deck in decks">
+            <a href='{{deck.name}}'>{{deck.name}}</a> ({{deck.users === 1 ? '1 User': deck.users + ' Users'}})
         </div>
     </body>
 </html>

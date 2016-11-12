@@ -10,6 +10,7 @@ const server = http.createServer(app);
 const io = require('socket.io')(server);
 const chat = require('./lib/chat');
 const deck = require('./lib/deck');
+const rooms = require('./lib/rooms');
 
 // Matt is mean
 const usernames = [
@@ -102,5 +103,8 @@ io.on('connection', (socket) => {
         chat(io, socket, roomName, user);
         deck(io, socket, roomName, user);
         console.log(`User ${user.id} joined ${roomName}`);
+    });
+    socket.on('rooms.watch', () => {
+        socket.emit('rooms.list', rooms.getRoomsList());
     });
 });
