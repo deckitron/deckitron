@@ -24,6 +24,8 @@
         $scope.me = {
             name: 'Lauren'
         };
+
+        $scope.convertedManaCost = ['1', '2', '3', '4', '5', '6'];
     }]);
 
     app.run(($log) => {
