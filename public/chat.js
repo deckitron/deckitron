@@ -4,7 +4,7 @@
 
     const chat = angular.module('chat', ['room']);
 
-    chat.controller('chat', ['$scope', '$q', 'room', function ($scope, $q, $room) {
+    chat.controller('chat', ['$scope', '$q', '$timeout', 'room', function ($scope, $q, $timeout, $room) {
         const chatEl = document.getElementById('chat-messages');
         $scope.messages = [];
         $scope.connectedUsers = [];
@@ -103,7 +103,6 @@
             $scope.$apply(() => {
                 $scope.connectedUsers = data.users;
                 $scope.me = $room.getUser();
-                console.log($scope);
             });
         }
         $scope.sendMessage = function () {
@@ -112,6 +111,21 @@
             $scope.newMessage = '';
             scrollToBottomOfChat();
             return false;
+        };
+        $scope.changeName = function () {
+            const newName = prompt('Change username', $scope.me.name);
+            if (!newName || newName === $scope.me.name) {
+                return;
+            }
+            $scope.me.name = newName;
+
+            $room.getSocket()
+                .emit('chat.user.update', $scope.me);
+
+            $scope.me = null;
+            $timeout(() => {
+                $scope.me = $room.getUser();
+            });
         };
 
         function connectChat () {
