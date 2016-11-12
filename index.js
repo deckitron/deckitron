@@ -13,3 +13,6 @@ app.listen(app.get('port'), () => {
     mongoose.connect('mongodb://192.168.0.17:27017/deckinator');
     console.log('Node app is running at localhost:' + app.get('port'));
 });
+
+// Load REST APIs
+require('./rest/index')(app);
