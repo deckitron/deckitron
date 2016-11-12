@@ -12,8 +12,54 @@ const chat = require('./lib/chat');
 const deck = require('./lib/deck');
 
 // Matt is mean
-const usernames = ['Mike', 'Damian', 'Sean', 'Lauren'];
-const colors = ['orange', 'tomato', 'pink', 'royalblue', 'purple', 'gold', 'fuchsia', 'limegreen', 'sandybrown'];
+const usernames = [
+    'Jace',
+    'Garruk',
+    'Nissa',
+    'Liliana',
+    'Ajani',
+    'Chandra',
+    'Gideon',
+    'Kiora',
+    'Nixilis',
+    'Elspeth',
+    'Tezzeret',
+    'Sarkhan',
+    'Bolas',
+    'Sorin',
+    'Koth',
+    'Venser',
+    'Karn',
+    'Tamiyo',
+    'Tibalt',
+    'Vraska',
+    'Domri',
+    'Ral',
+    'Ashiok',
+    'Xenagos',
+    'Dack',
+    'Nahiri',
+    'Teferi',
+    'Daretti',
+    'Freyalise',
+    'Ugin',
+    'Narset',
+    'Arlinn',
+    'Kaya',
+    'Dovin',
+    'Saheeli'
+];
+const colors = [
+    'orange',
+    'tomato',
+    'pink',
+    'royalblue',
+    'purple',
+    'gold',
+    'fuchsia',
+    'limegreen',
+    'sandybrown'
+];
 
 let users = 0;
 
