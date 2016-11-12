@@ -54,7 +54,9 @@
          */
         function userConnected (user) {
             console.log('user connected', user);
-            $scope.connectedUsers.push(user);
+            $scope.$apply(() => {
+                $scope.connectedUsers.push(user);
+            });
         }
 
         /**
@@ -66,7 +68,9 @@
             for (let i = 0; i < $scope.connectedUsers.length; i++) {
                 const item = $scope.connectedUsers[i];
                 if (item.id === user.id) {
-                    $scope.connectedUsers.splice(i, 1);
+                    $scope.$apply(() => {
+                        $scope.connectedUsers.splice(i, 1);
+                    });
                     return;
                 }
             }
@@ -81,7 +85,9 @@
             for (let i = 0; i < $scope.connectedUsers.length; i++) {
                 const item = $scope.connectedUsers[i];
                 if (item.id === user.id) {
-                    $scope.connectedUsers[i] = user;
+                    $scope.$apply(() => {
+                        $scope.connectedUsers[i] = user;
+                    });
                     return;
                 }
             }
