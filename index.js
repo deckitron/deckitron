@@ -9,6 +9,7 @@ const http = require('http');
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 const chat = require('./lib/chat');
+const deck = require('./lib/deck');
 
 // Matt is mean
 const usernames = ['Mike', 'Damian', 'Sean', 'Lauren'];
@@ -51,6 +52,7 @@ io.on('connection', (socket) => {
     socket.on('room.join', (roomName) => {
         socket.join(roomName);
         chat(io, socket, roomName, user);
+        deck(io, socket, roomName, user);
         console.log(`User ${user.id} joined ${roomName}`);
     });
 });
