@@ -130,6 +130,14 @@
             $room.getSocket()
                 .emit('chat.user.update', $scope.me);
         };
+        $scope.getUsername = function (user) {
+            for (let i = 0; i < $scope.connectedUsers.length; i++) {
+                if ($scope.connectedUsers[i].id === user.id) {
+                    return $scope.connectedUsers[i].name;
+                }
+            }
+            return user.name;
+        };
 
         function connectChat () {
             const socket = $room.getSocket();

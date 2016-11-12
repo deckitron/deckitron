@@ -120,7 +120,7 @@
                     <md-list>
                         <md-divider inset></md-divider>
                         <md-list-item class="md-1-line" ng-repeat="message in messages" ng-click="null">
-                            <span class='circle friend' title='{{message.user.name}}' style="background-color: {{message.user.color}}">{{message.user.name.substr(0, 1)}}</span>
+                            <span class='circle friend' title='{{getUsername(message.user)}}' style="background-color: {{message.user.color}}">{{getUsername(message.user).substr(0, 1)}}</span>
                             <span class="chatMessage">{{message.message}}</span>
                             <md-divider inset></md-divider>
                         </md-list-item>
