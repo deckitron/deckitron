@@ -21,9 +21,6 @@
 
     app.controller('DeckitronCore', ['$scope', function ($scope) {
         $scope.title = 'Deckitron';
-        $scope.me = {
-            name: 'Lauren'
-        };
 
         $scope.convertedManaCost = ['1', '2', '3', '4', '5', '6'];
     }]);

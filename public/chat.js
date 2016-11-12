@@ -29,6 +29,7 @@
          * @param   {Object} data A Chat message and a user Object
          */
         function recieveMessage (data) {
+            console.log('recieve message', data);
             const scrollToBottom = isScrollAtBottom();
             // Use $q to make it handle digest better
             $q((resolve) => {
@@ -52,6 +53,7 @@
          * @param   {Object} user A user Object
          */
         function userConnected (user) {
+            console.log('user connected', user);
             $scope.connectedUsers.push(user);
         }
 
@@ -60,6 +62,7 @@
          * @param   {Object} user A user Object
          */
         function userDisconnected (user) {
+            console.log('user disconnected', user);
             for (let i = 0; i < $scope.connectedUsers.length; i++) {
                 const item = $scope.connectedUsers[i];
                 if (item.id === user.id) {
@@ -74,6 +77,7 @@
          * @param   {Object} user A user Object
          */
         function userUpdated (user) {
+            console.log('user updated', user);
             for (let i = 0; i < $scope.connectedUsers.length; i++) {
                 const item = $scope.connectedUsers[i];
                 if (item.id === user.id) {
@@ -88,9 +92,12 @@
          * @param   {Object} data Initial chat data
          */
         function chatConnected (data) {
+            console.log('connected', data);
             // $scope.messages = data.messages = [];
             $scope.$apply(() => {
                 $scope.connectedUsers = data.users;
+                $scope.me = $room.getUser();
+                console.log($scope);
             });
         }
         $scope.sendMessage = function () {
