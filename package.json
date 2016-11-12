@@ -12,6 +12,7 @@
     "angular-aria": "^1.5.8",
     "angular-material": "^1.1.1",
     "express": "^4.13.3",
+    "less": "^2.7.1",
     "mongoose": "^4.6.7",
     "socket.io": "^1.5.1"
   },
