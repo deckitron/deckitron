@@ -48,7 +48,7 @@ io.on('connection', (socket) => {
     socket.on('join-room', (roomName) => {
         socket.join(roomName);
         chat(io, socket, roomName, user);
-        deck(io, socket, mongoose, roomName, user);
+        deck(io, socket, roomName, user);
         console.log(`User ${user.id} joined ${roomName}`);
     });
 });

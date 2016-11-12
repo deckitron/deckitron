@@ -67,6 +67,8 @@
         window.chat = function (socket) {
             sock = socket;
             sock.on('message', recieveMessage);
+            sock.on('card_list', console.log);
+            sock.on('current_deck', console.log);
         };
     }]);
 }());
