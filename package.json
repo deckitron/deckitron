@@ -7,7 +7,11 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "express": "^4.13.3"
+    "angular": "^1.5.8",
+    "angular-material": "^1.1.1",
+    "express": "^4.13.3",
+    "mongoose": "^4.6.7",
+    "socket.io": "^1.5.1"
   },
   "engines": {
     "node": "4.4.5"
