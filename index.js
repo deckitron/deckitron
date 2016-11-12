@@ -24,13 +24,10 @@ app.use(bodyParser.urlencoded({
 // Static serving
 app.use('/public', express.static(path.join(__dirname, '/public')));
 app.use('/node_modules', express.static(path.join(__dirname, '/node_modules')));
-// Load REST APIs
-require('./rest/index')(app);
 // Home Page
 app.use(/^\/$/, (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'));
 });
-
 // Deck page as default
 app.use(/^\/[a-zA-Z0-9\-_]*$/, (req, res) => {
     res.sendFile(path.join(__dirname, '/public/deck.html'));
@@ -43,7 +40,6 @@ server.listen(app.get('port'), () => {
     }
     console.log('Node app is running at localhost:' + app.get('port'));
 });
-
 io.on('connection', (socket) => {
     const user = {
         id: users++
