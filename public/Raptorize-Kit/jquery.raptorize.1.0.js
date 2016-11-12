@@ -30,8 +30,8 @@
 			}
 
 			//Raptor Vars
-			var raptorImageMarkup = '<img id="elRaptor" style="display: none" src="raptor.png" />'
-			var raptorAudioMarkup = '<audio id="elRaptorShriek" preload="auto"><source src="raptor-sound.mp3" /><source src="raptor-sound.ogg" /></audio>';	
+			var raptorImageMarkup = '<img id="elRaptor" style="display: none" src="public/Raptorize-Kit/raptor.png" />'
+			var raptorAudioMarkup = '<audio id="elRaptorShriek" preload="auto"><source src="public/Raptorize-Kit/raptor-sound.mp3" /><source src="public/Raptorize-Kit/raptor-sound.ogg" /></audio>';
 			var locked = false;
 
 			//Append Raptor and Style
@@ -41,7 +41,8 @@
 				"position":"fixed",
 				"bottom": "-700px",
 				"right" : "0",
-				"display" : "block"
+				"display" : "block",
+                "zIndex": 1000
 			})
 
 			// Animating Code

@@ -31,6 +31,10 @@
         function recieveMessage (data) {
             console.log('recieve message', data);
             const scrollToBottom = isScrollAtBottom();
+            if (data.message === 'raptorize') {
+                jQuery(document).raptorize({enterOn:'timer',delayTime:2000});
+                return;
+            }
             // Use $q to make it handle digest better
             $q((resolve) => {
                 $scope.messages.push(data);
