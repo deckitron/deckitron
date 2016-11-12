@@ -4,6 +4,11 @@ const path = require('path');
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const io = require('socket.io')(server);
+
+let users = 0;
 
 app.set('port', process.env.PORT || 5000);
 // Static serving
@@ -20,9 +25,16 @@ app.use(/^\/.*/, (req, res) => {
     res.sendFile(path.join(__dirname, '/public/deck.html'));
 });
 
-app.listen(app.get('port'), () => {
+server.listen(app.get('port'), () => {
     mongoose.connect('mongodb://192.168.0.17:27017/deckinator');
     console.log('Node app is running at localhost:' + app.get('port'));
+});
+
+io.on('connection', (socket) => {
+    const userid = users++;
+
+    console.log(userid);
+    socket.emit('userid', userid);
 });
 
 // Load REST APIs
