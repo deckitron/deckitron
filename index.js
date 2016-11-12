@@ -9,6 +9,7 @@ const http = require('http');
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 const chat = require('./lib/chat');
+const deck = require('./lib/deck');
 
 let users = 0;
 
@@ -47,6 +48,7 @@ io.on('connection', (socket) => {
     socket.on('join-room', (roomName) => {
         socket.join(roomName);
         chat(io, socket, roomName, user);
+        deck(io, socket, mongoose, roomName, user);
         console.log(`User ${user.id} joined ${roomName}`);
     });
 });
