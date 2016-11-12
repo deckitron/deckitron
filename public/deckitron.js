@@ -4,21 +4,47 @@
 
     const app = angular.module('deckitron', ['ngMaterial']);
 
-
-    app.config(($sceDelegateProvider) => {
-          // NOTE: The following config is required because we're
-          //       loading this within JSBin
-          // Allow same origin resource loads.
-          // Allow loading from our assets domain.  Notice the difference
-          // between * and **.
-        $sceDelegateProvider.resourceUrlWhitelist([
-            'self',
-            'https://rawgit.com/angular/material-start/es5-tutorial/app/assets/svg/**'
-        ]);
-    });
+    // The default card filters
+    const CARD_FILTERS = [];
 
     app.controller('DeckitronCore', ['$scope', function ($scope) {
         $scope.title = 'Deckitron';
+        $scope.cardLists = [
+            {
+                name: 'All Cards',
+                // slice to not use the same array for all card lists
+                items: CARD_FILTERS.slice()
+            },
+            {
+                name: 'Deck',
+                // slice to not use the same array for all card lists
+                items: CARD_FILTERS.slice()
+            },
+            {
+                name: 'Sideboard',
+                // slice to not use the same array for all card lists
+                items: CARD_FILTERS.slice()
+            },
+            {
+                name: 'Linked',
+                // slice to not use the same array for all card lists
+                items: CARD_FILTERS.slice()
+            }
+        ];
+      /*
+       * if given group is the selected group, deselect it
+       * else, select the given group
+       */
+        $scope.toggleList = function (group) {
+            if ($scope.isGroupShown(group)) {
+                $scope.shownGroup = null;
+            } else {
+                $scope.shownGroup = group;
+            }
+        };
+        $scope.isGroupShown = function (group) {
+            return $scope.shownGroup === group;
+        };
     }]);
 
     app.run(($log) => {

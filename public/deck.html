@@ -4,6 +4,8 @@
         <title>Deckitron</title>
         <link rel="stylesheet/less" type="text/css" href="public/deck.less" />
         <link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.min.css" />
+
+
         <script src="node_modules/angular/angular.min.js"></script>
         <script src="node_modules/less/dist/less.min.js"></script>
         <script src="node_modules/socket.io-client/socket.io.js"></script>
@@ -12,45 +14,73 @@
         <script src="node_modules/angular-aria/angular-aria.min.js"></script>
         <script src="node_modules/angular-material/angular-material.min.js"></script>
         <script src="public/deckitron.js"></script>
+
     </head>
     <body ng-app="deckitron" ng-controller="DeckitronCore" layout="column">
 
     <div class="container" layout="row" flex>
         <!-- Container #3 -->
-        <md-sidenav md-is-locked-open="true" class="md-whiteframe-z5">
+        <md-sidenav md-is-locked-open="true" md-whiteframe="10">
 
-          <md-list>
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">Sidenav Left</h1>
+            </md-toolbar>
 
-            <!-- List item #1 -->
-            <md-list-item >
+            <md-content flex>
+
+            <md-list>
+
+              <md-list-item class="md-3-line" ng-repeat="item in cardLists">
+                <md-icon alt="{{item.name}}" md-font-icon="android" aria-label="android"></md-icon>
+
+                <div class="md-list-item-text">
+                  <h3>{{item.name}}</h3>
+                </div>
+                <md-divider inset></md-divider>
+              </md-list-item>
+
+            </md-list>
+
+          </md-content>
+
+        </md-sidenav>
+        <!-- <md-list>
+
+            <md-list-item>
                 <md-button>
-                  <md-icon md-svg-src="https://rawgit.com/angular/material-start/es5-tutorial/app/assets/svg/avatar-1.svg" class="avatar"></md-icon>
-                  Lia Luogo
+                    All Cards
                 </md-button>
             </md-list-item>
 
-            <!-- List item #2 -->
             <md-list-item >
                 <md-button>
-                 <md-icon md-svg-src="https://rawgit.com/angular/material-start/es5-tutorial/app/assets/svg/avatar-4.svg" class="avatar"></md-icon>
-                  Lawrence Ray
+                    Deck
                 </md-button>
             </md-list-item>
+
+            <md-list-item >
+                <md-button>
+                    Sideboard
+                </md-button>
+            </md-list-item>
+
+            <md-list-item >
+                <md-button>
+                    Linked
+                </md-button>
+            </md-list-item>
+
 
           </md-list>
-        </md-sidenav>
+        </md-sidenav> -->
 
         <!-- Container #4 -->
         <md-content flex id="content" class="lightgreen" flex>
-          <md-icon md-svg-icon="https://rawgit.com/angular/material-start/es5-tutorial/app/assets/svg/avatar-1.svg" class="avatar"></md-icon>
-          <h2>Lia Luogo</h2>
-          <p>
-            I love cheese, especially airedale queso. Cheese and biscuits halloumi cauliflower cheese cottage cheese
-            swiss boursin fondue caerphilly. Cow port-salut camembert de normandie macaroni cheese feta who moved my
-            cheese babybel boursin. Red leicester roquefort boursin squirty cheese jarlsberg blue castello caerphilly
-            chalk and cheese. Lancashire.
-          </p>
         </md-content>
+
+
+        <md-sidenav md-is-locked-open="true" md-whiteframe="20">
+        </md-sidenav>
     </div>
     </body>
 </html>
