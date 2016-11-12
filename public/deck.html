@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Deckitron</title>
-        <link rel="stylesheet/less" type="text/css" href="public/deck.less" />
-        <link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.min.css" />
+
+<head>
+    <title>Deckitron</title>
+    <link rel="stylesheet/less" type="text/css" href="public/deck.less" />
+    <link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.min.css" />
 
 
-        <script src="node_modules/angular/angular.min.js"></script>
-        <script src="node_modules/less/dist/less.min.js"></script>
-        <script src="node_modules/socket.io-client/socket.io.js"></script>
-        <script src="node_modules/angular-animate/angular-animate.min.js"></script>
-        <script src="node_modules/angular-aria/angular-aria.min.js"></script>
-        <script src="node_modules/angular-material/angular-material.min.js"></script>
-        <script src='public/room.js'></script>
-        <script src='public/chat.js'></script>
-        <script src="public/deckitron.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/less/dist/less.min.js"></script>
+    <script src="node_modules/socket.io-client/socket.io.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="node_modules/angular-material/angular-material.min.js"></script>
+    <script src='public/room.js'></script>
+    <script src='public/chat.js'></script>
+    <script src="public/deckitron.js"></script>
 
-    </head>
-    <body ng-app="deckitron" ng-controller="DeckitronCore" layout="column">
+</head>
+
+<body ng-app="deckitron" ng-controller="DeckitronCore" layout="column">
 
     <div class="container" layout="row" flex>
         <!-- Container #3 -->
@@ -29,20 +31,20 @@
 
             <md-content flex>
 
-            <md-list>
+                <md-list>
 
-              <md-list-item class="md-3-line" ng-repeat="item in cardLists">
-                <md-icon alt="{{item.name}}" md-font-icon="android" aria-label="android"></md-icon>
+                    <md-list-item class="md-3-line" ng-repeat="item in cardLists">
+                        <md-icon alt="{{item.name}}" md-font-icon="android" aria-label="android"></md-icon>
 
-                <div class="md-list-item-text">
-                  <h3>{{item.name}}</h3>
-                </div>
-                <md-divider inset></md-divider>
-              </md-list-item>
+                        <div class="md-list-item-text">
+                            <h3>{{item.name}}</h3>
+                        </div>
+                        <md-divider inset></md-divider>
+                    </md-list-item>
 
-            </md-list>
+                </md-list>
 
-          </md-content>
+            </md-content>
 
         </md-sidenav>
         <!-- <md-list>
@@ -81,11 +83,23 @@
 
 
         <md-sidenav md-is-locked-open="true" md-whiteframe="20">
-            <div id='chatMessages'></div>
-            <form id='chat'>
-                <input type='text' name='newMessage' id='newMessage'/>
+            <div ng-controller='chat'>
+            <md-list-item class="md-3-line" ng-repeat="message in messages">
+                <div class="md-list-message-text">
+                    {{message.user}}:
+                    {{message.message}}
+                </div>
+                <md-divider inset></md-divider>
+            </md-list-item>
+            <form ng-submit='sendMessage()'>
+                <md-input-container>
+                    <label>Chat</label>
+                    <input ng-model="newMessage">
+                </md-input-container>
             </form>
+        </div>
         </md-sidenav>
     </div>
-    </body>
+</body>
+
 </html>

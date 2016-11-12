@@ -1,29 +1,32 @@
-
+/* global angular */
 (function () {
     'use strict';
 
-    function sendMessage (socket) {
-        const el = document.getElementById('newMessage');
-        console.log('send')
-        socket.emit('new message', el.value);
-        el.value = '';
-    }
-    function recieveMessage (data) {
-        // let user = data.user;
-        const message = data.message;
-        const chat = document.getElementById('chatMessages');
-        const el = document.createElement('div');
-        el.innerHTML = message;
-        console.log('recieve')
-        chat.appendChild(el);
-    }
+    const chat = angular.module('chat', []);
 
+    chat.controller('chat', ['$scope', '$q', function ($scope, $q) {
+        let sock = null;
+        $scope.messages = [];
 
-    window.chat = function (socket) {
-        socket.on('message', recieveMessage);
-        document.getElementById('chat')
-            .addEventListener('submit', () => {
-                sendMessage(socket);
-            }, false);
-    };
+        $scope.sendMessage = function () {
+            sock.emit('new message', $scope.newMessage);
+            $scope.newMessage = '';
+            return false;
+        };
+        function recieveMessage (data) {
+            $q((resolve) => {
+                $scope.messages.push(data);
+                resolve();
+            })
+            .then(() => {
+                console.log('test');
+            })
+        }
+
+        window.chat = function (socket) {
+            sock = socket;
+            sock.on('message', recieveMessage);
+        };
+    }]);
+
 }());
