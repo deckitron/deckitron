@@ -5,10 +5,10 @@
 
     const socket = io();
     let userid = null;
-    console.log(socket);
-    socket.on('userid', (data) => {
-        userid = data;
-        console.log(data);
-        socket.emit('join-room', document.location.pathname);
+
+    socket.on('connected', (data) => {
+        userid = data.userid;
+        console.log('userid', data);
+        socket.emit('join-room', document.location.pathname.substr(1));
     });
 }());
