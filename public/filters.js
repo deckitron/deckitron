@@ -10,7 +10,7 @@
             {
                 name: 'All Cards',
                 icon: 'public/icons/all_cards.svg',
-                selected: false
+                selected: true
             },
             {
                 name: 'Deck',

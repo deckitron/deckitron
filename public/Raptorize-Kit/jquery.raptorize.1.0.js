@@ -30,7 +30,7 @@
 			}
 
 			//Raptor Vars
-			var raptorImageMarkup = '<img id="elRaptor" style="display: none" src="public/Raptorize-Kit/raptor.png" />'
+			var raptorImageMarkup = '<img id="elRaptor" style="display: none" src="public/Raptorize-Kit/raptor.jpg" />'
 			var raptorAudioMarkup = '<audio id="elRaptorShriek" preload="auto"><source src="public/Raptorize-Kit/raptor-sound.mp3" /><source src="public/Raptorize-Kit/raptor-sound.ogg" /></audio>';
 			var locked = false;
 
@@ -42,7 +42,8 @@
 				"bottom": "-700px",
 				"right" : "0",
 				"display" : "block",
-                "zIndex": 1000
+                "zIndex": 1000,
+                "borderRadius": '5%'
 			})
 
 			// Animating Code

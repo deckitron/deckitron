@@ -48,9 +48,12 @@
 
         const socket = $room.getSocket();
         socket.on('cards.get.result', gotCards);
-
         $scope.getCardImageURL = function (id) {
-            return 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + id + '&type=card';
+            let normalizedID = id;
+            if (isNaN(normalizedID)) {
+                normalizedID = 0;
+            }
+            return 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + normalizedID + '&type=card';
         };
 
         $scope.getCardBackURL = function () {

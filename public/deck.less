@@ -86,6 +86,11 @@ md-dialog {
     z-index: 2
 }
 
+#me img {
+    vertical-align: middle;
+    margin-right: 3px;
+}
+
 .cardListSelected {
     background-color: rgb(63,81,181);
 }
@@ -141,6 +146,28 @@ md-dialog {
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0); /* Shadow */
     z-index: 0;
 }
+.circle {
+    display: inline-block;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    min-width: 1.5em;
+    min-height: 1.5em;
+}
+
+.friend {
+    font-size: 1.5em;
+    line-height: 1.5em;
+    text-align: center;
+    color: white;
+}
+
+.chatMessage {
+    &.room {
+        font-style: italic;
+    }
+}
+
 //
 // .card img:active {
 //     -webkit-transform: scale(2, 2);
