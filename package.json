@@ -11,13 +11,14 @@
     "angular-animate": "^1.5.8",
     "angular-aria": "^1.5.8",
     "angular-material": "^1.1.1",
-    "ngletteravatar": "^4.0.4",
     "angular-slug": "0.0.3",
     "body-parser": "^1.15.2",
     "express": "^4.13.3",
     "less": "^2.7.1",
     "mongoose": "^4.6.7",
-    "socket.io": "^1.5.1"
+    "ngletteravatar": "^4.0.4",
+    "socket.io": "^1.5.1",
+    "unzip": "^0.1.11"
   },
   "engines": {
     "node": "4.4.5"
