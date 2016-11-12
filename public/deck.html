@@ -86,8 +86,8 @@
 
 
         <md-sidenav md-is-locked-open="true" md-whiteframe="10" id="social" md-disable-scroll-target="content">
-            <md-content ng-controller="chat">
-                <md-toolbar class="md-medium-tall" layout-align="center end">
+            <md-content ng-controller="chat" id='chat' flex>
+                <md-toolbar class="md-medium-tall" layout-align="center end" id='chat-top'>
                     <div class="md-toolbar-tools" id="userIcons">
                         <md-button class="md-icon-button" aria-label="collapse">
                             <md-icon md-svg-icon="public/icons/right_arrow.svg"></md-icon>
@@ -99,7 +99,7 @@
                         <ng-letter-avatar data={{me.name}} shape="round"></ng-letter-avatar>
                     </div>
                 </md-toolbar>
-                <md-content>
+                <md-content id="chat-messages">
                     <md-list>
                         <md-divider inset></md-divider>
                         <md-list-item class="md-1-line" ng-repeat="message in messages" ng-click="null">
@@ -107,6 +107,8 @@
                             <md-divider inset></md-divider>
                         </md-list-item>
                     </md-list>
+                </md-content>
+                <md-content id='chat-bottom'>
                     <md-divider inset></md-divider>
                     <form ng-submit="sendMessage()" layout="row">
                         <md-input-container md-no-float layout-fill layout-padding>
