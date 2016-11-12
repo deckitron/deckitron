@@ -10,6 +10,9 @@ const server = http.createServer(app);
 const io = require('socket.io')(server);
 const chat = require('./lib/chat');
 
+// Matt is mean
+const usernames = ['Mike', 'Damian', 'Sean', 'Lauren'];
+
 let users = 0;
 
 app.set('port', process.env.PORT || 5000);
@@ -41,10 +44,11 @@ io.on('connection', (socket) => {
         id: users++
     };
     console.log(`user connected ${user.id}`);
+    user.name = usernames[user.id % usernames.length];
 
     socket.emit('connected', user);
 
-    socket.on('join-room', (roomName) => {
+    socket.on('room.join', (roomName) => {
         socket.join(roomName);
         chat(io, socket, roomName, user);
         console.log(`User ${user.id} joined ${roomName}`);

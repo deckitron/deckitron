@@ -80,7 +80,9 @@
                         </md-button>
                         <span flex></span>
                         <div id="friendIconsContainer">
-                            <ng-letter-avatar ng-repeat="user in connectedUsers" data={{user.name}} shape="round" width="35px" height="35px" fontSize="30px" ng-repeat="user"></ng-letter-avatar>
+                            <span ng-repeat="user in connectedUsers">
+                                <ng-letter-avatar data={{user.name}} shape="round" width="35px" height="35px" fontSize="30px"></ng-letter-avatar>
+                            </span>
                         </div>
                         <ng-letter-avatar data={{me.name}} shape="round"></ng-letter-avatar>
                     </div>

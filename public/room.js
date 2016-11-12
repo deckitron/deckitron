@@ -1,16 +1,24 @@
-/* global io, chat */
+/* global angular, io */
 
 (function () {
     'use strict';
 
+    const room = angular.module('room', []);
     const socket = io();
+
+    room.service('room', [function () {
+        return {
+            getSocket: () => {
+                return socket;
+            },
+            getUser: () => {
+                return socket.user;
+            }
+        };
+    }]);
 
     socket.on('connected', (data) => {
         socket.user = data;
-        console.log('userid', data.id);
-        socket.emit('join-room', document.location.pathname.substr(1));
-        chat(socket);
+        socket.emit('room.join', document.location.pathname.substr(1));
     });
-
-    window.socket = socket;
 }());
