@@ -28,12 +28,13 @@ form#url-bar {
 
     label {
         padding: 0.5em 0 0.5em 0.5em;
+        outline: none;
     }
     input {
-        border: none;
+        border: none !important;
         font-size: 1em;
-        padding: 0.5em;
-        font-family: Arial;
+        padding: 0.5em 0.5em 0.5em 0;
+        outline: none;
     }
     button {
         height: 100%;
@@ -43,7 +44,7 @@ form#url-bar {
         background: @btnColor;
         color: #fff;
         cursor: pointer;
-        font-family: Arial;
+        outline: none;
         &:hover {
             background: lighten(@btnColor, 10%);
         }
