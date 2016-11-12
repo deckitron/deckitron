@@ -27,10 +27,10 @@ app.use(/^\/$/, (req, res) => {
 });
 
 // Deck page as default
-app.use(/^\/.*/, (req, res) => {
+app.use(/^\/[a-zA-Z0-9\-_]*$/, (req, res) => {
     res.sendFile(path.join(__dirname, '/public/deck.html'));
 });
-app.listen(app.get('port'), () => {
+server.listen(app.get('port'), () => {
     mongoose.connect('mongodb://192.168.0.17:27017/deckinator');
     console.log('Node app is running at localhost:' + app.get('port'));
 });
