@@ -2,7 +2,7 @@
 (function () {
     'use strict';
 
-    const app = angular.module('deckitron', ['ngMaterial', 'chat']);
+    const app = angular.module('deckitron', ['ngMaterial', 'ngLetterAvatar', 'chat']);
 
     // The default card filters
     const CARD_FILTERS = [];

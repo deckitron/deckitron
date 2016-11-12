@@ -6,6 +6,15 @@
     <link rel="stylesheet/less" type="text/css" href="public/deck.less" />
     <link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.min.css" />
 
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script src="node_modules/less/dist/less.min.js"></script>
+        <script src="node_modules/socket.io-client/socket.io.js"></script>
+        <script src='public/room.js'></script>
+        <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+        <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+        <script src="node_modules/angular-material/angular-material.min.js"></script>
+        <script src="node_modules/ngletteravatar/dist/ngletteravatar.min.js"></script>
+        <script src="public/deckitron.js"></script>
 
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/less/dist/less.min.js"></script>
@@ -31,7 +40,8 @@
 
             <md-content flex>
 
-                <md-list>
+
+            <md-list>
 
                     <md-list-item class="md-3-line" ng-repeat="item in cardLists">
                         <md-icon alt="{{item.name}}" md-font-icon="android" aria-label="android"></md-icon>
