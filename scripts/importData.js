@@ -16,7 +16,8 @@ function postData (loc, jsonData, callback) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Content-Length': Buffer.byteLength(jsonData)
+            'Content-Length': Buffer.byteLength(jsonData),
+            'x-secret': 'ShhhhImASecret'
         }
     };
     const request = http.request(options, (res) => {
