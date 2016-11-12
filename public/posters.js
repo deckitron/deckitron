@@ -2,39 +2,23 @@
 (function () {
     'use strict';
 
-    const posterwall = angular.module('posterwall', []);
+    const posterwall = angular.module('posterwall', ['room']);
 
-    posterwall.controller('posterwall', ['$scope', function ($scope) {
+    posterwall.controller('posterwall', ['$scope', 'room', function ($scope, $room) {
         $scope.cardSelected = function () {
             console.log('clicked');
         };
+        $scope.cards = [];
 
-        $scope.cards = [
-            {
-                multiverseid: 2479
-            },
-            {
-                multiverseid: 208253
-            },
-            {
-                multiverseid: 208253
-            },
-            {
-                multiverseid: 208253
-            },
-            {
-                multiverseid: 208253
-            },
-            {
-                multiverseid: 208253
-            },
-            {
-                multiverseid: 208253
-            },
-            {
-                multiverseid: 208253
+
+        function gotCards (data) {
+            if (Array.isArray(data)) {
+                $scope.cards = data;
             }
-        ];
+        }
+
+        const socket = $room.getSocket();
+        socket.on('cards.get.result', gotCards);
 
         $scope.getCardImageURL = function (id) {
             return 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + id + '&type=card';

@@ -2,9 +2,10 @@
 (function () {
     'use strict';
 
-    const filters = angular.module('filters', []);
+    const filters = angular.module('filters', ['room']);
 
-    filters.controller('filters', ['$scope', function ($scope) {
+    filters.controller('filters', ['$scope', 'room', function ($scope, $room) {
+        const socket = $room.getSocket();
         $scope.cardLists = [
             {
                 name: 'All Cards',
@@ -27,12 +28,14 @@
                 selected: false
             }
         ];
+        // socket.emit('cards.get');
 
         $scope.selectList = function (cardListToSelect) {
             const selectedList = $scope.getSelectedList();
 
             cardListToSelect.selected = true;
             selectedList.selected = false;
+            socket.emit('cards.get');
         };
 
         $scope.getSelectedList = function () {
