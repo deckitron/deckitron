@@ -115,6 +115,8 @@ middleground {
     border-radius: 50%;
     width: 1.5em;
     height: 1.5em;
+    min-width: 1.5em;
+    min-height: 1.5em;
 }
 
 .friend {
@@ -122,4 +124,10 @@ middleground {
     line-height: 1.5em;
     text-align: center;
     color: white;
+}
+
+.chatMessage {
+    &.room {
+        font-style: italic;
+    }
 }

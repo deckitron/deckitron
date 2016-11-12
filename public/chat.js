@@ -24,13 +24,32 @@
         function scrollToBottomOfChat () {
             chatEl.scrollTop = chatEl.scrollHeight;
         }
+
+        /**
+         * Adds a message to the listen
+         * @param {Object} user    A user Object
+         * @param {string} message The message
+         * @param {string} type    Optional. The type of message (system).
+         */
+        function addMessage (user, message, type) {
+            // const scrollToBottom = isScrollAtBottom();
+            $scope.$apply(() => {
+                $scope.messages.push({
+                    user: user,
+                    message: message,
+                    type: type
+                });
+                $timeout(() => {
+                    scrollToBottomOfChat();
+                });
+            });
+        }
         /**
          * Recieves a messages from the chat server
          * @param   {Object} data A Chat message and a user Object
          */
         function recieveMessage (data) {
             console.log('recieve message', data);
-            const scrollToBottom = isScrollAtBottom();
             if (data.message === 'raptorize') {
                 jQuery(document)
                     .raptorize({
@@ -39,21 +58,7 @@
                     });
                 return;
             }
-            // Use $q to make it handle digest better
-            $q((resolve) => {
-                $scope.messages.push(data);
-
-                // HACK: For some reason it's not applying at the end of the $q
-                // so call it manually here
-                $scope.$apply();
-
-                resolve();
-            })
-            .then(() => {
-                if (scrollToBottom) {
-                    scrollToBottomOfChat();
-                }
-            });
+            addMessage(data.user, data.message);
         }
 
         /**
@@ -62,6 +67,7 @@
          */
         function userConnected (user) {
             console.log('user connected', user);
+            addMessage(user, `${user.name} joined the room`, 'room');
             $scope.$apply(() => {
                 $scope.connectedUsers.push(user);
             });
@@ -73,6 +79,7 @@
          */
         function userDisconnected (user) {
             console.log('user disconnected', user);
+            addMessage(user, `${user.name} left the room`, 'room');
             for (let i = 0; i < $scope.connectedUsers.length; i++) {
                 const item = $scope.connectedUsers[i];
                 if (item.id === user.id) {
@@ -93,6 +100,7 @@
             for (let i = 0; i < $scope.connectedUsers.length; i++) {
                 const item = $scope.connectedUsers[i];
                 if (item.id === user.id) {
+                    addMessage(user, `${$scope.connectedUsers[i].name} changed name to ${user.name}`, 'room');
                     $scope.$apply(() => {
                         $scope.connectedUsers[i] = user;
                     });
