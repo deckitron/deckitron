@@ -14,7 +14,7 @@
 				{
 					"name": "Deck List",
 					"request": {
-						"url": "{{ur}}/rest/api_{{version}}/deck/",
+						"url": "{{ur}}/rest/{{version}}/deck/",
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -28,7 +28,7 @@
 				{
 					"name": "New Deck",
 					"request": {
-						"url": "{{ur}}/rest/api_{{version}}/deck/",
+						"url": "{{ur}}/rest/{{version}}/deck/",
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -42,7 +42,7 @@
 				{
 					"name": "Deck Info",
 					"request": {
-						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}",
+						"url": "{{ur}}/rest/{{version}}/deck/{{deckSlug}}",
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -56,7 +56,7 @@
 				{
 					"name": "Delete Deck",
 					"request": {
-						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/",
+						"url": "{{ur}}/rest/{{version}}/deck/{{deckSlug}}/",
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -70,7 +70,7 @@
 				{
 					"name": "Update Deck",
 					"request": {
-						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/",
+						"url": "{{ur}}/rest/{{version}}/deck/{{deckSlug}}/",
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -90,7 +90,7 @@
 				{
 					"name": "Main Deck List",
 					"request": {
-						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/cards/",
+						"url": "{{ur}}/rest/{{version}}/deck/{{deckSlug}}/cards/",
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -104,7 +104,7 @@
 				{
 					"name": "Add Card to Main Deck List",
 					"request": {
-						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/cards/",
+						"url": "{{ur}}/rest/{{version}}/deck/{{deckSlug}}/cards/",
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -118,7 +118,7 @@
 				{
 					"name": "Remove card(s) from Main Deck List",
 					"request": {
-						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/cards/",
+						"url": "{{ur}}/rest/{{version}}/deck/{{deckSlug}}/cards/",
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -172,7 +172,7 @@
 				{
 					"name": "Deck Linked cards",
 					"request": {
-						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/linked/",
+						"url": "{{ur}}/rest/{{version}}/deck/{{deckSlug}}/linked/",
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -186,7 +186,7 @@
 				{
 					"name": "Add Card to Linked List",
 					"request": {
-						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/linked/",
+						"url": "{{ur}}/rest/{{version}}/deck/{{deckSlug}}/linked/",
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -200,7 +200,7 @@
 				{
 					"name": "remove Card(s) from Linked List",
 					"request": {
-						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/linked/",
+						"url": "{{ur}}/rest/{{version}}/deck/{{deckSlug}}/linked/",
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -220,7 +220,7 @@
 				{
 					"name": "Deck Side board list",
 					"request": {
-						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/sideboard/",
+						"url": "{{ur}}/rest/{{version}}/deck/{{deckSlug}}/sideboard/",
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -234,7 +234,7 @@
 				{
 					"name": "Add card(s) to Deck Sideboard",
 					"request": {
-						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/sideboard/",
+						"url": "{{ur}}/rest/{{version}}/deck/{{deckSlug}}/sideboard/",
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -248,7 +248,7 @@
 				{
 					"name": "Remove card(s) to Deck Sideboard",
 					"request": {
-						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/sideboard/",
+						"url": "{{ur}}/rest/{{version}}/deck/{{deckSlug}}/sideboard/",
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -264,7 +264,7 @@
 		{
 			"name": "All Cards",
 			"request": {
-				"url": "{{ur}}/rest/api_{{version}}/cards/",
+				"url": "{{ur}}/rest/{{version}}/allCards/",
 				"method": "GET",
 				"header": [],
 				"body": {
