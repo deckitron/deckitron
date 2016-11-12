@@ -50,7 +50,7 @@
         socket.on('cards.get.result', gotCards);
         $scope.getCardImageURL = function (id) {
             let normalizedID = id;
-            if (isNaN(normalizedID)) {
+            if (!normalizedID) {
                 normalizedID = 0;
             }
             return 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + normalizedID + '&type=card';

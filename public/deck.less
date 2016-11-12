@@ -100,6 +100,10 @@ md-dialog {
 
 .card {
     outline: none;
+    -moz-transition: all 100ms;
+    -webkit-transition: all 100ms;
+    -o-transition: all 100ms;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0); /* Shadow */
 }
 
 .card:focus {
@@ -107,23 +111,6 @@ md-dialog {
 }
 
 .card:hover {
-    z-index: 100;
-}
-
-.card img {
-    backface-visibility: hidden;
-    border-radius: 5%;
-    max-width: 100%;
-    max-height: 100%;
-    -moz-transition: all 100ms;
-    -webkit-transition: all 100ms;
-    -o-transition: all 100ms;
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0); /* Shadow */
-    z-index: 0;
-}
-
-.card img:hover {
-    box-shadow: 0px 0px 15px #7986CB; /* Shadow */
     -webkit-transform: scale(1.25, 1.25);
     -moz-transform: scale(1.25, 1.25);
     -ms-transform: scale(1.25, 1.25);
@@ -132,8 +119,19 @@ md-dialog {
     -moz-transition: all 200ms;
     -webkit-transition: all 200ms;
     -o-transition: all 200ms;
-    cursor:pointer;
     z-index: 1;
+}
+
+.card img {
+    border-radius: 5%;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 0;
+}
+
+.card img:hover {
+    box-shadow: 0px 0px 15px #7986CB; /* Shadow */
+    cursor:pointer;
 }
 .card img:active {
     backface-visibility: hidden;
@@ -146,6 +144,17 @@ md-dialog {
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0); /* Shadow */
     z-index: 0;
 }
+
+.missingPosterText {
+    width: 100%;
+    position: absolute;
+    top: 90px;
+    margin:auto;
+    text-align: center;
+    text-shadow: 2px 2px 10px #000;
+    pointer-events: none;
+}
+
 .circle {
     display: inline-block;
     border-radius: 50%;
@@ -167,6 +176,7 @@ md-dialog {
         font-style: italic;
     }
 }
+
 
 //
 // .card img:active {

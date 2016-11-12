@@ -86,6 +86,7 @@
                     <md-grid-tile class="cardTile" md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="card in cards">
                         <div class="card" ng-click="cardSelected($event, card)">
                             <img ng-src={{getCardImageURL(card.multiverseid)}}></img>
+                            <h2 class="missingPosterText" ng-style="{display: card.multiverseid ? 'none' : 'block'}">{{card.name}}</h2>
                         </div>
                     </md-grid-tile>
 
