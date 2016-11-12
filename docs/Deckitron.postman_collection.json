@@ -1,0 +1,279 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Deckitron",
+		"_postman_id": "2f186f15-b2dc-0efc-a410-bba893d9b790",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Decks",
+			"description": "",
+			"item": [
+				{
+					"name": "Deck List",
+					"request": {
+						"url": "{{ur}}/rest/api_{{version}}/deck/",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "New Deck",
+					"request": {
+						"url": "{{ur}}/rest/api_{{version}}/deck/",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Deck Info",
+					"request": {
+						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Deck",
+					"request": {
+						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Deck",
+					"request": {
+						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/",
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Main Deck",
+			"description": "",
+			"item": [
+				{
+					"name": "Main Deck List",
+					"request": {
+						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/cards/",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Add Card to Main Deck List",
+					"request": {
+						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/cards/",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Remove card(s) from Main Deck List",
+					"request": {
+						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/cards/",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pages",
+			"description": "",
+			"item": [
+				{
+					"name": "Home",
+					"request": {
+						"url": "{{url}}/",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Deck Page",
+					"request": {
+						"url": "{{url}}/{{deckSlug}}/",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "linked",
+			"description": "",
+			"item": [
+				{
+					"name": "Deck Linked cards",
+					"request": {
+						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/linked/",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Add Card to Linked List",
+					"request": {
+						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/linked/",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "remove Card(s) from Linked List",
+					"request": {
+						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/linked/",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sideboard",
+			"description": "",
+			"item": [
+				{
+					"name": "Deck Side board list",
+					"request": {
+						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/sideboard/",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Add card(s) to Deck Sideboard",
+					"request": {
+						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/sideboard/",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Remove card(s) to Deck Sideboard",
+					"request": {
+						"url": "{{ur}}/rest/api_{{version}}/deck/{{deckSlug}}/sideboard/",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "All Cards",
+			"request": {
+				"url": "{{ur}}/rest/api_{{version}}/cards/",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
