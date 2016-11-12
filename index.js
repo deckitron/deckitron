@@ -49,7 +49,17 @@ const usernames = [
     'Dovin',
     'Saheeli'
 ];
-const colors = ['orange', 'tomato', 'pink', 'royalblue', 'purple', 'gold', 'fuchsia', 'limegreen', 'sandybrown'];
+const colors = [
+    'orange',
+    'tomato',
+    'pink',
+    'royalblue',
+    'purple',
+    'gold',
+    'fuchsia',
+    'limegreen',
+    'sandybrown'
+];
 
 let users = 0;
 
