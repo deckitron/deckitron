@@ -6,7 +6,6 @@
         'deckitron',
         [
             'ngMaterial',
-            'ngLetterAvatar',
             'chat',
             'filters',
             'posterwall'

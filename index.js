@@ -13,6 +13,7 @@ const deck = require('./lib/deck');
 
 // Matt is mean
 const usernames = ['Mike', 'Damian', 'Sean', 'Lauren'];
+const colors = ['orange', 'tomato', 'pink', 'royalblue', 'purple', 'gold', 'fuchsia', 'limegreen', 'sandybrown'];
 
 let users = 0;
 
@@ -46,6 +47,7 @@ io.on('connection', (socket) => {
     };
     console.log(`user connected ${user.id}`);
     user.name = usernames[user.id % usernames.length];
+    user.color = colors[user.id % colors.length];
 
     socket.emit('connected', user);
 

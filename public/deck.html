@@ -24,7 +24,6 @@
     <script src="node_modules/angular-aria/angular-aria.min.js"></script>
     <script src="node_modules/angular-material/angular-material.min.js"></script>
     <script src="node_modules/angular-material-icons/angular-material-icons.min.js"></script>
-    <script src="node_modules/ngletteravatar/dist/ngletteravatar.min.js"></script>
     <link rel="stylesheet/less" type="text/css" href="public/deck.less" />
     <script src="node_modules/less/dist/less.min.js"></script>
     <!-- <link rel="icon" type="image/svg+xml" href="public/node.svg"> -->
@@ -105,21 +104,23 @@
                             <md-icon md-svg-icon="public/icons/right_arrow.svg"></md-icon>
                         </md-button>
                         <span flex></span>
-                        <div id="friendIconsContainer">
-                            <span ng-repeat="user in connectedUsers" ng-if="user.id !== me.id">
-                                <ng-letter-avatar data={{user.name}} shape="round" width="35px" height="35px" fontSize="30px"></ng-letter-avatar>
-                            </span>
-                        </div>
                         <span id='me' ng-if="me" ng-click="changeName()">
-                            <ng-letter-avatar data={{me.name}} shape="round"></ng-letter-avatar>
+                            {{me.name}}
                         </span>
                     </div>
                 </md-toolbar>
+                <md-content>
+                    <div id="friendIconsContainer">
+                        <span ng-repeat="user in connectedUsers" ng-if="user.id !== me.id" class='circle friend' style="background-color: {{user.color}}" title='{{user.name}}'>
+                            {{user.name.substr(0, 1)}}
+                        </span>
+                    </div>
+                </md-content>
                 <md-content id="chat-messages">
                     <md-list>
                         <md-divider inset></md-divider>
                         <md-list-item class="md-1-line" ng-repeat="message in messages" ng-click="null">
-                            <ng-letter-avatar data={{message.user.name}} shape="round" width="30" height="30" fontSize="20px"></ng-letter-avatar>
+                            <span class='circle friend' title='{{message.user.name}}' style="background-color: {{message.user.color}}">{{message.user.name.substr(0, 1)}}</span>
                             <span class="chatMessage">{{message.message}}</span>
                             <md-divider inset></md-divider>
                         </md-list-item>

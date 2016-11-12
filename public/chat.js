@@ -1,4 +1,4 @@
-/* global angular */
+/* global angular, jQuery */
 (function () {
     'use strict';
 
@@ -32,7 +32,11 @@
             console.log('recieve message', data);
             const scrollToBottom = isScrollAtBottom();
             if (data.message === 'raptorize') {
-                jQuery(document).raptorize({enterOn:'timer',delayTime:2000});
+                jQuery(document)
+                    .raptorize({
+                        enterOn: 'timer',
+                        delayTime: 2000
+                    });
                 return;
             }
             // Use $q to make it handle digest better
@@ -125,11 +129,6 @@
 
             $room.getSocket()
                 .emit('chat.user.update', $scope.me);
-
-            $scope.me = null;
-            $timeout(() => {
-                $scope.me = $room.getUser();
-            });
         };
 
         function connectChat () {
