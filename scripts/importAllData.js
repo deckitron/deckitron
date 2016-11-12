@@ -144,6 +144,7 @@ function processData (jsonString) {
     const jsonData = JSON.parse(jsonString);
     sendNextSet(jsonData, 0, () => {
         console.log('Ingest completed');
+        mongoose.disconnect();
     });
 }
 
