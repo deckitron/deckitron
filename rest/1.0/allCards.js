@@ -1,10 +1,23 @@
 module.exports = function (app) {
     'use strict';
 
-    app.post('/allCards', (req, res) => {
-        res.sendStatus(200);
-    });
+    const mongoose = require('mongoose');
+    const cardSchema = require('../../lib/models/cardSchema');
+    const Card = mongoose.model('Card', cardSchema);
+
     app.get('/allCards', (req, res) => {
-        res.sendStatus(200);
+        Card.find({})
+        .limit(50)
+        .exec((err, card) => {
+            if (err) {
+                res.status(500)
+                .send(err.message)
+                .end();
+                return;
+            }
+            res.status(200)
+            .json(card)
+            .end();
+        });
     });
 };

@@ -5,6 +5,7 @@ module.exports = function (app) {
     const router = express.Router();
 
     // Import REST APIs
+    require('./cardData')(router);
     require('./allCards')(router);
 
     // Expose 1.0 APIs

@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
@@ -25,7 +26,11 @@ app.use(/^\/.*/, (req, res) => {
     res.sendFile(path.join(__dirname, '/public/deck.html'));
 });
 
-server.listen(app.get('port'), () => {
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.listen(app.get('port'), () => {
     mongoose.connect('mongodb://192.168.0.17:27017/deckinator');
     console.log('Node app is running at localhost:' + app.get('port'));
 });
