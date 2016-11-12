@@ -4,7 +4,7 @@
 
     const filters = angular.module('filters', ['room']);
 
-    filters.controller('filters', ['$scope', 'room', function ($scope, $room) {
+    filters.controller('filters', ['$scope', 'room', '$timeout', function ($scope, $room, $timeout) {
         const socket = $room.getSocket();
         $scope.cardLists = [
             {
@@ -28,7 +28,11 @@
                 selected: false
             }
         ];
-        // socket.emit('cards.get');
+
+        $timeout(() => {
+            socket.emit('cards.get');
+        }, 500);
+
 
         $scope.selectList = function (cardListToSelect) {
             const selectedList = $scope.getSelectedList();

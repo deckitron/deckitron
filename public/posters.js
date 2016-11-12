@@ -4,7 +4,7 @@
 
     const posterwall = angular.module('posterwall', ['room', 'ngMaterial']);
 
-    posterwall.controller('posterwall', ['$scope', 'room', '$mdDialog', function ($scope, $room, $mdDialog) {
+    posterwall.controller('posterwall', ['$scope', 'room', '$mdDialog', '$timeout', function ($scope, $room, $mdDialog, $timeout) {
         function DialogController ($scope, card) {
             $scope.card = card;
             $scope.hide = function () {
@@ -41,9 +41,11 @@
 
 
         function gotCards (data) {
-            if (Array.isArray(data)) {
-                $scope.cards = data;
-            }
+            $timeout(() => {
+                if (Array.isArray(data)) {
+                    $scope.cards = data;
+                }
+            });
         }
 
         const socket = $room.getSocket();
