@@ -8,11 +8,11 @@ const fs = require('fs');
 let totalCards = 0;
 let cardCount = 0;
 
-function postData (jsonData, callback) {
+function postData (loc, jsonData, callback) {
     const options = {
         host: 'localhost',
         port: '5000',
-        path: '/rest/1.0/cardData',
+        path: `/rest/1.0/${loc}`,
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -34,12 +34,12 @@ function postData (jsonData, callback) {
 
 function next(cards, i) {
     cardCount++;
-    console.log(`Processed ${cardCount}/${totalCards} (${(cardCount / totalCards) * 100}%) cards`);
     if (i + 1 >= cards.length) {
         console.log('Set ingest complete');
+        console.log(`Processed ${cardCount}/${totalCards} (${(cardCount / totalCards) * 100}%) cards`);
         return;
     }
-    postData(JSON.stringify(cards[i]), next.bind(null, cards, i + 1));
+    postData('cardData', JSON.stringify(cards[i]), next.bind(null, cards, i + 1));
 }
 
 fs.readFile(process.argv[2], 'utf8', (err, data) => {
@@ -54,6 +54,14 @@ fs.readFile(process.argv[2], 'utf8', (err, data) => {
         const set = jsonData[key];
         const cards = set.cards;
         totalCards += cards.length;
-        postData(JSON.stringify(cards[0]), next.bind(null, cards, 1));
+        postData('cardData', JSON.stringify(cards[0]), next.bind(null, cards, 1));
+        const cardIDs = [];
+        for (let n = 0; n < cards.length; n++) {
+            cardIDs.push(cards[n].id);
+        }
+        set.cards = cardIDs;
+        postData('setData', JSON.stringify(set), () => {
+            console.log('Set data ingested');
+        });
     }
 });
