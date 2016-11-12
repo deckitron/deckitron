@@ -36,7 +36,11 @@ app.use(/^\/[a-zA-Z0-9\-_]*$/, (req, res) => {
     res.sendFile(path.join(__dirname, '/public/deck.html'));
 });
 server.listen(app.get('port'), () => {
-    mongoose.connect('mongodb://192.168.0.17:27017/deckitron');
+    if (typeof process.env.MONGO === 'string') {
+        mongoose.connect(`mongodb://${process.env.MONGO}/deckitron`);
+    } else {
+        mongoose.connect('mongodb://localhost/deckitron');
+    }
     console.log('Node app is running at localhost:' + app.get('port'));
 });
 
