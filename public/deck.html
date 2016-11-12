@@ -106,7 +106,9 @@
                                 <ng-letter-avatar data={{user.name}} shape="round" width="35px" height="35px" fontSize="30px"></ng-letter-avatar>
                             </span>
                         </div>
-                        <ng-letter-avatar ng-if="me" data={{me.name}} shape="round"></ng-letter-avatar>
+                        <span id='me' ng-if="me" ng-click="changeName()">
+                            <ng-letter-avatar data={{me.name}} shape="round"></ng-letter-avatar>
+                        </span>
                     </div>
                 </md-toolbar>
                 <md-content id="chat-messages">
