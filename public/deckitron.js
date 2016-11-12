@@ -8,7 +8,8 @@
             'ngMaterial',
             'ngLetterAvatar',
             'chat',
-            'filters'
+            'filters',
+            'posterwall'
         ]
     );
 

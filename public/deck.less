@@ -59,3 +59,35 @@ md-icon svg {
 .cardListSelected {
     background-color: rgb(63,81,181);
 }
+
+.cardTile {
+}
+
+.card {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height:100%;
+    border-radius: 5%;
+    -moz-transition: all 200ms;
+    -webkit-transition: all 200ms;
+    -o-transition: all 200ms;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0); /* Shadow */
+    z-index: 0;
+}
+
+.card img {
+    border-radius: 5%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.card:hover {
+    box-shadow: 0px 0px 15px #7986CB; /* Shadow */
+    transform: scale(1.25, 1.25);
+    -moz-transition: all 200ms;
+    -webkit-transition: all 200ms;
+    -o-transition: all 200ms;
+    cursor:pointer;
+    z-index: 100;
+}
