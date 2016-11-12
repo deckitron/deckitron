@@ -81,7 +81,7 @@
         "no-implicit-coercion": ["warn"],
         "no-implicit-globals": ["warn"],
         "no-implied-eval": ["error"],
-        "no-invalid-this": ["error"],
+        "no-invalid-this": ["off"],
         "no-iterator": ["warn"],
         "no-labels": ["error"],
         "no-lone-blocks": ["error"],
