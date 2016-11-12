@@ -35,31 +35,45 @@
 <body ng-app="deckitron" ng-controller="DeckitronCore" layout="column" layout-fill>
 
     <div class="container" layout="row" flex>
-        <!-- Container #3 -->
-
-        <md-sidenav md-is-locked-open="true" md-whiteframe="10">
-            <md-content flex>
-                <md-toolbar class="md-primary md-medium-tall" layout-align="center end" layout-fill>
-                    <div class="md-toolbar-tools" id="userIcons">
+        <div ng-controller="filters" layout="row">
+            <md-sidenav md-is-locked-open="true" md-whiteframe="10" id="chat" flex>
+                <!-- Sidebar header -->
+                <md-toolbar class="md-primary md-medium-tall" layout-align="center end" id="chat-top">
+                    <div class="md-toolbar-tools" id="card list">
+                        <h1>{{getSelectedList().name}}</h1>
                         <span flex></span>
                         <md-button class="md-icon-button" aria-label="collapse">
                             <md-icon md-svg-icon="public/icons/left_arrow.svg"></md-icon>
                         </md-button>
                     </div>
                 </md-toolbar>
-                <div ng-controller="filters" layout="column">
-                    <md-list>
-                        <md-list-item class="md-1-line" ng-repeat="item in cardLists" ng-click="null">
-                            <div class="md-list-item-text md-primary" layout="row" layout-align="start center">
+
+                <!-- Filter Form -->
+                <md-content layout="column" id="chat-messages">
+                    <form name="filter">
+                        <md-chips ng-model="convertedManaCost" name="manaCost">
+                            <md-chip-template>
+                                <strong>{{$chip}}</strong>
+                            </md-chip-template>
+                        </md-chips>
+                    </form>
+                </md-content>
+
+                <!-- Card lists -->
+                <md-content id="chat-bottom">
+                    <md-divider inset></md-divider>
+                    <md-list flex layout="column">
+                        <md-list-item class="md-1-line md-primary" ng-repeat="item in cardLists" ng-class="{cardListSelected: item.selected}" ng-click="selectList(item)">
+                            <div class="md-list-item-text" layout="row" layout-align="start center" flex=100>
                                 <h4 class="selectableCardLists"><md-icon md-svg-icon={{item.icon}} aria-label={{item.name}} class="i36"></md-icon>{{item.name}}</h4>
                             </div>
                             <md-divider inset></md-divider>
                         </md-list-item>
                     </md-list>
-                </div>
-            </md-content>
+                </md-content>
 
-        </md-sidenav>
+            </md-sidenav>
+        </div>
         <md-content flex id="content">
             <!-- Posters go here -->
             <!-- <md-virtual-repeat-container id="vertical-container">
