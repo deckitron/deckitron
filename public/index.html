@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html ng-app='deckitron' ng-controller='DeckitronCore'>
+<html ng-app='deckitron' ng-controller='DeckitronHome'>
     <head>
         <title>Deckitron</title>
         <link rel="stylesheet/less" type="text/css" href="public/index.less" />
         <script src='node_modules/angular/angular.min.js'></script>
         <script src="node_modules/less/dist/less.min.js"></script>
-        <script src='public/deckitron.js'></script>
+        <script src='public/index.js'></script>
     </head>
     <body>
         <div id='heading'>
-            Deckitron
+            {{title}}
         </div>
         <div id='input'>
             <form class="url-bar">

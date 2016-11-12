@@ -2,13 +2,13 @@ module.exports = function (app) {
     'use strict';
 
     const mongoose = require('mongoose');
-    const cardSchema = require('../../lib/models/cardSchema');
-    const Card = mongoose.model('Card', cardSchema);
+    const setSchema = require('../../lib/models/setSchema');
+    const Set = mongoose.model('Set', setSchema);
 
-    app.post('/cardData', (req, res) => {
+    app.post('/setData', (req, res) => {
         const body = req.body;
         // console.log(`Creating card for data ${JSON.stringify(body)}`);
-        Card.create(body, (err, card) => {
+        Set.create(body, (err, set) => {
             if (err) {
                 res.status(400)
                 .json(err);
@@ -18,8 +18,8 @@ module.exports = function (app) {
             .end();
         });
     });
-    app.delete('/cardData', (req, res) => {
-        Card.remove({}, (err) => {
+    app.delete('/setData', (req, res) => {
+        Set.remove({}, (err) => {
             if (err) {
                 res.status(500)
                 .json(err)

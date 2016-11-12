@@ -6,6 +6,7 @@ module.exports = function (app) {
 
     // Import REST APIs
     require('./cardData')(router);
+    require('./setData')(router);
     require('./allCards')(router);
 
     // Expose 1.0 APIs
