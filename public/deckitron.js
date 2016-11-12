@@ -4,6 +4,6 @@
     const app = angular.module('deckitron', []);
 
     app.controller('DeckitronCore', ['$scope', function ($scope) {
-        $scope.test = 'Deckitron';
+        $scope.title = 'Deckitron';
     }]);
 })();
