@@ -12,9 +12,9 @@
             {{title}}
         </div>
         <div id='input'>
-            <form class="url-bar">
+            <form class="url-bar" ng-submit="onStart()">
               <label for="deck-name">/</label>
-              <input type="text" placeholder="first_deck" id="deck-name"/>
+              <input type="text" placeholder="first_deck" id="deck-name" ng-model="deckName"/>
               <input type="submit" class="ui-button" value="Start"/>
             </form>
         </div>
