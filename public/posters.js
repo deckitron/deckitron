@@ -11,28 +11,28 @@
 
         $scope.cards = [
             {
-                imageID: 208253
+                multiverseid: 2479
             },
             {
-                imageID: 208253
+                multiverseid: 208253
             },
             {
-                imageID: 208253
+                multiverseid: 208253
             },
             {
-                imageID: 208253
+                multiverseid: 208253
             },
             {
-                imageID: 208253
+                multiverseid: 208253
             },
             {
-                imageID: 208253
+                multiverseid: 208253
             },
             {
-                imageID: 208253
+                multiverseid: 208253
             },
             {
-                imageID: 208253
+                multiverseid: 208253
             }
         ];
 
