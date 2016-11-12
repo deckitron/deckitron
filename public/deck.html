@@ -7,6 +7,7 @@
         <script src="node_modules/less/dist/less.min.js"></script>
         <script src="node_modules/socket.io-client/socket.io.js"></script>
         <script src='public/room.js'></script>
+        <script src='public/chat.js'></script>
         <script src='public/deckitron.js'></script>
     </head>
     <body>
@@ -22,7 +23,12 @@
             <deck></deck>
         </div>
         <div id='right'>
-            <chat></chat>
+            <chat>
+                <div id='chatMessages'></div>
+                <form id='chat'>
+                    <input type='text' name='newMessage' id='newMessage'/>
+                </form>
+            </chat>
         </div>
     </body>
 </html>

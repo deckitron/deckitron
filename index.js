@@ -8,6 +8,7 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const io = require('socket.io')(server);
+const chat = require('./lib/chat');
 
 let users = 0;
 
@@ -36,15 +37,16 @@ server.listen(app.get('port'), () => {
 });
 
 io.on('connection', (socket) => {
-    const userid = users++;
-    console.log(userid);
+    const user = {
+        id: users++
+    };
+    console.log(`user connected ${user.id}`);
 
-    socket.emit('connected', {
-        userid: userid
-    });
+    socket.emit('connected', user);
 
     socket.on('join-room', (roomName) => {
         socket.join(roomName);
-        console.log(`User ${userid} joined ${roomName}`);
+        chat(io, socket, roomName, user);
+        console.log(`User ${user.id} joined ${roomName}`);
     });
 });
