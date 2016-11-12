@@ -19,8 +19,6 @@
 
         const socket = $room.getSocket();
         socket.on('cards.get.result', gotCards);
-        socket.on('cards.deck.update', console.log);
-        window.sock = socket;
         $scope.getCardImageURL = function (id) {
             return 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + id + '&type=card';
         };
