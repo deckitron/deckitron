@@ -37,9 +37,16 @@ app.listen(app.get('port'), () => {
 
 io.on('connection', (socket) => {
     const userid = users++;
-
     console.log(userid);
-    socket.emit('userid', userid);
+
+    socket.emit('connected', {
+        userid: userid
+    });
+
+    socket.on('join-room', (roomName) => {
+        socket.join(roomName);
+        console.log(`User ${userid} joined ${roomName}`);
+    });
 });
 
 // Load REST APIs

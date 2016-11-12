@@ -1,4 +1,5 @@
-/*global io*/
+/* global io */
+
 (function () {
     'use strict';
 
@@ -7,6 +8,7 @@
     console.log(socket);
     socket.on('userid', (data) => {
         userid = data;
-        console.log(userid);
+        console.log(data);
+        socket.emit('join-room', document.location.pathname);
     });
 }());
