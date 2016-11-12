@@ -2,25 +2,19 @@
 <html ng-app='deckitron' ng-controller='DeckitronCore'>
     <head>
         <title>Deckitron</title>
-        <link rel="stylesheet/less" type="text/css" href="public/styles.less" />
+        <link rel="stylesheet/less" type="text/css" href="public/index.less" />
         <script src='node_modules/angular/angular.min.js'></script>
         <script src="node_modules/less/dist/less.min.js"></script>
         <script src='deckitron.js'></script>
     </head>
     <body>
         <div id='heading'>
-            index.html
-            {{ title }}
+            Deckitron
         </div>
-        <div id='left'>
-            <search></search>
-            <menu></menu>
-        </div>
-        <div id='center'>
-            <deck></deck>
-        </div>
-        <div id='right'>
-            <chat></chat>
+        <div id='input'>
+            <form class="url-bar">
+
+            </form>
         </div>
     </body>
 </html>
