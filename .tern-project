@@ -1,0 +1,10 @@
+{
+    "ecmaVersion": 5,
+    "libs": [],
+    "plugins": {
+        "node": true,
+        "doc_comment": {
+            "strong": false
+        }
+    }
+}

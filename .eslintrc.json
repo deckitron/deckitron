@@ -261,7 +261,7 @@
         "no-useless-constructor": ["warn"],
         "no-useless-rename": ["warn"],
         "no-var": ["warn"],
-        "object-shorthand": ["warn"],
+        "object-shorthand": ["off"],
         "prefer-arrow-callback": ["warn"],
         "prefer-const": ["warn"],
         "prefer-numeric-literals": ["warn"],
