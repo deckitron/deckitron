@@ -24,6 +24,11 @@
             }
         };
 
+        $scope.$on('clear-filters', function () {
+            $scope.selectedCards.length = 0;
+            $scope.onChange();
+        });
+
         /**
          * Return the proper object when the append is called.
          */
