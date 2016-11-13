@@ -93,7 +93,7 @@ io.on('connection', (socket) => {
         id: users++
     };
     let roomsWatcher = false;
-    console.log(`user connected ${user.id}`);
+    // console.log(`user connected ${user.id}`);
     user.name = usernames[user.id % usernames.length];
     user.color = colors[user.id % colors.length];
 
@@ -103,7 +103,7 @@ io.on('connection', (socket) => {
         socket.join(roomName);
         chat(io, socket, roomName, user);
         deck(io, socket, roomName, user);
-        console.log(`User ${user.id} joined ${roomName}`);
+        // console.log(`User ${user.id} joined ${roomName}`);
         socket.emit('room.joined');
     });
     socket.on('rooms.getname', () => {
