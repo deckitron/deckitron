@@ -8,7 +8,8 @@
             'ngMaterial',
             'chat',
             'filters',
-            'posterwall'
+            'posterwall',
+            'cardTypesController'
         ]
     );
 
