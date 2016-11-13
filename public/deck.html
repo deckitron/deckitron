@@ -43,7 +43,7 @@
         <div ng-controller="filters" layout="row">
             <md-sidenav md-is-locked-open="true" md-whiteframe="10" id="chat" flex>
                 <!-- Sidebar header -->
-                <md-toolbar class="md-primary md-medium-tall" layout-align="center end" id="chat-top">
+                <md-toolbar class="md-accent md-medium-tall" layout-align="center end" id="chat-top">
                     <div class="md-toolbar-tools" id="card list">
                         <h1>{{getSelectedList().name}}</h1>
                         <span flex></span>
@@ -56,10 +56,10 @@
                 <!-- Filter Form -->
                 <md-content layout="column" id="chat-messages" class="autocomplete">
                     <form name="filter">
-                        <md-button type="submit" class="md-raised md-accent">
+                        <md-button type="submit" class="md-raised md-primary">
                             <md-icon md-svg-icon="public/icons/search.svg"></md-icon>Search
                         </md-button>
-                        <md-button type="reset" class="md-raised md-accent">
+                        <md-button type="reset" class="md-raised md-primary">
                             Clear
                         </md-button>
 
@@ -168,7 +168,7 @@
         <!-- Social -->
         <md-sidenav md-is-locked-open="true" md-whiteframe="10" id="social" md-disable-scroll-target="content">
             <md-content ng-controller="chat" id='chat' flex>
-                <md-toolbar class="md-medium-tall" layout-align="center end" id='chat-top'>
+                <md-toolbar class="md-medium-tall md-accent" layout-align="center end" id='chat-top'>
                     <div class="md-toolbar-tools" id="userIcons">
                         <md-button class="md-icon-button" aria-label="collapse">
                             <md-icon md-svg-icon="public/icons/right_arrow.svg"></md-icon>
