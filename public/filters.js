@@ -36,6 +36,12 @@
                 selected: false
             }
         ];
+        let cardTypes = null;
+        let manaCost = null;
+
+        $scope.$on('card-types', function (evt, types) {
+            cardTypes = types;
+        })
 
         socket.on('cards.deck.update', function (data) {
             const selectedList = $scope.getSelectedList();
@@ -76,6 +82,7 @@
         $scope.performSearch = function () {
             const formElements = document.forms.filter.children;
 
+            console.log(cardTypes);
             // The input form elements
             const keywords = formElements[2].children[1].value;
             const convertedManaCost = formElements[3].children[1].value;
@@ -84,13 +91,10 @@
             const artist = formElements[8].children[1].value;
 
             // The chip form elements
-            const cardTypes = [];// = $cardTypesController.selectedCards;
             const manaColors = [];//$manaColorController.selectedCards;
-
 
             socket.emit('cards.get', {
                 list: $scope.getSelectedList().listid,
-                types: cardTypes,
                 keywords: keywords.split(' ')
             });
         };

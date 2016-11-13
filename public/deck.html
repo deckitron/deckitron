@@ -78,7 +78,8 @@
                        <div ng-controller="cardTypesController">
                             <md-chips ng-model="selectedCards" md-autocomplete-snap
                                      md-transform-chip="transformChip($chip)"
-                                     md-require-match="autocompleteDemoRequireMatch">
+                                     md-require-match="autocompleteDemoRequireMatch"
+                                     md-on-add="onChange()">
                             <md-autocomplete
                                  md-selected-item="selectedItem"
                                  md-search-text="searchText"
