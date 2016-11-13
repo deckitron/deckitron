@@ -144,10 +144,9 @@
         function chatConnected (data) {
             console.log('connected', data);
             // $scope.messages = data.messages = [];
-            $scope.$apply(() => {
-                $scope.connectedUsers = data.users;
-                $scope.me = $room.getUser();
-            });
+            $scope.connectedUsers = data.users;
+            $scope.me = $room.getUser();
+            addMessage($scope.me, `Welcome ${$scope.me.name}`, 'room');
         }
         $scope.sendMessage = function () {
             if (!$scope.newMessage) {
