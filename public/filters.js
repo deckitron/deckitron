@@ -36,6 +36,9 @@
 
         $scope.selectList = function (cardListToSelect) {
             const selectedList = $scope.getSelectedList();
+            if (cardListToSelect === selectedList) {
+                return;
+            }
 
             cardListToSelect.selected = true;
             selectedList.selected = false;
