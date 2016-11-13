@@ -12,8 +12,7 @@
             '$window',
             'slug',
             '$timeout',
-            '$interval',
-            function ($scope, $window, $slug, $timeout, $interval) {
+            function ($scope, $window, $slug, $timeout) {
                 $scope.onStart = function () {
                     const sluggedDeckName = $scope.deckName
                         ? $slug($scope.deckName)
@@ -28,9 +27,6 @@
                 socket.on('connected', (data) => {
                     socket.user = data;
                     socket.emit('rooms.watch');
-                    $interval(() => {
-                        socket.emit('rooms.watch');
-                    }, 2000);
                 });
                 socket.on('rooms.list', (data) => {
                     $timeout(() => {

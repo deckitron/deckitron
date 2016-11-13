@@ -92,6 +92,7 @@ io.on('connection', (socket) => {
     const user = {
         id: users++
     };
+    let roomsWatcher = false;
     console.log(`user connected ${user.id}`);
     user.name = usernames[user.id % usernames.length];
     user.color = colors[user.id % colors.length];
@@ -105,6 +106,22 @@ io.on('connection', (socket) => {
         console.log(`User ${user.id} joined ${roomName}`);
     });
     socket.on('rooms.watch', () => {
+        if (!roomsWatcher) {
+            roomsWatcher = () => {
+                socket.emit('rooms.list', rooms.getRoomsList());
+            };
+            rooms.on('changed', roomsWatcher);
+        }
         socket.emit('rooms.list', rooms.getRoomsList());
+    });
+    socket.on('rooms.unwatch', () => {
+        if (roomsWatcher) {
+            rooms.removeListener('changed', roomsWatcher);
+        }
+    });
+    socket.on('disconnect', () => {
+        if (roomsWatcher) {
+            rooms.removeListener('changed', roomsWatcher);
+        }
     });
 });
