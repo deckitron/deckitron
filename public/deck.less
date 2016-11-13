@@ -378,23 +378,28 @@ form md-chips-wrap {
     outline: none;
     z-index: 500;
     padding: 1px;
-    padding-left: 20px;
     margin: 2px;
-    margin-left: -105px;
-    border-bottom-right-radius: 1em;
-    border-bottom-left-radius: 1em;
-    border-top-right-radius: 1em;
-    border-top-left-radius: 1em;
     opacity: 0.85;
-    background-color: rgb(32, 32, 32);
     left: 50%;
     position: absolute;
     bottom: 70px;
-    width: 190px;
     height: 20px;
     -moz-transition: all 200ms;
     -webkit-transition: all 200ms;
     -o-transition: all 200ms;
+    div {
+        padding: 0 10px;
+        position: relative;
+        left: -50%;
+        border-radius: 1em;
+        background-color: rgb(32, 32, 32);
+    }
+    img {
+        margin-top:0.2em;
+        padding-right: 0.2em;
+        opacity: inherit;
+        pointer-events: none;
+    }
 }
 
 #deckStatsCharm:hover {
@@ -404,12 +409,7 @@ form md-chips-wrap {
     opacity: 1.0;
 }
 
-#deckStatsCharm img {
-    margin-top:0.2em;
-    padding-right: 0.2em;
-    opacity: inherit;
-    pointer-events: none;
-}
+
 
 #deckStatsCharm span {
     vertical-align:text-bottom;
