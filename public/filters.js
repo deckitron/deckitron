@@ -16,12 +16,14 @@
             {
                 name: 'Deck',
                 listid: 'cards',
+                color: 'darkgreen',
                 icon: 'public/icons/deck.svg',
                 selected: false
             },
             {
                 name: 'Sideboard',
                 listid: 'sideboard',
+                color: 'darkorange',
                 icon: 'public/icons/sideboard.svg',
                 selected: false
             },

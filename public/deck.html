@@ -133,7 +133,7 @@
                     <md-list flex layout="column">
                         <md-list-item class="md-1-line md-primary" ng-repeat="item in cardLists" ng-class="{cardListSelected: item.selected}" ng-click="selectList(item)">
                             <div class="md-list-item-text" layout="row" layout-align="start center" flex=100>
-                                <h4 class="selectableCardLists"><md-icon md-svg-icon={{item.icon}} aria-label={{item.name}} class="i36"></md-icon>{{item.name}}</h4>
+                                <h4 class="selectableCardLists"><md-icon md-svg-icon={{item.icon}} aria-label={{item.name}} class="i36" ng-style="{{ {fill: item.color} }}"></md-icon>{{item.name}}</h4>
                             </div>
                             <md-divider inset></md-divider>
                         </md-list-item>
@@ -151,10 +151,10 @@
                     <md-grid-tile class="cardTile" md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="card in cards">
                         <div class="card" md-ink-ripple="rgba(16, 16, 16, 1.0)" ng-click="cardSelected($event, card)">
                             <img ng-src={{getCardImageURL(card.multiverseid)}}></img>
-                            <span ng-if="cardCount(card, 'cards') > 0" class="circle cardCount" style="background-color: darkgreen;">
+                            <span ng-if="cardCount(card, 'cards') > 0" class="circle cardCount" ng-style="{{ {'background-color': 'darkgreen'} }}">
                                 {{cardCount(card, 'cards')}}
                             </span>
-                            <span ng-if="cardCount(card, 'sideboard') > 0" class="circle cardCount" style="background-color: darkorange;">
+                            <span ng-if="cardCount(card, 'sideboard') > 0" class="circle cardCount" ng-style="{{ {'background-color': 'darkorange'} }}">
                                 {{cardCount(card, 'sideboard')}}
                             </span>
                             <h2 class="missingPosterText" ng-style="{display: card.multiverseid ? 'none' : 'block'}">{{card.name}}</h2>
