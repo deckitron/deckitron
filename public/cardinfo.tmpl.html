@@ -68,12 +68,12 @@
                 </md-content>
             </md-tab>
             <md-tab label="Legality">
-                <md-content class="md-padding">
+                <md-content class="md-padding card-info">
                     <table>
                         <tbody>
                             <tr ng-repeat="legality in card.legalities" style="text-align: left;">
-                                <th>{{ legality.format }}</th>
-                                <td style="padding-left: 10px;">{{ legality.legality }}</td>
+                                <th class="wide-title">{{ legality.format }}</th>
+                                <td>{{ legality.legality }}</td>
                             </tr>
                         </tbody>
                     </table>
