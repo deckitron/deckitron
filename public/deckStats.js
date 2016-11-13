@@ -6,15 +6,15 @@
 
     deckStats.controller('deckStats', ['$scope', 'room', '$mdDialog', '$timeout', function ($scope, $room, $mdDialog, $timeout) {
         $scope.onCharmSelected = function (ev) {
-            const confirm = $mdDialog.alert()
-                 .title('Deck Statistics')
-                 .textContent('Replace this with a custom template with graphs')
-                 .clickOutsideToClose(true)
-                 .ariaLabel('Deck Statistics')
-                 .targetEvent(ev)
-                 .ok('Close');
-
-            $mdDialog.show(confirm);
+            // const confirm = $mdDialog.alert()
+            //      .title('Deck Statistics')
+            //      .textContent('Replace this with a custom template with graphs')
+            //      .clickOutsideToClose(true)
+            //      .ariaLabel('Deck Statistics')
+            //      .targetEvent(ev)
+            //      .ok('Close');
+            //
+            // $mdDialog.show(confirm);
         };
         $room.getSocket()
             .on('cards.deck.stats', (data) => {

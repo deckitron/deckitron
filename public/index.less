@@ -1,22 +1,56 @@
 @btnColor: #3f51b5;
+@fontWhite: #fefefe;
 
+@shadowDistance: 0px;
+@shadowSize: 10px;
+@shadowColor: rgba(16, 16, 16, 1.0);
 
-html, body {
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%
+}
+
+body {
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
     text-align: center;
     background: #bbb;
+    overflow: visible;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 * {
     font-family: 'Open Sans', sans-serif;
 }
 
 h1 {
-    margin: 100px 20px 50px;
+    padding-top: 100px;
+    margin: 0 20px 50px;
+    color: @fontWhite;
+    text-shadow: @shadowDistance @shadowDistance @shadowSize @shadowColor;
+}
+
+h2 {
+    color: @fontWhite;
+    text-shadow: @shadowDistance @shadowDistance @shadowSize @shadowColor;
 }
 #description {
+    font-size: 18px;
     margin: 50px;
+    color: @fontWhite;
+    text-shadow: @shadowDistance @shadowDistance @shadowSize @shadowColor;
 }
 
 form#url-bar {
+    box-shadow: @shadowDistance @shadowDistance @shadowSize/2 @shadowColor;
     background: #fff;
     margin: auto;
     border: 1px inset #222;
@@ -49,4 +83,42 @@ form#url-bar {
             background: lighten(@btnColor, 10%);
         }
     }
+}
+
+#nodeGraphic {
+    width: 64px;
+    height: 64px;
+}
+
+.enterRoomButton:before {
+    font-weight: 600;
+    content: 'Enter Room';
+    margin-right: 5px;
+}
+
+.enterRoomButton {
+    color: @fontWhite !important;
+    background: @btnColor;
+    border: 1px inset #222;
+    border-radius: 5px;
+    padding: 0.3em 0.5em 0.5em;
+    display:inline-block;
+    margin-top: 0.5em;
+    line-height: 1em;
+
+    text-decoration: none;
+    color: initial;
+    box-shadow: @shadowDistance @shadowDistance @shadowSize/2 @shadowColor;
+}
+
+.enterRoomButton:hover {
+    background: lighten(@btnColor, 10%);
+}
+
+.roomButtonUsers:before {
+    font-weight: 600;
+    font-family: normal;
+    text-align: center;
+    font-size: 1.5em;
+    content: ' | ';
 }
