@@ -42,21 +42,43 @@
 </head>
 
 <body ng-app="deckitron" ng-controller="DeckitronCore" layout="column" layout-fill>
+    <md-toolbar class="md-accent" layout="row" layout-align="center end">
+        <div class="md-toolbar-tools" id="card list"  md-whiteframe="11" flex>
+            <!-- Left side of top bar -->
+            <a href='https://www.nodeknockout.com/entries/15-noun-js'><img src='public/icons/voteko.png'/></a>
+            <md-button class="md-icon-button" aria-label="Collapse Search" ng-click="toggleLeft()">
+                <md-icon md-svg-icon="public/icons/left_arrow.svg"></md-icon>
+            </md-button>
+            <!-- <div ng-controller="filters" flex="80">
+                <h1>{{getSelectedList().name}}</h1>
+            </div> -->
+
+            <!-- Right side of top bar -->
+            <span flex></span>
+            <md-button class="md-icon-button" aria-label="Collapse Chat" ng-click="toggleRight()">
+                <md-icon md-svg-icon="public/icons/right_arrow.svg"></md-icon>
+            </md-button>
+            <div ng-controller="chat">
+                <span id='me' ng-if="me" ng-click="changeName($event)">
+                    {{me.name}}
+                </span>
+            </div>
+        </div>
+    </md-toolbar>
     <div class="container" layout="row" flex>
         <!-- Filters -->
         <div ng-controller="filters" layout="row">
             <md-sidenav md-is-locked-open="true" md-whiteframe="10" id="chat" flex>
                 <!-- Sidebar header -->
-                <md-toolbar class="md-accent md-medium-tall" layout-align="center end" id="chat-top">
+                <!-- <md-toolbar class="md-accent md-medium-tall" layout-align="center end" id="chat-top">
                     <div class="md-toolbar-tools" id="card list">
-                        <!--<h1>{{getSelectedList().name}}</h1>-->
                         <a href='https://www.nodeknockout.com/entries/15-noun-js'><img src='public/icons/voteko.png'/></a>
                         <span flex></span>
                         <md-button class="md-icon-button" aria-label="collapse">
                             <md-icon md-svg-icon="public/icons/left_arrow.svg"></md-icon>
                         </md-button>
                     </div>
-                </md-toolbar>
+                </md-toolbar> -->
 
                 <!-- Filter Form -->
                 <md-content layout="column" id="chat-messages" class="autocomplete">
@@ -200,17 +222,6 @@
         <!-- Social -->
         <md-sidenav md-is-locked-open="true" md-whiteframe="10" id="social" md-disable-scroll-target="content">
             <md-content ng-controller="chat" id='chat' flex>
-                <md-toolbar class="md-medium-tall md-accent" layout-align="center end" id='chat-top'>
-                    <div class="md-toolbar-tools" id="userIcons">
-                        <md-button class="md-icon-button" aria-label="collapse">
-                            <md-icon md-svg-icon="public/icons/right_arrow.svg"></md-icon>
-                        </md-button>
-                        <span flex></span>
-                        <span id='me' ng-if="me" ng-click="changeName($event)">
-                            {{me.name}}
-                        </span>
-                    </div>
-                </md-toolbar>
                 <md-content>
                     <div id="friendIconsContainer">
                         <span ng-repeat="user in connectedUsers" ng-if="user.id !== me.id" class='circle friend' style="background-color: {{user.color}}" title='{{user.name}}'>
