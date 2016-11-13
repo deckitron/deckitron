@@ -221,10 +221,21 @@
                 <md-content id="chat-messages">
                     <md-list>
                         <md-divider inset></md-divider>
-                        <md-list-item class="md-1-line" ng-repeat="message in messages" ng-click="null">
+                        <md-list-item class="md-1-line" ng-repeat="message in messages">
                             <span class='circle friend' title='{{getUsername(message.user)}}' style="background-color: {{message.user.color}}">{{getUsername(message.user).substr(0, 1)}}</span>
                             <span ng-if="message.message" class="chatMessage {{message.type}}">{{message.message}}</span>
-                            <span ng-if="message.card">{{message.card}}</span>
+                            <span ng-if="message.card">
+                                <div class="card" md-ink-ripple="rgba(16, 16, 16, 1.0)" ng-click="cardSelected($event, message.card)">
+                                    <img ng-src={{getCardImageURL(message.card.multiverseid)}}></img>
+                                    <span ng-if="cardCount(message.card, 'cards') > 0" class="circle cardCount deckCount">
+                                        {{cardCount(message.card, 'cards')}}
+                                    </span>
+                                    <span ng-if="cardCount(message.card, 'sideboard') > 0" class="circle cardCount sideboardCount">
+                                        {{cardCount(message.card, 'sideboard')}}
+                                    </span>
+                                    <h2 class="missingPosterText" ng-style="{display: message.card.multiverseid ? 'none' : 'block'}">{{message.card.name}}</h2>
+                                </div>
+                            </span>
                             <md-divider inset></md-divider>
                         </md-list-item>
                     </md-list>
