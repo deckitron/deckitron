@@ -86,7 +86,6 @@
             const query = {};
             const formElements = document.forms.filter.children;
 
-            console.log(cardTypes);
             // The input form elements
             const keywords = formElements[3].children[1].value;
             const convertedManaCost = formElements[4].children[1].value;
