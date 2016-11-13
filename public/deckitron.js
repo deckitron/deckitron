@@ -79,6 +79,7 @@
 
     app.controller('DeckitronCore', ['$scope', 'room', '$mdDialog', '$timeout', '$mdSidenav', '$mdMedia', function ($scope, $room, $mdDialog, $timeout, $mdSidenav, $mdMedia) {
         $scope.title = 'Deckitron';
+        $scope.roomName = window.location.pathname.substr(1);
 
         const socket = $room.getSocket();
 
