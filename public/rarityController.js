@@ -65,6 +65,8 @@
 
         socket.on('cards.distincts.get.result', function (data) {
             const rarities = [];
+            console.log('Got distincts results');
+            console.log(data);
             if (data.field === 'rarity') {
                 console.log('Got rarity data');
                 for (let i = 0; i < data.result.length; i++) {
@@ -81,8 +83,10 @@
                 $scope.rarities = mapped;
             }
         });
-        socket.emit('cards.distincts.get', {
-            field: 'rarity'
+        socket.on('room.joined', function () {
+            socket.emit('cards.distincts.get', {
+                field: 'rarity'
+            });
         });
     }]);
 }());

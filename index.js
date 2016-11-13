@@ -104,6 +104,7 @@ io.on('connection', (socket) => {
         chat(io, socket, roomName, user);
         deck(io, socket, roomName, user);
         console.log(`User ${user.id} joined ${roomName}`);
+        socket.emit('room.joined');
     });
     socket.on('rooms.getname', () => {
         socket.emit('rooms.name', `${user.color}_${user.name}`);

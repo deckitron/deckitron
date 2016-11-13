@@ -78,8 +78,10 @@
                 });
             }
         });
-        socket.emit('cards.distincts.get', {
-            field: 'supertypes'
+        socket.on('room.joined', function () {
+            socket.emit('cards.distincts.get', {
+                field: 'supertypes'
+            });
         });
     }]);
 }());

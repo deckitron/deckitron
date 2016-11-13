@@ -95,9 +95,11 @@
             }
         });
 
-        $timeout(() => {
-            $scope.performSearch();
-        }, 500);
+        socket.on('room.joined', function () {
+            $timeout(() => {
+                $scope.performSearch();
+            }, 500);
+        });
 
         socket.on('cards.get.result', function (data) {
             if (!Array.isArray(data.result) || data.result.length < 1) {
