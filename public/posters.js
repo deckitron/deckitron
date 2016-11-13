@@ -8,6 +8,9 @@
     posterwall.controller('posterwall', ['$scope', 'room', '$mdDialog', '$timeout', function ($scope, $room, $mdDialog, $timeout) {
         function gotCards (data) {
             $timeout(() => {
+                if ($scope.cards.length >= 500) {
+                    return;
+                }
                 if (Array.isArray(data.result)) {
                     $scope.cards = $scope.cards.concat(data.result);
                     console.log(data);
