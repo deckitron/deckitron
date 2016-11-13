@@ -90,6 +90,8 @@
             return 0;
         }
 
+        $scope.cardCount = cardCount;
+
         function DialogController ($scope, card) {
             $scope.card = card;
             $scope.card.manaList = getManaList($scope.card.manaCost);

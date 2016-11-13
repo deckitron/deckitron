@@ -164,6 +164,17 @@ md-dialog {
     min-height: 1.5em;
 }
 
+.cardCount {
+    font-size: 0.75em;
+    line-height: 0.75em;
+    text-align: center;
+    color: white;
+    position: relative;
+    top: -40px;
+    left: 10px;
+    padding-top: 10px;
+}
+
 .friend {
     font-size: 1.5em;
     line-height: 1.5em;
@@ -209,6 +220,24 @@ md-chip .title {
 md-chip.md-focused .title {
     display: inline-block;
 }
+
+.md-chips, .md-chips.md-default-theme {
+    md-chip {
+        background-color: rgb(88,88,88);
+        color: white;
+        font-size: 14px;
+        line-height: 2em;
+        height: 2em;
+        .md-chip-remove {
+            height: 2em;
+        }
+        md-icon {
+            color: white;
+        }
+    }
+}
+
+
 //
 // .card img:active {
 //     -webkit-transform: scale(2, 2);
