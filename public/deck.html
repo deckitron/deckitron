@@ -283,16 +283,20 @@
             <md-content ng-controller="chat" id='chat' class='sidebar' flex>
                 <md-content>
                     <div id="friendIconsContainer">
-                        <span ng-repeat="user in connectedUsers" class='circle friend' ng-class="{'self' : user.id === me.id}" style="background-color: {{user.color}}" title='{{user.name}}'>
-                            {{user.name.substr(0, 1)}}
-                        </span>
+                        <div ng-repeat="user in connectedUsers" title={{user.name}}>
+                            <span class='circle friend' ng-class="{'self' : user.id === me.id}" style="background-color: {{user.color}}">
+                                {{user.name.substr(0, 1)}}
+                            </span>
+                        </div>
                     </div>
                 </md-content>
                 <md-content class="sidebar-middle" id='chat-messages'>
                     <md-list>
                         <md-divider inset></md-divider>
                         <md-list-item class="md-1-line" ng-repeat="message in messages">
-                            <span class='circle friend' title='{{getUsername(message.user)}}' style="background-color: {{message.user.color}}">{{getUsername(message.user).substr(0, 1)}}</span>
+                            <div title={{getUsername(message.user)}}>
+                                <span class='circle friend'  style="background-color: {{message.user.color}}">{{getUsername(message.user).substr(0, 1)}}</span>
+                            </div>
                             <span ng-if="message.message" class="chatMessage {{message.type}}">{{message.message}}</span>
                             <span ng-if="message.card">
                                 <md-menu md-offset="0 -7" mousepoint-menu>
