@@ -4,7 +4,7 @@
 
     const deckStats = angular.module('deckStats', ['room', 'ngMaterial']);
 
-    deckStats.controller('deckStats', ['$scope', 'room', '$mdDialog', function ($scope, $room, $mdDialog) {
+    deckStats.controller('deckStats', ['$scope', 'room', '$mdDialog', '$timeout', function ($scope, $room, $mdDialog, $timeout) {
         $scope.onCharmSelected = function (ev) {
             const confirm = $mdDialog.alert()
                  .title('Deck Statistics')
@@ -16,6 +16,17 @@
 
             $mdDialog.show(confirm);
         };
+        $room.getSocket()
+            .on('cards.deck.stats', (data) => {
+                console.log(data);
+                $timeout(() => {
+                    $scope.white = data.affinity.W;
+                    $scope.blue = data.affinity.U;
+                    $scope.black = data.affinity.B;
+                    $scope.red = data.affinity.R;
+                    $scope.green = data.affinity.G;
+                });
+            });
 
         //TODO: listen to the socket and update mana costs when we see something get added or removed
         $scope.white = 0;
