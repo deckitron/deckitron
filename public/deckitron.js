@@ -47,7 +47,6 @@
     function getManaText (text) {
         const parts = text.split(rManaText);
         const output = [];
-        console.log(parts);
         for (let i = 0; i < parts.length; i++) {
             if (!parts[i]) {
                 continue;
