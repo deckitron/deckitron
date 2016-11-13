@@ -50,7 +50,6 @@
 
         const socket = $room.getSocket();
         socket.on('cards.get.result', gotCards);
-        socket.on('cards.deck.update', console.log);
 
         function addCard (card, list, count) {
             socket.emit('cards.deck.add', {
