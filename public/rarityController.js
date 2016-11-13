@@ -8,14 +8,21 @@
         $scope.selectedItem = null;
         $scope.searchText = null;
         $scope.querySearch = querySearch;
-        $scope.rarities = loadTypes();
         $scope.selectedCards = [];
+        $scope.rarities = loadTypes();
         $scope.numberChips = [];
         $scope.numberChips2 = [];
         $scope.numberBuffer = '';
         $scope.autocompleteDemoRequireMatch = true;
         $scope.transformChip = transformChip;
 
+        $scope.onChange = function () {
+            if ($scope.selectedCards.length < 1) {
+                $scope.$emit('card-rarity', null);
+            } else {
+                $scope.$emit('card-rarity', $scope.selectedCards);
+            }
+        };
         /**
          * Return the proper object when the append is called.
          */
@@ -60,10 +67,15 @@
                 {name: 'Mythic Rare'}
             ];
 
-            return rarities.map((card) => {
+            let mapped = rarities.map((card) => {
                 card._lowername = card.name.toLowerCase();
                 return card;
             });
+
+            $scope.selectedCards.push(rarities[rarities.length - 1]);
+            $scope.$emit('card-rarity', $scope.selectedCards);
+
+            return mapped;
         }
     }]);
 }());
