@@ -13,14 +13,15 @@
         <script src='public/index.js'></script>
     </head>
     <body>
-        <img src="public/icons/node.svg"></img>
-        <h1>
-            Deckitron
-        </h1>
+        <span>
+            <h1>
+                Deckitron
+            </h1>
+        </span>
         <p id='description'>
             Collaborative deck building for Magic: The Gathering
             <br/>This project was built as part of Node Knockout 2016. Vote for us if you like it!
-            <br/><a href='https://www.nodeknockout.com/entries/15-noun-js'><img src='public/icons/voteko.png'/></a>
+            <br/><a href='https://www.nodeknockout.com/entries/15-noun-js'><img src='public/icons/voteko.png'/><img id="nodeGraphic" src="public/icons/node.svg"></img></a>
         </p>
         <form id="url-bar" ng-submit="onStart()">
             <label for="deck-name">deckitron/</label>
@@ -33,7 +34,21 @@
 
         <h2>Active Decks</h2>
         <div ng-repeat="deck in decks">
-            <a href='{{deck.url}}'>{{deck.name}}</a> ({{deck.users === 1 ? '1 User': deck.users + ' Users'}})
+            <a class="enterRoomButton" href='{{deck.url}}'>"{{deck.name}}"<em class="roomButtonUsers">({{deck.users === 1 ? '1 User': deck.users + ' Users'}})</em></a>
         </div>
+
+        <script>
+            var images = [
+                /*island*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Island-MtG-Art-by-Yeong-Hao-Han.jpg',
+                /*swamp*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Swamp-Kaladesh-MtG-Art.jpg',
+                /*Plains*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Plains-Kaladesh-MtG-Art.jpg',
+                /*Mountain*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Mountain-Kaladesh-MtG-Art.jpg',
+                /*Forest*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Kaladesh-MtG-Art-by-Chase-Stone.jpg',
+                /*special*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Spirebluff-Canal-Kaladesh-Art.jpg'
+            ];
+            var index = Math.floor(Math.random() * images.length);
+
+            document.body.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25) ), url('" + images[index] + "')";
+        </script>
     </body>
 </html>
