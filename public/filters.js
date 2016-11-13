@@ -40,7 +40,17 @@
         ];
 
 
-        let lastEvent = {};
+        const lastEvent = {};
+
+        lastEvent[$scope.cardLists[1].cacheid] = {
+            list: $scope.cardLists[1].listid
+        };
+        lastEvent[$scope.cardLists[2].cacheid] = {
+            list: $scope.cardLists[2].listid
+        };
+        lastEvent[$scope.cardLists[3].cacheid] = {
+            list: $scope.cardLists[3].listid
+        };
 
         let cardTypes = null;
         let manaColor = null;
