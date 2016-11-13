@@ -45,9 +45,9 @@
     <div class="container" layout="row" flex>
         <!-- Filters -->
         <div ng-controller="filters" layout="row">
-            <md-sidenav md-is-locked-open="true" md-whiteframe="10" id="chat" flex>
+            <md-sidenav md-is-locked-open="true" md-whiteframe="10" class='sidebar' flex>
                 <!-- Sidebar header -->
-                <md-toolbar class="md-accent md-medium-tall" layout-align="center end" id="chat-top">
+                <md-toolbar class="md-accent md-medium-tall sidebar-top" layout-align="center end">
                     <div class="md-toolbar-tools" id="card list">
                         <!--<h1>{{getSelectedList().name}}</h1>-->
                         <a href='https://www.nodeknockout.com/entries/15-noun-js'><img src='public/icons/voteko.png'/></a>
@@ -59,7 +59,7 @@
                 </md-toolbar>
 
                 <!-- Filter Form -->
-                <md-content layout="column" id="chat-messages" class="autocomplete">
+                <md-content layout="column" class="autocomplete sidebar-middle">
                     <form name="filter" ng-submit="performSearch(true)">
                         <md-button type="submit" class="md-raised md-primary">
                             <md-icon md-svg-icon="public/icons/search.svg"></md-icon>Search
@@ -160,7 +160,7 @@
                 </md-content>
 
                 <!-- Card lists -->
-                <md-content id="chat-bottom">
+                <md-content class='sidebar-bottom'>
                     <md-divider inset></md-divider>
                     <md-list flex layout="column">
                         <md-list-item class="md-1-line md-primary" ng-repeat="item in cardLists" ng-class="{cardListSelected: item.selected}" ng-click="selectList(item)">
@@ -199,8 +199,8 @@
 
         <!-- Social -->
         <md-sidenav md-is-locked-open="true" md-whiteframe="10" id="social" md-disable-scroll-target="content">
-            <md-content ng-controller="chat" id='chat' flex>
-                <md-toolbar class="md-medium-tall md-accent" layout-align="center end" id='chat-top'>
+            <md-content ng-controller="chat" id='chat' class='sidebar' flex>
+                <md-toolbar class="md-medium-tall md-accent sidebar-top" layout-align="center end">
                     <div class="md-toolbar-tools" id="userIcons">
                         <md-button class="md-icon-button" aria-label="collapse">
                             <md-icon md-svg-icon="public/icons/right_arrow.svg"></md-icon>
@@ -218,7 +218,7 @@
                         </span>
                     </div>
                 </md-content>
-                <md-content id="chat-messages">
+                <md-content class="sidebar-middle" id='chat-messages'>
                     <md-list>
                         <md-divider inset></md-divider>
                         <md-list-item class="md-1-line" ng-repeat="message in messages">
@@ -240,7 +240,7 @@
                         </md-list-item>
                     </md-list>
                 </md-content>
-                <md-content id='chat-bottom'>
+                <md-content class="sidebar-bottom">
                     <md-divider inset></md-divider>
                     <form ng-submit="sendMessage()" layout="row">
                         <md-input-container md-no-float layout-fill layout-padding>
