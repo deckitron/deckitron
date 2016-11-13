@@ -10,8 +10,8 @@
       </div>
     </md-toolbar>
     <md-dialog-content>
-        <!-- <md-tabs md-dynamic-height md-border-bottom> -->
-            <!-- <md-tab label="Card Info"> -->
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Card Info">
                 <md-content class="md-padding card-info">
                     <img ng-if="card.multiverseid" ng-src="{{getCardImageURL(card.multiverseid)}}" class='cardArt' draggable="false"></img>
                     <table>
@@ -57,45 +57,43 @@
                         </tfoot>
                     </table>
                 </md-content>
-            <!-- </md-tab> -->
-            <!-- <md-tab label="Rulings">
+            </md-tab>
+            <md-tab label="Rulings">
                 <md-content class="md-padding">
-                <h1>Rulings</h1>
-                <p>Rulings go Here</p>
+                <ul>
+                    <li ng-repeat="ruling in card.rulings" style="margin-bottom: 10px;">
+                        <p>{{ ruling.date }}</p><p>{{ ruling.text }}</p>
+                    </li>
+                </ul>
                 </md-content>
             </md-tab>
             <md-tab label="Legality">
                 <md-content class="md-padding">
-                <h1>Legality</h1>
-                <p>Legal goes Here</p>
+                    <table>
+                        <tbody>
+                            <tr ng-repeat="legality in card.legalities" style="text-align: left;">
+                                <th>{{ legality.format }}</th>
+                                <td style="padding-left: 10px;">{{ legality.legality }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </md-content>
-            </md-tab> -->
-        <!-- </md-tabs> -->
+            </md-tab>
+        </md-tabs>
     </md-dialog-content>
 
     <md-dialog-actions layout="row" flex>
-      <md-input-container>
-          <input ng-model="count" type="number" min="1" max="100" multiple="1"/>
-      </md-input-container>
-        <span flex></span>
-      <md-button class="md-primary md-raised" ng-disabled="isInvalidCount()" style="width: 400px" ng-click="addCard('cards')" title="Add To Deck">
-      Add To Deck
-      </md-button>
-      <md-button class="md-primary md-raised" ng-disabled="isInvalidCount()" style="width: 400px" ng-style="{display: listCount('cards') ? 'block': 'none'}" ng-click="removeCard('cards')" title="Remove From Deck">
-      Remove From Deck
-      </md-button>
-      <md-button class="md-primary md-raised" ng-disabled="isInvalidCount()" style="width: 400px" ng-click="addCard('sideboard')" title="Add To Sideboard">
-      Add To Sideboard
-      </md-button>
-      <md-button class="md-primary md-raised" ng-disabled="isInvalidCount()" style="width: 400px" ng-style="{display: listCount('sideboard') ? 'block': 'none'}" ng-click="removeCard('sideboard')" title="Remove From Sideboard">
-      Remove From Sideboard
-      </md-button>
-      <md-button class="md-primary md-raised" style="width: 300px" ng-click="addCard('linked', 1)" title="Link to Chat">
-      Share
-      </md-button>
-      <!-- <md-button class="md-primary md-raised" style="width: 400px" ng-style="{display: listCount('linked') ? 'block': 'none'}" ng-click="removeCard('linked', 1)" title="Remove from Linked">
-      Remove from Linked
-      </md-button> -->
+        <div class='addremove'>
+            <button type='button' class='md-ink-ripple' ng-click="removeCard('cards')" ng-disabled="cardsCount < 1">&minus;</button>
+            <span>Deck ({{cardsCount}})</span>
+            <button type='button' class='md-ink-ripple' ng-click="addCard('cards')">&plus;</button>
+        </div>
+        <div class='addremove'>
+            <button type='button' class='md-ink-ripple' ng-click="removeCard('sideboard')" ng-disabled="sideboardCount < 1">&minus;</button>
+            <span>Sideboard ({{sideboardCount}})</span>
+            <button type='button' class='md-ink-ripple' ng-click="addCard('sideboard')">&plus;</button>
+        </div>
+        <md-button class="md-primary md-raised" ng-click="addCard('linked', 1)" title="Link to Chat">Share</md-button>
     </md-dialog-actions>
   </form>
 </md-dialog>

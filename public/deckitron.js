@@ -14,6 +14,8 @@
             'chat',
             'posterwall',
             'cardTypesController',
+            'cardSuperTypesController',
+            'cardSubtypesController',
             'manaColorController',
             'rarityController',
             'filters',
@@ -72,6 +74,10 @@
         return 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + normalizedID + '&type=card';
     }
 
+    function hasNoImage (id) {
+        return id == null;
+    }
+
     app.controller('DeckitronCore', ['$scope', 'room', '$mdDialog', '$timeout', '$mdSidenav', '$mdMedia', function ($scope, $room, $mdDialog, $timeout, $mdSidenav, $mdMedia) {
         $scope.title = 'Deckitron';
 
@@ -83,11 +89,14 @@
         });
 
         $scope.getCardImageURL = getCardImageURL;
+        $scope.hasNoImage = hasNoImage;
+        $scope.getManaList = getManaList;
         function DialogController ($scope, card) {
             $scope.card = card;
             $scope.card.manaList = $scope.card.manaCost ? getManaList($scope.card.manaCost) : null;
             $scope.card.manaText = $scope.card.text ? getManaText($scope.card.text) : null;
-            $scope.count = 1;
+            $scope.cardsCount = cardCount(card, 'cards');
+            $scope.sideboardCount = cardCount(card, 'sideboard');
             $scope.hide = function () {
                 $mdDialog.hide();
             };
@@ -96,21 +105,16 @@
                 $mdDialog.hide();
             };
 
-            $scope.listCount = function (list) {
-                return cardCount(card, list);
-            };
-
-            $scope.isInvalidCount = function () {
-                return $scope.count <= 0 || $scope.count > 100 || $scope.count % 1 !== 0;
-            };
-
             $scope.addCard = function (list, count) {
                 addCard($scope.card, list, count || $scope.count);
-                $mdDialog.hide();
+                $scope[list + 'Count']++;
             };
             $scope.removeCard = function (list, count) {
                 removeCard($scope.card, list, count || $scope.count);
-                $mdDialog.hide();
+                $scope[list + 'Count']--;
+                if ($scope[list + 'Count'] < 1) {
+                    $scope[list + 'Count'] = 0;
+                }
             };
 
             $scope.answer = function (answer) {

@@ -227,6 +227,12 @@ md-dialog {
     pointer-events: none;
 }
 
+.missingManaContainer {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
 .cardCount {
     font-size: 0.75em;
     line-height: 1.5em;
@@ -398,4 +404,42 @@ form md-chips-wrap {
     padding-right: 0.2em;
     opacity: inherit;
     pointer-events: none;
+}
+
+.addremove {
+    overflow: hidden;
+    font-size: 14px;
+    font-family: Roboto,Helvetica Neue,sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    vertical-align: middle;
+    margin-right: 1em;
+    display: inline-block;
+    border-radius: 3px;
+    background-color: #E91E63;
+    height: 36px;
+    max-width: 300px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+    span {
+        padding: 8px;
+    }
+    button {
+        color: white;
+        font-size: 14px;
+        font-family: Roboto,Helvetica Neue,sans-serif;
+        font-weight: bold;
+        background: #E91E63;
+        border: none;
+        padding: 8px 8px 12px;
+        margin: 0;
+        &:hover {
+            background-color: rgb(216,27,96);
+        }
+        &:first-child {
+            border-right: 1px solid rgba(235, 235, 235, 0.5)
+        }
+        &:last-child {
+            border-left: 1px solid rgba(235, 235, 235, 0.5)
+        }
+    }
 }

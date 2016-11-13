@@ -105,6 +105,9 @@ io.on('connection', (socket) => {
         deck(io, socket, roomName, user);
         console.log(`User ${user.id} joined ${roomName}`);
     });
+    socket.on('rooms.getname', () => {
+        socket.emit('rooms.name', `${user.color}_${user.name}`);
+    });
     socket.on('rooms.watch', () => {
         if (!roomsWatcher) {
             roomsWatcher = () => {

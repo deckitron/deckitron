@@ -1,15 +1,15 @@
 (function () {
     'use strict';
 
-    const cardTypesController = angular.module('cardTypesController', []);
+    const cardSubtypesController = angular.module('cardSubtypesController', []);
 
-    cardTypesController.controller('cardTypesController', ['$scope', 'room', function ($scope, $room) {
+    cardSubtypesController.controller('cardSubtypesController', ['$scope', 'room', function ($scope, $room) {
         const socket = $room.getSocket();
         $scope.readonly = false;
         $scope.selectedItem = null;
         $scope.searchText = null;
         $scope.querySearch = querySearch;
-        $scope.cardTypes = [];
+        $scope.cardSubtypes = [];
         $scope.selectedCards = [];
         $scope.numberChips = [];
         $scope.numberChips2 = [];
@@ -19,9 +19,9 @@
 
         $scope.onChange = function () {
             if ($scope.selectedCards.length < 1) {
-                $scope.$emit('card-types', null);
+                $scope.$emit('card-sub-types', null);
             } else {
-                $scope.$emit('card-types', $scope.selectedCards);
+                $scope.$emit('card-sub-types', $scope.selectedCards);
             }
         };
 
@@ -46,10 +46,10 @@
         }
 
         /**
-         * Search for cardTypes.
+         * Search for cardSubtypes.
          */
         function querySearch (query) {
-            const results = query ? $scope.cardTypes.filter(createFilterFor(query)) : [];
+            const results = query ? $scope.cardSubtypes.filter(createFilterFor(query)) : [];
             return results;
         }
 
@@ -65,21 +65,21 @@
         }
 
         socket.on('cards.distincts.get.result', function (data) {
-            const cardTypes = [];
-            if (data.field === 'types') {
+            const cardSubtypes = [];
+            if (data.field === 'subtypes') {
                 for (let i = 0; i < data.result.length; i++) {
-                    cardTypes.push({
+                    cardSubtypes.push({
                         name: data.result[i]
                     });
                 }
-                $scope.cardTypes = cardTypes.map((card) => {
+                $scope.cardSubtypes = cardSubtypes.map((card) => {
                     card._lowername = card.name.toLowerCase();
                     return card;
                 });
             }
         });
         socket.emit('cards.distincts.get', {
-            field: 'types'
+            field: 'subtypes'
         });
     }]);
 }());

@@ -1,35 +1,36 @@
-# Node Knockout 2016 Starter
+# Deckitron
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+Collaborative deck building for Magic: The Gathering.
 
-Tuned to run on EngineYard Cloud.
+## Description
 
-## Running Locally
+Deckitron is a tool for creating a deck for Magic: The Gathering with friends.
+Start a new deck and invite your friends to help you create great decks for your next MTG game.
 
-Make sure you have [Node.js](http://nodejs.org/) installed (uses version `4.4.5`).
+## Instructions
 
-```sh
-git clone git@github.com:rumblex/nodeknockout2016-deckitron.git # or clone your own fork
-cd nodeknockout2016-deckitron
-npm install
-npm start
-```
-
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-## Deploying to EngineYard
-
-Log into <https://cloud.engineyard.com>. Navigate to your Team's Application, and click "Deploy".
+Create a deck
+Send your link to your friends
+Start adding cards to your deck
 
 
-## Supported Node.js versions
+## Resources
 
-Please use one of these Node.js versions
-
-4.4.5, 4.6.0, 5.11.0, 6.4.0, 6.7.0
-
-## Documentation
-
-For more information about using Node.js on EngineYard, check out these articles
-
-- [Deploy Your Node.js Application on Engine Yard Cloud](https://support.cloud.engineyard.com/hc/en-us/articles/205411878-Deploy-Your-Node-js-Application-on-Engine-Yard-Cloud)
+[Angular](https://www.npmjs.com/package/angular)
+[Angular Animate](https://www.npmjs.com/package/angular-animate)
+[Angular Aria](https://www.npmjs.com/package/angular-aria)
+[Angular Material](https://www.npmjs.com/package/angular-material)
+[Angular Slug](https://www.npmjs.com/package/angular-slug)
+[body-parser](https://www.npmjs.com/package/body-parser)
+[Express](https://www.npmjs.com/package/express)
+[Gatherer](http://gatherer.wizards.com/Pages/Default.aspx)
+[jQuery](https://jquery.com/)
+[Less](https://www.npmjs.com/package/less)
+[Mongoose](https://www.npmjs.com/package/mongoose)
+[MongoDB](https://www.mongodb.com/)
+[MTG JSON](https://mtgjson.com/)
+[NodeJS](https://nodejs.org/en/)
+[Raptorize](http://zurb.com/playground/jquery-raptorize)
+[Socket.IO](https://www.npmjs.com/package/socket.io)
+[SwearJar](https://www.npmjs.com/package/swearjar)
+[Unzip](https://www.npmjs.com/package/unzip)
