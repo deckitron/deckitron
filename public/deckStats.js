@@ -25,6 +25,8 @@
                     $scope.black = data.affinity.B;
                     $scope.red = data.affinity.R;
                     $scope.green = data.affinity.G;
+                    $scope.curve = data.curve;
+                    $scope.typeCounts = data.types;
                 });
             });
 
