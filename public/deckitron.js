@@ -9,7 +9,8 @@
             'chat',
             'filters',
             'posterwall',
-            'cardTypesController'
+            'cardTypesController',
+            'manaColorController'
         ]
     );
 

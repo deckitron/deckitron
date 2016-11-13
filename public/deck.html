@@ -10,6 +10,7 @@
     <!-- Filters -->
     <script src="public/filters.js"></script>
     <script src="public/cardTypesController.js"></script>
+    <script src="public/manaColorController.js"></script>
 
     <!-- Chat -->
     <script src="node_modules/socket.io-client/socket.io.js"></script>
@@ -89,22 +90,24 @@
                             </md-chip-template>
                         </div>
 
-                        <!-- Card Type -->
-                        <md-input-container>
-                            <md-contact-chips
-                                md-contacts="cardTypes"
-                                md-contact-name="name"
-                                md-contact-image="image"
-                                md-contact-email="email"
-                                md-require-match="true"
-                                md-highlight-flags="i"
-                                filter-selected="ctrl.filterSelected"
-                                placeholder="To">
-                            </md-contact-chips>
-                            <!-- <md-chips md-padding ng-model="cardTypes" readonly="false" md-removable="true" placeholder="Card Type">
-                                <md-autocomplete></md-autocomplete>
-                            </md-chips> -->
-                        </md-input-container>
+                        <!-- Mana Color -->
+                       <div ng-controller="manaColorController">
+                            <md-chips ng-model="selectedCards" md-autocomplete-snap
+                                     md-transform-chip="transformChip($chip)"
+                                     md-require-match="autocompleteDemoRequireMatch">
+                            <md-autocomplete
+                                 md-selected-item="selectedItem"
+                                 md-search-text="searchText"
+                                 md-items="item in querySearch(searchText)"
+                                 md-item-text="item.name"
+                                 placeholder="Mana Color">
+                                 <img ng-src={{item.url}}></img> {{item.name}}
+                            </md-autocomplete>
+                            <md-chip-template>
+                                <img title={{$chip.name}} ng-src={{$chip.url}}></img>
+                                <span class="title">{{$chip.name}}</span>
+                            </md-chip-template>
+                        </div>
 
                         <!-- Creature Power -->
                         <md-input-container>
