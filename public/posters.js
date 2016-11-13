@@ -4,6 +4,41 @@
 
     const posterwall = angular.module('posterwall', ['room', 'ngMaterial']);
 
+    const rMana = /\{([0-9bgrcwuptx]{1,2})\}/ig;
+    const rManaTest = /\{([0-9bgrcwuptx]{1,2})\}/i;
+    const rManaText = /(\{[0-9bgrcwuptx]{1,2}\})/ig;
+
+    function getManaList(manaCost) {
+        const costs = [];
+        const mana = String(manaCost).toLowerCase();
+        let match;
+        while (match = rMana.exec(mana)) {
+            costs.push(match[1]);
+        }
+        return costs;
+    }
+    function getManaText(text) {
+        const parts = text.split(rManaText);
+        const output = [];
+        for (let i = 0; i < parts.length; i++) {
+            if (!parts[i]) {
+                continue;
+            }
+            if (rManaTest.test(parts[i])) {
+                output.push({
+                    mana: true,
+                    value: parts[i].substr(1, parts[i].length - 2).toLowerCase()
+                });
+            } else {
+                output.push({
+                    mana: false,
+                    value: parts[i]
+                });
+            }
+        }
+        return output;
+    }
+
     posterwall.controller('posterwall', ['$scope', 'room', '$mdDialog', '$timeout', function ($scope, $room, $mdDialog, $timeout) {
         function gotCards (data) {
             $timeout(() => {
@@ -38,6 +73,9 @@
 
         function DialogController ($scope, card) {
             $scope.card = card;
+            $scope.card.manaList = getManaList($scope.card.manaCost);
+            $scope.card.manaText = getManaText($scope.card.text);
+
             $scope.hide = function () {
                 $mdDialog.hide();
             };

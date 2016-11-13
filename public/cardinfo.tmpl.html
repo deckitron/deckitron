@@ -15,10 +15,19 @@
                  <md-content class="md-padding">
                     <h1>Card Info</h1>
                     <div>Card Name: {{card.name}}</div>
-                    <div>Mana Cost: {{card.manaCost}}</div>
+                    <div>
+                        Mana Cost:
+                        <img ng-repeat="mana in card.manaList" src="public/mana/{{mana}}.jpg" />
+                    </div>
                     <div>CMC: {{card.cmc}}</div>
                     <div>Type: {{card.type}}</div>
-                    <div>Text: {{card.text}}</div>
+                    <div>
+                        Text:
+                        <ng-repeat ng-repeat="part in card.manaText">
+                            <img ng-if="part.mana" src="public/mana/{{part.value}}.jpg" />
+                            <ng-if ng-if="!part.mana">{{part.value}}</ng-if>
+                        </ng-repeat>
+                    </div>
                     <div>P/T: {{card.power}}/{{card.toughness}}</div>
                     <div>Rarity: {{card.rarity}}</div>
                     <div>Artist: {{card.artist}}</div>
