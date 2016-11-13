@@ -3,7 +3,7 @@
     'use strict';
 
     const filters = angular.module('filters', ['manaColorController', 'cardTypesController', 'room']);
-    filters.controller('filters', ['$scope', 'room', '$timeout', function ($scope, $room, $timeout) {
+    filters.controller('filters', ['$scope', '$rootScope', 'room', '$timeout', function ($scope, $rootScope, $room, $timeout) {
         const socket = $room.getSocket();
         $scope.cardLists = [
             {
@@ -192,6 +192,8 @@
             let queryEvent = null;
             if (scrollToTop) {
                 document.getElementById('cardContent').scrollTop = 0;
+                offset = 0;
+                $rootScope.$broadcast('clear-card-wall');
             }
             if (!eventToSend) {
                 queryEvent = buildQuery();

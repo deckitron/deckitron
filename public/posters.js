@@ -28,6 +28,10 @@
             $scope.permitBigLoad = true;
         };
 
+        $scope.$on('clear-card-wall', function () {
+            $scope.cards = [];
+        });
+
         $scope.askForBigLoad = function () {
             return $scope.cards.length >= 350 && !$scope.permitBigLoad;
         };
