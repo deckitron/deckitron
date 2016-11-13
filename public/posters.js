@@ -67,6 +67,7 @@
                     count: count
                 }
             });
+            socket.emit('chat.sharecard', card.id);
         }
         function removeCard (card, list, count) {
             socket.emit('cards.deck.remove', {
