@@ -48,6 +48,12 @@
         let offset = 0;
         let debounce = false;
 
+        window.addEventListener('block-paged-load', function (evt) {
+            console.log('Paged load blocked');
+            offset--;
+            return false;
+        });
+
         $scope.$on('card-types', function (evt, types) {
             cardTypes = types;
         });
