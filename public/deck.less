@@ -96,18 +96,18 @@ md-icon svg {
     line-height: inherit !important;
 }
 
-#chat {
+.sidebar {
     display: flex;
     flex-direction: column;
 }
-#chat-top {
+.sidebar-top {
     flex-shrink: 0;
 }
-#chat-messages {
+.sidebar-middle {
     overflow-x: hidden;
     flex: 1;
 }
-#chat-bottom {
+.sidebar-bottom {
     flex-shrink: 0;
 }
 
@@ -133,6 +133,8 @@ md-dialog {
 }
 
 .card {
+    overflow: hidden;
+    position: relative;
     outline: none;
     -moz-transition: all 100ms;
     -webkit-transition: all 100ms;
@@ -187,6 +189,10 @@ md-dialog {
     text-align: center;
     text-shadow: 2px 2px 10px #000;
     pointer-events: none;
+}
+
+.loadMoreButton {
+    width: 100% - 2px;
 }
 
 .circle {

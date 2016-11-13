@@ -3,7 +3,7 @@
     'use strict';
 
     const filters = angular.module('filters', ['manaColorController', 'cardTypesController', 'room']);
-    filters.controller('filters', ['$scope', 'room', '$timeout', function ($scope, $room, $timeout) {
+    filters.controller('filters', ['$scope', '$rootScope', 'room', '$timeout', function ($scope, $rootScope, $room, $timeout) {
         const socket = $room.getSocket();
         $scope.cardLists = [
             {
@@ -47,6 +47,11 @@
         let cardRarity = null;
         let offset = 0;
         let debounce = false;
+
+        $scope.$on('block-paged-load', function () {
+            console.log('Paged load blocked');
+            offset--;
+        });
 
         $scope.$on('card-types', function (evt, types) {
             cardTypes = types;
@@ -121,6 +126,9 @@
             cardListToSelect.selected = true;
             selectedList.selected = false;
 
+            offset = 0;
+            $rootScope.$broadcast('clear-card-wall');
+
             // use the last query, but don't scroll to top
             $scope.performSearch(false, lastEvent[$scope.getSelectedList().cacheid]);
         };
@@ -187,6 +195,8 @@
             let queryEvent = null;
             if (scrollToTop) {
                 document.getElementById('cardContent').scrollTop = 0;
+                offset = 0;
+                $rootScope.$broadcast('clear-card-wall');
             }
             if (!eventToSend) {
                 queryEvent = buildQuery();
