@@ -18,7 +18,7 @@
         };
         $room.getSocket()
             .on('cards.deck.stats', (data) => {
-                console.log(data);
+                // console.log(data);
                 $timeout(() => {
                     $scope.white = data.affinity.W;
                     $scope.blue = data.affinity.U;

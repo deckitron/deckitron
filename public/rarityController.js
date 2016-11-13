@@ -65,10 +65,10 @@
 
         socket.on('cards.distincts.get.result', function (data) {
             const rarities = [];
-            console.log('Got distincts results');
-            console.log(data);
+            // console.log('Got distincts results');
+            // console.log(data);
             if (data.field === 'rarity') {
-                console.log('Got rarity data');
+                // console.log('Got rarity data');
                 for (let i = 0; i < data.result.length; i++) {
                     rarities.push({
                         name: data.result[i]

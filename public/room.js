@@ -28,11 +28,11 @@
 
     socket.on('cards.deck.update', (data) => {
         socket.deck = data.deck;
-        console.log('cards.deck.update', data);
+        // console.log('cards.deck.update', data);
     });
 
     socket.on('cards.deck.current', (data) => {
         socket.deck = data;
-        console.log('cards.deck.current', data);
+        // console.log('cards.deck.current', data);
     });
 }());

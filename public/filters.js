@@ -61,7 +61,7 @@
         let debounce = false;
 
         $scope.$on('block-paged-load', function () {
-            console.log('Paged load blocked');
+            // console.log('Paged load blocked');
             offset--;
         });
 
@@ -126,7 +126,7 @@
             // if (percent <= 0.1) {
             //     offset--;
             // }
-            console.log(offset);
+            // console.log(offset);
             if (offset === oldOffset) {
                 debounce = false;
                 return;
