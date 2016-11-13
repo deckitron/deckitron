@@ -10,6 +10,7 @@
     <!-- Filters -->
     <script src="public/cardTypesController.js"></script>
     <script src="public/manaColorController.js"></script>
+    <script src="public/rarityController.js"></script>
     <script src="public/filters.js"></script>
 
     <!-- Chat -->
@@ -69,7 +70,7 @@
 
                         <!-- Keyword -->
                         <md-input-container>
-                            <input ng-model="keyword" placeholder="Keyword" class="search md-accent" autocomplete="off">
+                            <input ng-model="keyword" placeholder="Card Name" class="search md-accent" autocomplete="off">
                         </md-input-container>
 
                         <!-- CMC -->
@@ -105,12 +106,30 @@
                                  md-search-text="searchText"
                                  md-items="item in querySearch(searchText)"
                                  md-item-text="item.name"
-                                 placeholder="Mana Color">
+                                 placeholder="Color Identity">
                                  <img ng-src={{item.url}}></img> {{item.name}}
                             </md-autocomplete>
                             <md-chip-template>
                                 <img title={{$chip.name}} ng-src={{$chip.url}}></img>
                                 <span class="title">{{$chip.name}}</span>
+                            </md-chip-template>
+                        </div>
+
+                        <!-- Rarity -->
+                       <div ng-controller="rarityController">
+                            <md-chips ng-model="selectedCards" md-autocomplete-snap
+                                     md-transform-chip="transformChip($chip)"
+                                     md-require-match="autocompleteDemoRequireMatch">
+                            <md-autocomplete
+                                 md-selected-item="selectedItem"
+                                 md-search-text="searchText"
+                                 md-items="item in querySearch(searchText)"
+                                 md-item-text="item.name"
+                                 placeholder="Rarity">
+                                 {{item.name}}
+                            </md-autocomplete>
+                            <md-chip-template>
+                                <span>{{$chip.name}}</span>
                             </md-chip-template>
                         </div>
 
