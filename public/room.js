@@ -13,6 +13,9 @@
             },
             getUser: () => {
                 return socket.user;
+            },
+            getDeck: () => {
+                return socket.deck;
             }
         };
     }]);
@@ -20,5 +23,15 @@
     socket.on('connected', (data) => {
         socket.user = data;
         socket.emit('room.join', document.location.pathname.substr(1));
+    });
+
+    socket.on('cards.deck.update', (data) => {
+        socket.deck = data.deck;
+        console.log('cards.deck.update', data);
+    });
+
+    socket.on('cards.deck.current', (data) => {
+        socket.deck = data;
+        console.log('cards.deck.current', data);
     });
 }());
