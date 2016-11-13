@@ -42,21 +42,43 @@
 </head>
 
 <body ng-app="deckitron" ng-controller="DeckitronCore" layout="column" layout-fill>
+    <md-toolbar class="md-accent" layout="row" layout-align="center end">
+        <div class="md-toolbar-tools" id="card list"  md-whiteframe="11" flex>
+            <!-- Left side of top bar -->
+            <a href='https://www.nodeknockout.com/entries/15-noun-js'><img src='public/icons/voteko.png'/></a>
+            <md-button class="md-icon-button" aria-label="Collapse Search" ng-click="toggleLeftSideNav()">
+                <md-icon class="flippableIcon" md-svg-icon="public/icons/left_arrow.svg" ng-class="{'flipIconLeft': !isLeftSideNavOpen()}"></md-icon>
+            </md-button>
+            <!-- <div ng-controller="filters" flex="80">
+                <h1>{{getSelectedList().name}}</h1>
+            </div> -->
+
+            <!-- Right side of top bar -->
+            <span flex></span>
+            <md-button class="md-icon-button" aria-label="Collapse Chat" ng-click="toggleRightSideNav()">
+                <md-icon class="flippableIcon" md-svg-icon="public/icons/right_arrow.svg" ng-class="{'flipIconRight': !isRightSideNavOpen()}"></md-icon>
+            </md-button>
+            <div ng-controller="chat">
+                <span id='me' ng-if="me" ng-click="changeName($event)">
+                    {{me.name}}
+                </span>
+            </div>
+        </div>
+    </md-toolbar>
     <div class="container" layout="row" flex>
         <!-- Filters -->
         <div ng-controller="filters" layout="row">
-            <md-sidenav md-is-locked-open="true" md-whiteframe="10" class='sidebar' flex>
+            <md-sidenav class="md-sidenav-left" md-component-id="leftSideNav" md-is-locked-open="isLeftSideNavOpen() && $mdMedia('gt-md')" md-whiteframe="10" id="chat" flex>
                 <!-- Sidebar header -->
-                <md-toolbar class="md-accent md-medium-tall sidebar-top" layout-align="center end">
+                <!-- <md-toolbar class="md-accent md-medium-tall" layout-align="center end" id="chat-top">
                     <div class="md-toolbar-tools" id="card list">
-                        <!--<h1>{{getSelectedList().name}}</h1>-->
                         <a href='https://www.nodeknockout.com/entries/15-noun-js' draggable="false"><img src='public/icons/voteko.png' draggable="false"/></a>
                         <span flex></span>
                         <md-button class="md-icon-button" aria-label="collapse">
                             <md-icon md-svg-icon="public/icons/left_arrow.svg"></md-icon>
                         </md-button>
                     </div>
-                </md-toolbar>
+                </md-toolbar> -->
 
                 <!-- Filter Form -->
                 <md-content layout="column" class="autocomplete sidebar-middle">
@@ -176,9 +198,9 @@
         </div>
 
         <!-- Card Art Wall -->
-        <md-content flex id="cardContent">
+        <md-content flex id="cardContent" md-swipe-right="toggleLeftSideNav()" md-swipe-left="toggleRightSideNav()">
             <div ng-controller="posterwall" ng-cloak>
-                <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-gt-sm="3" md-cols-gt-md="4" md-cols-gt-md="5" md-cols-gt-lg="6" md-cols-gt-xl="5" md-row-height="1:1.39"md-gutter="8px" md-gutter-gt-sm="8px">
+                <md-grid-list md-cols-xs="2" md-cols-sm="3" md-cols-gt-sm="4" md-cols-gt-md="5" md-cols-gt-md="6" md-cols-gt-lg="7" md-cols-gt-xl="8" md-row-height="1:1.39"md-gutter="8px" md-gutter-gt-sm="8px">
 
                     <md-grid-tile class="cardTile" md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="card in cards">
                         <md-menu md-offset="0 -7" mousepoint-menu>
@@ -218,19 +240,8 @@
         </md-content>
 
         <!-- Social -->
-        <md-sidenav md-is-locked-open="true" md-whiteframe="10" id="social" md-disable-scroll-target="content">
-            <md-content ng-controller="chat" id='chat' class='sidebar' flex>
-                <md-toolbar class="md-medium-tall md-accent sidebar-top" layout-align="center end">
-                    <div class="md-toolbar-tools" id="userIcons">
-                        <md-button class="md-icon-button" aria-label="collapse">
-                            <md-icon md-svg-icon="public/icons/right_arrow.svg"></md-icon>
-                        </md-button>
-                        <span flex></span>
-                        <span id='me' ng-if="me" ng-click="changeName($event)">
-                            {{me.name}}
-                        </span>
-                    </div>
-                </md-toolbar>
+        <md-sidenav  md-is-locked-open="isRightSideNavOpen() && $mdMedia('gt-md')" class="md-sidenav-right" md-whiteframe="10" id="social" md-disable-scroll-target="content" md-component-id="rightSideNav">
+            <md-content ng-controller="chat" id='chat' flex>
                 <md-content>
                     <div id="friendIconsContainer">
                         <span ng-repeat="user in connectedUsers" ng-if="user.id !== me.id" class='circle friend' style="background-color: {{user.color}}" title='{{user.name}}'>

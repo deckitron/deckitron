@@ -67,7 +67,7 @@
         return 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + normalizedID + '&type=card';
     }
 
-    app.controller('DeckitronCore', ['$scope', 'room', '$mdDialog', function ($scope, $room, $mdDialog) {
+    app.controller('DeckitronCore', ['$scope', 'room', '$mdDialog', '$timeout', '$mdSidenav', '$mdMedia', function ($scope, $room, $mdDialog, $timeout, $mdSidenav, $mdMedia) {
         $scope.title = 'Deckitron';
 
         const socket = $room.getSocket();
@@ -161,6 +161,30 @@
                 $scope.status = 'You cancelled the dialog.';
             });
         };
+
+        $scope.toggleLeftSideNav = function () {
+            $mdSidenav('leftSideNav')
+              .toggle();
+        };
+        $scope.isLeftSideNavOpen = function () {
+            return $mdSidenav('leftSideNav')
+                .isOpen();
+        };
+
+        $scope.toggleRightSideNav = function () {
+            $mdSidenav('rightSideNav')
+              .toggle();
+        };
+        $scope.isRightSideNavOpen = function () {
+            return $mdSidenav('rightSideNav')
+                .isOpen();
+        };
+        $timeout(() => {
+            if ($mdMedia('gt-md')) {
+                $scope.toggleRightSideNav();
+                $scope.toggleLeftSideNav();
+            }
+        }, 500);
         $scope.menuAddCard = function (card, list) {
             addCard(card, list, 1);
         };
@@ -172,9 +196,6 @@
         };
     }]);
 
-    app.run(($log) => {
-        $log.debug('Deckitron ready');
-    });
 
     app.directive('ngRightClick', function($parse) {
         return function(scope, element, attrs) {
