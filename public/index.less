@@ -26,6 +26,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    background-attachment: fixed;
 }
 * {
     font-family: 'Open Sans', sans-serif;
@@ -121,4 +122,72 @@ form#url-bar {
     text-align: center;
     font-size: 1.5em;
     content: ' | ';
+}
+
+#loginSection {
+    minHeight: 1280px;
+    height: 100%;
+}
+
+#gettingStarted {
+    text-align: center;
+    background-color: rgba(48,48,48, 0.9);
+    height: 600px;
+    margin-bottom: 200px;
+}
+
+#gettingStarted h1 {
+    padding-top: 40px;
+    margin: 0 20px 50px;
+    color: @fontWhite;
+    text-shadow: @shadowDistance @shadowDistance @shadowSize/4 @shadowColor;
+}
+
+hr {
+    height: 3px;
+    color: @fontWhite;
+    background-color: @fontWhite;
+    width: 300px;
+}
+
+#gettingStarted table {
+    margin: auto;
+    margin-top: 20px;
+    color: @fontWhite;
+    th {
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+    th.GSstep-title {
+         padding-right: 20px;
+    }
+    td.comment {
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+#gettingStarted .GSstep {
+    height: 15vw;
+    width: 15vw;
+    // width: 20%;
+    // height: 20%;
+    border-radius: 50%;
+    border-color: black;
+    border-size: 5px;
+    margin-right: 20px;
+    border-style: solid;
+    box-shadow: 5px 5px 10px rgba(16, 16, 16, 0.9);
+}
+
+.voteStep {
+    height: 10vw;
+    width: 10vw;
+    border-radius: 50%;
+    border-color: black;
+    border-size: 5px;
+    border-style: solid;
+    box-shadow: 5px 5px 10px rgba(16, 16, 16, 0.9);
 }

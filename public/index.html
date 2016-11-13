@@ -13,28 +13,87 @@
         <script src='public/index.js'></script>
     </head>
     <body>
-        <span>
-            <h1>
-                Deckitron
-            </h1>
-        </span>
-        <p id='description'>
-            Collaborative deck building for Magic: The Gathering
-            <br/>This project was built as part of Node Knockout 2016. Vote for us if you like it!
-            <br/><a href='https://www.nodeknockout.com/entries/15-noun-js'><img src='public/icons/voteko.png'/><img id="nodeGraphic" src="public/icons/node.svg"></img></a>
-        </p>
-        <form id="url-bar" ng-submit="onStart()">
-            <label for="deck-name">deckitron/</label>
-            <input type="text" placeholder="{{placeholder}}" id="deck-name" ng-model="deckName"/>
-            <button type="submit" class="md-raised md-primary">Start</button>
-        </form>
-        <div id='error'>
-            <p>{{ErrMsg}}</p>
-        </div>
+        <div id="loginSection">
+            <span>
+                <h1>
+                    Deckitron
+                </h1>
+            </span>
+            <p id='description'>
+                Collaborative deck building for Magic: The Gathering
+                <br/>This project was built as part of Node Knockout 2016. Vote for us if you like it!
+                <br/><a href='https://www.nodeknockout.com/entries/15-noun-js'><img src='public/icons/voteko.png'/><img id="nodeGraphic" src="public/icons/node.svg"></img></a>
+            </p>
+            <form id="url-bar" ng-submit="onStart()">
+                <label for="deck-name">deckitron/</label>
+                <input type="text" placeholder="{{placeholder}}" id="deck-name" ng-model="deckName"/>
+                <button type="submit" class="md-raised md-primary">Start</button>
+            </form>
+            <div id='error'>
+                <p>{{ErrMsg}}</p>
+            </div>
 
-        <h2>Active Decks</h2>
-        <div ng-repeat="deck in decks">
-            <a class="enterRoomButton" href='{{deck.url}}'>"{{deck.name}}"<em class="roomButtonUsers">({{deck.users === 1 ? '1 User': deck.users + ' Users'}})</em></a>
+            <h2>Active Decks</h2>
+            <div ng-repeat="deck in decks">
+                <a class="enterRoomButton" href='{{deck.url}}'>"{{deck.name}}"<em class="roomButtonUsers">({{deck.users === 1 ? '1 User': deck.users + ' Users'}})</em></a>
+            </div>
+        </div>
+        <div id="gettingStarted">
+            <h1>Getting Started</h1>
+            <hr>
+            <table>
+                <tr>
+                    <th class="GSstep-title">
+                        Create
+                    </th>
+                    <th class="GSstep-title">
+                        Share
+                    </th>
+                    <th class="GSstep-title">
+                        Collaborate
+                    </th>
+                    <th class="GSstep-title">
+                        Browse
+                    </th>
+                    <th>
+                        Vote
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <img class="GSstep" src="public/images/login.PNG"></img>
+                    </td>
+                    <td>
+                        <img class="GSstep" src="public/images/share.PNG"></img>
+                    </td>
+                    <td>
+                        <img class="GSstep" src="public/images/collaborate.PNG"></img>
+                    </td>
+                    <td>
+                        <img class="GSstep" src="public/images/browse.PNG"></img>
+                    </td>
+                    <td>
+                        <a href='https://www.nodeknockout.com/entries/15-noun-js'><img class="voteStep" src='public/images/vote.png'/></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="comment">
+                        Create a deck with a unique name
+                    </td>
+                    <td class="comment">
+                        Share the link to deck with your friends
+                    </td>
+                    <td class="comment">
+                        Collaborate with your friends
+                    </td>
+                    <td class="comment">
+                        Browse the Magic Gatherer database
+                    </td>
+                    <td class="comment">
+                        If you like what you see, vote for us!
+                    </td>
+                </tr>
+            </table>
         </div>
 
         <script>
