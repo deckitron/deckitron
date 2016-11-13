@@ -4,10 +4,14 @@
 
     const chat = angular.module('chat', ['room']);
 
+    // max 1 raptor per 60 secconds
+    const raptorThrottle = 60000;
+
     chat.controller('chat', ['$scope', '$q', '$timeout', 'room', '$mdDialog', function ($scope, $q, $timeout, $room, $mdDialog) {
         const chatEl = document.getElementById('chat-messages');
         $scope.messages = [];
         $scope.connectedUsers = [];
+        let lastRaptor = 0;
 
         /**
          * Checks if the chat element is scrolled to the bottom
@@ -57,11 +61,15 @@
         }
 
         function raptorize () {
-            jQuery(document)
-                .raptorize({
-                    enterOn: 'timer',
-                    delayTime: 2000
-                });
+            const time = Date.now();
+            if (time - raptorThrottle > lastRaptor) {
+                lastRaptor = time;
+                jQuery(document)
+                    .raptorize({
+                        enterOn: 'timer',
+                        delayTime: 2000
+                    });
+            }
             return;
         }
         /**
