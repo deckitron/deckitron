@@ -3,13 +3,14 @@
 
     const rarityController = angular.module('rarityController', []);
 
-    rarityController.controller('rarityController', ['$scope', function ($scope) {
+    rarityController.controller('rarityController', ['$scope', 'room', function ($scope, $room) {
+        const socket = $room.getSocket();
         $scope.readonly = false;
         $scope.selectedItem = null;
         $scope.searchText = null;
         $scope.querySearch = querySearch;
         $scope.selectedCards = [];
-        $scope.rarities = loadTypes();
+        $scope.rarities = [];
         $scope.numberChips = [];
         $scope.numberChips2 = [];
         $scope.numberBuffer = '';
@@ -62,25 +63,26 @@
             };
         }
 
-        function loadTypes () {
-            const rarities = [
-                {name: 'Uncommon'},
-                {name: 'Rare'},
-                {name: 'Common'},
-                {name: 'Basic Land'},
-                {name: 'Special'},
-                {name: 'Mythic Rare'}
-            ];
-
-            let mapped = rarities.map((card) => {
-                card._lowername = card.name.toLowerCase();
-                return card;
-            });
-
-            $scope.selectedCards.push(rarities[rarities.length - 1]);
-            $scope.$emit('card-rarity', $scope.selectedCards);
-
-            return mapped;
-        }
+        socket.on('cards.distincts.get.result', function (data) {
+            const rarities = [];
+            if (data.field === 'rarity') {
+                console.log('Got rarity data');
+                for (let i = 0; i < data.result.length; i++) {
+                    rarities.push({
+                        name: data.result[i]
+                    });
+                }
+                const mapped = rarities.map((card) => {
+                    card._lowername = card.name.toLowerCase();
+                    return card;
+                });
+                $scope.selectedCards.push(rarities[rarities.length - 1]);
+                $scope.$emit('card-rarity', $scope.selectedCards);
+                $scope.rarities = mapped;
+            }
+        });
+        socket.emit('cards.distincts.get', {
+            field: 'rarity'
+        });
     }]);
 }());

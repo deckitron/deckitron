@@ -3,12 +3,13 @@
 
     const cardTypesController = angular.module('cardTypesController', []);
 
-    cardTypesController.controller('cardTypesController', ['$scope', function ($scope) {
+    cardTypesController.controller('cardTypesController', ['$scope', 'room', function ($scope, $room) {
+        const socket = $room.getSocket();
         $scope.readonly = false;
         $scope.selectedItem = null;
         $scope.searchText = null;
         $scope.querySearch = querySearch;
-        $scope.cardTypes = loadTypes();
+        $scope.cardTypes = [];
         $scope.selectedCards = [];
         $scope.numberChips = [];
         $scope.numberChips2 = [];
@@ -63,34 +64,22 @@
             };
         }
 
-        function loadTypes () {
-            const cardTypes = [
-                {name: 'Creature'},
-                {name: 'Instant'},
-                {name: 'Enchantment'},
-                {name: 'Artifact'},
-                {name: 'Sorcery'},
-                {name: 'Land'},
-                {name: 'Planeswalker'},
-                {name: 'Vanguard'},
-                {name: 'Tribal'},
-                {name: 'Enchant'},
-                {name: 'Player'},
-                {name: 'Ever'},
-                {name: 'Scariest'},
-                {name: 'See'},
-                {name: 'You\'ll'},
-                {name: 'Eaturecray'},
-                {name: 'Plane'},
-                {name: 'Scheme'},
-                {name: 'Phenomenon'},
-                {name: 'Conspiracy'}
-            ];
-
-            return cardTypes.map((card) => {
-                card._lowername = card.name.toLowerCase();
-                return card;
-            });
-        }
+        socket.on('cards.distincts.get.result', function (data) {
+            const cardTypes = [];
+            if (data.field === 'types') {
+                for (let i = 0; i < data.result.length; i++) {
+                    cardTypes.push({
+                        name: data.result[i]
+                    });
+                }
+                $scope.cardTypes = cardTypes.map((card) => {
+                    card._lowername = card.name.toLowerCase();
+                    return card;
+                });
+            }
+        });
+        socket.emit('cards.distincts.get', {
+            field: 'types'
+        });
     }]);
 }());
