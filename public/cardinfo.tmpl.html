@@ -1,4 +1,4 @@
-<md-dialog aria-label={{card.name}}>
+<md-dialog aria-label={{card.name}} flex layout="column">
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
@@ -10,7 +10,7 @@
       </div>
     </md-toolbar>
     <md-dialog-content>
-         <md-tabs md-border-bottom>
+         <md-tabs md-dynamic-height md-border-bottom>
              <md-tab label="Card Info">
                  <md-content class="md-padding">
                     <h1>Card Info</h1>
