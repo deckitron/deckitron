@@ -72,6 +72,10 @@
         return 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + normalizedID + '&type=card';
     }
 
+    function hasNoImage (id) {
+        return id == null;
+    }
+
     app.controller('DeckitronCore', ['$scope', 'room', '$mdDialog', '$timeout', '$mdSidenav', '$mdMedia', function ($scope, $room, $mdDialog, $timeout, $mdSidenav, $mdMedia) {
         $scope.title = 'Deckitron';
 
@@ -83,6 +87,8 @@
         });
 
         $scope.getCardImageURL = getCardImageURL;
+        $scope.hasNoImage = hasNoImage;
+        $scope.getManaList = getManaList;
         function DialogController ($scope, card) {
             $scope.card = card;
             $scope.card.manaList = $scope.card.manaCost ? getManaList($scope.card.manaCost) : null;
