@@ -12,30 +12,38 @@
                 name: 'All Cards',
                 listid: '',
                 icon: 'public/icons/all_cards.svg',
-                selected: true
+                selected: true,
+                cacheid: 'allCards'
             },
             {
                 name: 'Deck',
                 listid: 'cards',
                 color: '#03A9F4',
                 icon: 'public/icons/deck.svg',
-                selected: false
+                selected: false,
+                cacheid: 'decks'
             },
             {
                 name: 'Sideboard',
                 listid: 'sideboard',
                 color: '#4CAF50',
                 icon: 'public/icons/sideboard.svg',
-                selected: false
+                selected: false,
+                cacheid: 'sideboard'
             },
             {
                 name: 'Linked',
                 listid: 'linked',
                 color: '#E040FB',
                 icon: 'public/icons/linked.svg',
-                selected: false
+                selected: false,
+                cacheid: 'linked'
             }
         ];
+
+
+        let lastEvent = {};
+
         let cardTypes = null;
         let manaColor = null;
         let cardRarity = null;
@@ -73,9 +81,7 @@
 
             cardListToSelect.selected = true;
             selectedList.selected = false;
-            socket.emit('cards.get', {
-                list: cardListToSelect.listid
-            });
+            $scope.performSearch(lastEvent[$scope.getSelectedList().cacheid]);
         };
 
         $scope.getSelectedList = function () {
@@ -87,7 +93,10 @@
             return null;
         };
 
-        $scope.performSearch = function () {
+        function buildQuery () {
+            const queryEvent = {
+                list: $scope.getSelectedList().listid
+            }
             const query = {};
             const formElements = document.forms.filter.children;
 
@@ -129,11 +138,21 @@
                 }
             }
 
-            socket.emit('cards.get', {
-                list: $scope.getSelectedList().listid,
-                keywords: cardName,
-                query: query
-            });
+            queryEvent.keywords = cardName;
+            queryEvent.query = query;
+            return queryEvent;
+        }
+        $scope.performSearch = function (eventToSend) {
+            let queryEvent = null;
+            if (!eventToSend) {
+                queryEvent = buildQuery();
+            } else {
+                queryEvent = eventToSend;
+            }
+
+            lastEvent[$scope.getSelectedList().cacheid] = queryEvent;
+
+            socket.emit('cards.get', queryEvent);
         };
     }]);
 
