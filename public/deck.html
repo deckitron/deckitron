@@ -46,7 +46,7 @@
         <div class="md-toolbar-tools" id="card list"  md-whiteframe="11" flex>
             <!-- Left side of top bar -->
             <a href='https://www.nodeknockout.com/entries/15-noun-js'><img src='public/icons/voteko.png'/></a>
-            <md-button class="md-icon-button" aria-label="Collapse Search" ng-click="toggleLeft()">
+            <md-button class="md-icon-button" aria-label="Collapse Search" ng-click="toggleLeftSideNav()">
                 <md-icon md-svg-icon="public/icons/left_arrow.svg"></md-icon>
             </md-button>
             <!-- <div ng-controller="filters" flex="80">
@@ -55,7 +55,7 @@
 
             <!-- Right side of top bar -->
             <span flex></span>
-            <md-button class="md-icon-button" aria-label="Collapse Chat" ng-click="toggleRight()">
+            <md-button class="md-icon-button" aria-label="Collapse Chat" ng-click="toggleRightSideNav()">
                 <md-icon md-svg-icon="public/icons/right_arrow.svg"></md-icon>
             </md-button>
             <div ng-controller="chat">
@@ -68,7 +68,7 @@
     <div class="container" layout="row" flex>
         <!-- Filters -->
         <div ng-controller="filters" layout="row">
-            <md-sidenav md-is-locked-open="true" md-whiteframe="10" id="chat" flex>
+            <md-sidenav md-component-id="leftSideNav" md-is-locked-open="isLeftSideNavOpen() && $mdMedia('gt-md')" md-whiteframe="10" id="chat" flex>
                 <!-- Sidebar header -->
                 <!-- <md-toolbar class="md-accent md-medium-tall" layout-align="center end" id="chat-top">
                     <div class="md-toolbar-tools" id="card list">
@@ -220,7 +220,7 @@
         </md-content>
 
         <!-- Social -->
-        <md-sidenav md-is-locked-open="true" md-whiteframe="10" id="social" md-disable-scroll-target="content">
+        <md-sidenav  md-is-locked-open="isRightSideNavOpen() && $mdMedia('gt-md')" md-whiteframe="10" id="social" md-disable-scroll-target="content" md-component-id="rightSideNav">
             <md-content ng-controller="chat" id='chat' flex>
                 <md-content>
                     <div id="friendIconsContainer">
