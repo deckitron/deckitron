@@ -4,10 +4,14 @@
 
     const chat = angular.module('chat', ['room']);
 
+    // max 1 raptor per 60 secconds
+    const raptorThrottle = 60000;
+
     chat.controller('chat', ['$scope', '$q', '$timeout', 'room', '$mdDialog', function ($scope, $q, $timeout, $room, $mdDialog) {
         const chatEl = document.getElementById('chat-messages');
         $scope.messages = [];
         $scope.connectedUsers = [];
+        let lastRaptor = 0;
 
         /**
          * Checks if the chat element is scrolled to the bottom
@@ -44,21 +48,45 @@
                 });
             });
         }
+        function addCard (user, card) {
+            $scope.$apply(() => {
+                $scope.messages.push({
+                    user: user,
+                    card: card
+                });
+                $timeout(() => {
+                    scrollToBottomOfChat();
+                });
+            });
+        }
+
+        function raptorize () {
+            const time = Date.now();
+            if (time - raptorThrottle > lastRaptor) {
+                lastRaptor = time;
+                jQuery(document)
+                    .raptorize({
+                        enterOn: 'timer',
+                        delayTime: 2000
+                    });
+            }
+            return;
+        }
         /**
          * Recieves a messages from the chat server
          * @param   {Object} data A Chat message and a user Object
          */
         function recieveMessage (data) {
             console.log('recieve message', data);
-            if (data.message === 'raptorize') {
-                jQuery(document)
-                    .raptorize({
-                        enterOn: 'timer',
-                        delayTime: 2000
-                    });
-                return;
-            }
             addMessage(data.user, data.message);
+        }
+        /**
+         * Recieves a messages from the chat server
+         * @param   {Object} data A Chat message and a user Object
+         */
+        function recieveCard (data) {
+            console.log('recieve card', data);
+            addCard(data.user, data.card);
         }
 
         /**
@@ -122,6 +150,9 @@
             });
         }
         $scope.sendMessage = function () {
+            if (!$scope.newMessage) {
+                return false;
+            }
             $room.getSocket()
                 .emit('chat.newmessage', $scope.newMessage);
             $scope.newMessage = '';
@@ -162,6 +193,8 @@
         function connectChat () {
             const socket = $room.getSocket();
             socket.on('chat.message', recieveMessage);
+            socket.on('chat.card', recieveCard);
+            socket.on('chat.raptorize', raptorize);
             socket.on('chat.user.connected', userConnected);
             socket.on('chat.user.disconnected', userDisconnected);
             socket.on('chat.user.updated', userUpdated);

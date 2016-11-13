@@ -3,8 +3,6 @@
     'use strict';
 
     const filters = angular.module('filters', ['manaColorController', 'cardTypesController', 'room']);
-
-    // filters.controller('filters', ['$scope', 'room', '$timeout', 'manaColorController', 'cardTypesController', function ($scope, $room, $timeout, $manaColorController, $cardTypesController) {
     filters.controller('filters', ['$scope', 'room', '$timeout', function ($scope, $room, $timeout) {
         const socket = $room.getSocket();
         $scope.cardLists = [
@@ -47,6 +45,8 @@
         let cardTypes = null;
         let manaColor = null;
         let cardRarity = null;
+        let offset = 0;
+        let debounce = false;
 
         $scope.$on('card-types', function (evt, types) {
             cardTypes = types;
@@ -63,7 +63,10 @@
             const selectedList = $scope.getSelectedList();
             if (data.list === selectedList.listid) {
                 socket.emit('cards.get', {
-                    list: selectedList.listid
+                    list: selectedList.listid,
+                    page: {
+                        offset: offset * 50
+                    }
                 });
             }
         });
@@ -71,6 +74,42 @@
         $timeout(() => {
             $scope.performSearch();
         }, 500);
+
+        socket.on('cards.get.result', function (data) {
+            if (!Array.isArray(data.result) || data.result.length < 1) {
+                offset--;
+            }
+            debounce = false;
+        });
+
+        function onScroll () {
+            const oldOffset = offset;
+            const val = cardWallElem.scrollTop;
+            const percent = val / (cardWallElem.children[0].clientHeight - cardWallElem.clientHeight);
+            if (debounce) {
+                return;
+            }
+            debounce = true;
+            if (percent >= 0.9) {
+                offset++;
+            }
+            if (offset <= 0) {
+                debounce = false;
+                return;
+            }
+            // if (percent <= 0.1) {
+            //     offset--;
+            // }
+            console.log(offset);
+            if (offset === oldOffset) {
+                debounce = false;
+                return;
+            }
+            $scope.performSearch();
+        }
+
+        const cardWallElem = document.querySelector('#cardContent');
+        cardWallElem.addEventListener('scroll', onScroll);
 
 
         $scope.selectList = function (cardListToSelect) {
@@ -156,6 +195,10 @@
             }
 
             lastEvent[$scope.getSelectedList().cacheid] = queryEvent;
+
+            queryEvent.page = {
+                offset: offset * 50
+            };
 
             socket.emit('cards.get', queryEvent);
         };
