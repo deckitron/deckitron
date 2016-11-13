@@ -62,7 +62,7 @@
                 <md-icon class="flippableIcon" md-svg-icon="public/icons/right_arrow.svg" ng-class="{'flipIconRight': !isRightSideNavOpen()}"></md-icon>
             </md-button>
             <div ng-controller="chat">
-                <span id='me' ng-if="me" ng-click="changeName($event)">
+                <span id='me' ng-if="me" ng-click="changeName($event)" title="Change Your Name">
                     {{me.name}}
                 </span>
             </div>
@@ -274,7 +274,7 @@
                     </md-grid-tile>
 
                 </md-grid-list>
-                <md-button class="md-raised md-primary loadMoreButton" ng-if="askForBigLoad()" ng-click="allowBigLoad()">Load more cards</md-button>
+                <md-button class="md-raised md-primary loadMoreButton" ng-if="askForBigLoad()" ng-click="allowBigLoad()" aria-label="Load More Cards">Load more cards</md-button>
             </div>
         </md-content>
 
