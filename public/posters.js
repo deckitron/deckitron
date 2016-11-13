@@ -79,6 +79,7 @@
                     return deck[list][i].count;
                 }
             }
+            return 0;
         }
 
         function DialogController ($scope, card) {
