@@ -64,6 +64,8 @@ const colors = [
 
 let users = 0;
 
+mongoose.Promise = global.Promise;
+
 app.set('port', process.env.PORT || 5000);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
