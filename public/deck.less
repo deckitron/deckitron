@@ -60,6 +60,34 @@ md-sidenav.md-closed.md-locked-open-add-active {
     margin-top: -3px;
 }
 
+.flippableIcon {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -moz-transition: all 300ms ease !important;
+    -webkit-transition: all 300ms ease !important;
+    -o-transition: all 300ms ease !important;
+    transition: all 300ms ease !important;
+}
+
+.flippableIcon.flipIconLeft {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.flippableIcon.flipIconRight {
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+}
+
+
 md-icon svg {
     fill: inherit;
 }

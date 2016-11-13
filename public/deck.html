@@ -47,7 +47,7 @@
             <!-- Left side of top bar -->
             <a href='https://www.nodeknockout.com/entries/15-noun-js'><img src='public/icons/voteko.png'/></a>
             <md-button class="md-icon-button" aria-label="Collapse Search" ng-click="toggleLeftSideNav()">
-                <md-icon md-svg-icon="public/icons/left_arrow.svg"></md-icon>
+                <md-icon class="flippableIcon" md-svg-icon="public/icons/left_arrow.svg" ng-class="{'flipIconLeft': !isLeftSideNavOpen()}"></md-icon>
             </md-button>
             <!-- <div ng-controller="filters" flex="80">
                 <h1>{{getSelectedList().name}}</h1>
@@ -56,7 +56,7 @@
             <!-- Right side of top bar -->
             <span flex></span>
             <md-button class="md-icon-button" aria-label="Collapse Chat" ng-click="toggleRightSideNav()">
-                <md-icon md-svg-icon="public/icons/right_arrow.svg"></md-icon>
+                <md-icon class="flippableIcon" md-svg-icon="public/icons/right_arrow.svg" ng-class="{'flipIconRight': !isRightSideNavOpen()}"></md-icon>
             </md-button>
             <div ng-controller="chat">
                 <span id='me' ng-if="me" ng-click="changeName($event)">
@@ -198,7 +198,7 @@
         </div>
 
         <!-- Card Art Wall -->
-        <md-content flex id="cardContent">
+        <md-content flex id="cardContent" md-swipe-right="toggleLeftSideNav()" md-swipe-left="toggleRightSideNav()">
             <div ng-controller="posterwall" ng-cloak>
                 <md-grid-list md-cols-xs="2" md-cols-sm="3" md-cols-gt-sm="4" md-cols-gt-md="5" md-cols-gt-md="6" md-cols-gt-lg="7" md-cols-gt-xl="8" md-row-height="1:1.39"md-gutter="8px" md-gutter-gt-sm="8px">
 
