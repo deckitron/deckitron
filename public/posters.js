@@ -94,8 +94,8 @@
 
         function DialogController ($scope, card) {
             $scope.card = card;
-            $scope.card.manaList = getManaList($scope.card.manaCost);
-            $scope.card.manaText = getManaText($scope.card.text);
+            $scope.card.manaList = $scope.card.manaCost ? getManaList($scope.card.manaCost) : null;
+            $scope.card.manaText = $scope.card.text ? getManaText($scope.card.text) : null;
             $scope.count = 1;
             $scope.hide = function () {
                 $mdDialog.hide();
