@@ -225,14 +225,6 @@ md-dialog {
     }
 }
 
-md-chip .title {
-    display: none;
-}
-
-md-chip.md-focused .title {
-    display: inline-block;
-}
-
 .md-chips, .md-chips.md-default-theme {
     md-chip {
         background-color: rgb(88,88,88);
@@ -245,6 +237,21 @@ md-chip.md-focused .title {
         }
         md-icon {
             color: white;
+        }
+        md-chip-template {
+            img {
+                vertical-align: text-top;
+            }
+        }
+
+        .title {
+            display: inline-block;
+            visibility: hidden;
+            width: 0.3em;
+        }
+        &.md-focused .title {
+            visibility: visible;
+            width: auto;
         }
     }
 }
