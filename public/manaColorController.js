@@ -62,109 +62,109 @@
             const cardTypes = [
                 {
                     name: 'black',
-                    queryParam: 'b',
+                    queryParam: 'B',
                     url: 'public/mana/b.jpg'
                 },
-                {
-                    name: 'black/green split',
-                    queryParam: 'bg',
-                    url: 'public/mana/bg.jpg'
-                },
-                {
-                    name: 'black/red split',
-                    queryParam: 'br',
-                    url: 'public/mana/br.jpg'
-                },
+                // {
+                //     name: 'black/green split',
+                //     queryParam: 'BG',
+                //     url: 'public/mana/bg.jpg'
+                // },
+                // {
+                //     name: 'black/red split',
+                //     queryParam: 'BR',
+                //     url: 'public/mana/br.jpg'
+                // },
                 {
                     name: 'colorless',
-                    queryParam: 'c',
+                    queryParam: 'C',
                     url: 'public/mana/c.jpg'
                 },
                 {
                     name: 'green',
-                    queryParam: 'g',
+                    queryParam: 'G',
                     url: 'public/mana/g.jpg'
                 },
-                {
-                    name: 'green/blue split',
-                    queryParam: 'gu',
-                    url: 'public/mana/gu.jpg'
-                },
-                {
-                    name: 'green/white split',
-                    queryParam: 'gw',
-                    url: 'public/mana/gw.jpg'
-                },
-                {
-                    name: 'phyrexian black',
-                    queryParam: 'pb',
-                    url: 'public/mana/pb.jpg'
-                },
-                {
-                    name: 'phyrexian green',
-                    queryParam: 'pg',
-                    url: 'public/mana/pg.jpg'
-                },
-                {
-                    name: 'phyrexian red',
-                    queryParam: 'pr',
-                    url: 'public/mana/pr.jpg'
-                },
-                {
-                    name: 'phyrexian blue',
-                    queryParam: 'pu',
-                    url: 'public/mana/pu.jpg'
-                },
-                {
-                    name: 'phyrexian white',
-                    queryParam: 'pw',
-                    url: 'public/mana/pw.jpg'
-                },
+                // {
+                //     name: 'green/blue split',
+                //     queryParam: 'GU',
+                //     url: 'public/mana/gu.jpg'
+                // },
+                // {
+                //     name: 'green/white split',
+                //     queryParam: 'GW',
+                //     url: 'public/mana/gw.jpg'
+                // },
+                // {
+                //     name: 'phyrexian black',
+                //     queryParam: 'PB',
+                //     url: 'public/mana/pb.jpg'
+                // },
+                // {
+                //     name: 'phyrexian green',
+                //     queryParam: 'PG',
+                //     url: 'public/mana/pg.jpg'
+                // },
+                // {
+                //     name: 'phyrexian red',
+                //     queryParam: 'PR',
+                //     url: 'public/mana/pr.jpg'
+                // },
+                // {
+                //     name: 'phyrexian blue',
+                //     queryParam: 'PU',
+                //     url: 'public/mana/pu.jpg'
+                // },
+                // {
+                //     name: 'phyrexian white',
+                //     queryParam: 'PW',
+                //     url: 'public/mana/pw.jpg'
+                // },
                 {
                     name: 'red',
-                    queryParam: 'r',
+                    queryParam: 'R',
                     url: 'public/mana/r.jpg'
                 },
-                {
-                    name: 'red/green split',
-                    queryParam: 'rg',
-                    url: 'public/mana/rg.jpg'
-                },
-                {
-                    name: 'red/white split',
-                    queryParam: 'rw',
-                    url: 'public/mana/rw.jpg'
-                },
+                // {
+                //     name: 'red/green split',
+                //     queryParam: 'RG',
+                //     url: 'public/mana/rg.jpg'
+                // },
+                // {
+                //     name: 'red/white split',
+                //     queryParam: 'RW',
+                //     url: 'public/mana/rw.jpg'
+                // },
                 {
                     name: 'blue',
-                    queryParam: 'u',
+                    queryParam: 'U',
                     url: 'public/mana/u.jpg'
                 },
-                {
-                    name: 'blue/black split',
-                    queryParam: 'ub',
-                    url: 'public/mana/ub.jpg'
-                },
-                {
-                    name: 'blue/red split',
-                    queryParam: 'ur',
-                    url: 'public/mana/ur.jpg'
-                },
+                // {
+                //     name: 'blue/black split',
+                //     queryParam: 'UB',
+                //     url: 'public/mana/ub.jpg'
+                // },
+                // {
+                //     name: 'blue/red split',
+                //     queryParam: 'UR',
+                //     url: 'public/mana/ur.jpg'
+                // },
                 {
                     name: 'white',
-                    queryParam: 'w',
+                    queryParam: 'W',
                     url: 'public/mana/w.jpg'
-                },
-                {
-                    name: 'white/black split',
-                    queryParam: 'wb',
-                    url: 'public/mana/wb.jpg'
-                },
-                {
-                    name: 'white/blue split',
-                    queryParam: 'wu',
-                    url: 'public/mana/wu.jpg'
-                }
+                }//,
+                // {
+                //     name: 'white/black split',
+                //     queryParam: 'WB',
+                //     url: 'public/mana/wb.jpg'
+                // },
+                // {
+                //     name: 'white/blue split',
+                //     queryParam: 'WU',
+                //     url: 'public/mana/wu.jpg'
+                // }
             ];
 
             return cardTypes.map((card) => {
