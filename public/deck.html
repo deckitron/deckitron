@@ -259,16 +259,16 @@
                                     </div>
                                   <md-menu-content width="4">
                                     <md-menu-item>
-                                      <md-button ng-click="menuAddCard(card, 'cards')"> <span md-menu-align-target>Add to Deck</span> </md-button>
+                                      <md-button ng-click="menuAddCard(messages.card, 'cards')"> <span md-menu-align-target>Add to Deck</span> </md-button>
                                     </md-menu-item>
-                                    <md-menu-item ng-if="menuListCount(card, 'cards') > 0">
-                                      <md-button ng-click="menuRemoveCard(card, 'cards')"> <span md-menu-align-target>Remove from Deck</span> </md-button>
+                                    <md-menu-item ng-if="menuListCount(messages.card, 'cards') > 0">
+                                      <md-button ng-click="menuRemoveCard(messages.card, 'cards')"> <span md-menu-align-target>Remove from Deck</span> </md-button>
                                     </md-menu-item>
                                     <md-menu-item>
-                                      <md-button ng-click="menuAddCard(card, 'sideboard')"> <span md-menu-align-target>Add to Sideboard</span> </md-button>
+                                      <md-button ng-click="menuAddCard(messages.card, 'sideboard')"> <span md-menu-align-target>Add to Sideboard</span> </md-button>
                                     </md-menu-item>
-                                    <md-menu-item ng-if="menuListCount(card, 'sideboard') > 0">
-                                      <md-button ng-click="menuRemoveCard(card, 'sideboard')"> <span md-menu-align-target>Remove from Sideboard</span> </md-button>
+                                    <md-menu-item ng-if="menuListCount(messages.card, 'sideboard') > 0">
+                                      <md-button ng-click="menuRemoveCard(messages.card, 'sideboard')"> <span md-menu-align-target>Remove from Sideboard</span> </md-button>
                                     </md-menu-item>
                                   </md-menu-content>
                                 </md-menu>
