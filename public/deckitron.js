@@ -5,7 +5,8 @@
 
     const rMana = /\{([0-9bgrcwuptx])(?:\/([bgrcwuptx]))?\}/ig;
     const rManaTest = /\{([0-9bgrcwuptx])(?:\/[bgrcwuptx])?\}/i;
-    const rManaText = /(\{[0-9bgrcwuptx](?:\/[bgrcwuptx])?\})/ig;
+    const rNewlineTest = /\n/;
+    const rManaText = /(\{[0-9bgrcwuptx](?:\/[bgrcwuptx])?\}|\n)/ig;
     const app = angular.module(
         'deckitron',
         [
@@ -56,9 +57,14 @@
                     mana: true,
                     value: parts[i].substr(1, parts[i].length - 2).replace('/', '').toLowerCase()
                 });
+            } else if (rNewlineTest.test(parts[i])) {
+                output.push({
+                    newline: true
+                });
             } else {
                 output.push({
                     mana: false,
+                    newline: false,
                     value: parts[i]
                 });
             }
