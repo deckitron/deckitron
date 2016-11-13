@@ -30,7 +30,10 @@
     <script src="node_modules/less/dist/less.min.js"></script>
     <!-- <link rel="icon" type="image/svg+xml" href="public/node.svg"> -->
 
+    <!-- Deck Stats -->
+    <script src="public/deckStats.js"></script>
 
+    <!-- Raptorize -->
     <script src="public/Raptorize-Kit/jquery-1.4.1.min.js"></script>
     <script src="public/Raptorize-Kit/jquery.raptorize.1.0.js"></script>
 
@@ -212,12 +215,12 @@
             </md-content>
         </md-sidenav>
     </div>
-    <div id="deckStatsCharm">
-        <img src="public/mana/w.jpg"></img><span>0</span>
-        <img src="public/mana/u.jpg"></img><span>0</span>
-        <img src="public/mana/b.jpg"></img><span>10</span>
-        <img src="public/mana/r.jpg"></img><span>0</span>
-        <img src="public/mana/g.jpg"></img><span>0</span>
+    <div ng-controller="deckStats" id="deckStatsCharm" ng-click="onCharmSelected($event)">
+        <img src="public/mana/w.jpg"></img><span>{{white}}</span>
+        <img src="public/mana/u.jpg"></img><span>{{blue}}</span>
+        <img src="public/mana/b.jpg"></img><span>{{black}}</span>
+        <img src="public/mana/r.jpg"></img><span>{{red}}</span>
+        <img src="public/mana/g.jpg"></img><span>{{green}}</span>
     </div>
 </body>
 
