@@ -16,8 +16,6 @@
     "express": "^4.13.3",
     "less": "^2.7.1",
     "mongoose": "^4.6.7",
-    "ngletteravatar": "^4.0.4",
-    "random-words": "0.0.1",
     "socket.io": "^1.5.1",
     "swearjar": "^0.1.3",
     "unzip": "^0.1.11"
