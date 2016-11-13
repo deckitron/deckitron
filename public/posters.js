@@ -38,6 +38,13 @@
         }
         return output;
     }
+    function getCardImageURL(id) {
+        let normalizedID = id;
+        if (!normalizedID) {
+            normalizedID = 0;
+        }
+        return 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + normalizedID + '&type=card';
+    }
 
     posterwall.controller('posterwall', ['$scope', 'room', '$mdDialog', '$timeout', function ($scope, $room, $mdDialog, $timeout) {
         function gotCards (data) {
@@ -89,6 +96,7 @@
             $scope.answer = function (answer) {
                 $mdDialog.hide(answer);
             };
+            $scope.getCardImageURL = getCardImageURL;
         }
 
 
@@ -105,22 +113,16 @@
                     removeCard: removeCard
                 }
             })
-                .then((answer) => {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, () => {
-                    $scope.status = 'You cancelled the dialog.';
-                });
+            .then((answer) => {
+                $scope.status = `You said the information was ${answer}.`;
+            }, () => {
+                $scope.status = 'You cancelled the dialog.';
+            });
         };
         $scope.cards = [];
 
 
-        $scope.getCardImageURL = function (id) {
-            let normalizedID = id;
-            if (!normalizedID) {
-                normalizedID = 0;
-            }
-            return 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + normalizedID + '&type=card';
-        };
+        $scope.getCardImageURL = getCardImageURL;
 
         $scope.getCardBackURL = function () {
             return 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=0&type=card';

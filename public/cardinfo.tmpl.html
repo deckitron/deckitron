@@ -10,28 +10,52 @@
       </div>
     </md-toolbar>
     <md-dialog-content>
-         <md-tabs md-dynamic-height md-border-bottom>
-             <md-tab label="Card Info">
-                 <md-content class="md-padding">
-                    <h1>Card Info</h1>
-                    <div>Card Name: {{card.name}}</div>
-                    <div>
-                        Mana Cost:
-                        <img ng-repeat="mana in card.manaList" src="public/mana/{{mana}}.jpg" />
-                    </div>
-                    <div>CMC: {{card.cmc}}</div>
-                    <div>Type: {{card.type}}</div>
-                    <div>
-                        Text:
-                        <ng-repeat ng-repeat="part in card.manaText">
-                            <img ng-if="part.mana" src="public/mana/{{part.value}}.jpg" />
-                            <ng-if ng-if="!part.mana">{{part.value}}</ng-if>
-                        </ng-repeat>
-                    </div>
-                    <div>P/T: {{card.power}}/{{card.toughness}}</div>
-                    <div>Rarity: {{card.rarity}}</div>
-                    <div>Artist: {{card.artist}}</div>
-                    <div>{{card.flavor}}</div>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Card Info">
+                <md-content class="md-padding card-info">
+                    <img ng-if="card.multiverseid" ng-src="{{getCardImageURL(card.multiverseid)}}" class='cardArt'></img>
+                    <table>
+                        <tbody>
+                            <tr ng-if="card.manaCost">
+                                <th>Mana Cost</th>
+                                <td><img ng-repeat="mana in card.manaList" src="public/mana/{{mana}}.jpg" /></td>
+                            </tr>
+                            <tr ng-if="card.cmc">
+                                <th>CMC</th>
+                                <td>{{card.cmc}}</td>
+                            </tr>
+                            <tr ng-if="card.type">
+                                <th>Type</th>
+                                <td>{{card.type}}</td>
+                            </tr>
+                            <tr ng-if="card.text">
+                                <th>Text</th>
+                                <td>
+                                    <ng-repeat ng-repeat="part in card.manaText">
+                                        <img ng-if="part.mana" src="public/mana/{{part.value}}.jpg" />
+                                        <ng-if ng-if="!part.mana">{{part.value}}</ng-if>
+                                    </ng-repeat>
+                                </td>
+                            </tr>
+                            <tr ng-if="card.power || card.toughness">
+                                <th>P/T</th>
+                                <td>{{card.power || '0'}}/{{card.toughness || '0'}}</td>
+                            </tr>
+                            <tr ng-if="card.rarity">
+                                <th>Rarity</th>
+                                <td>{{card.rarity}}</td>
+                            </tr>
+                            <tr ng-if="card.artist">
+                                <th>Artist</th>
+                                <td>{{card.artist}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot ng-if="card.flavor">
+                            <tr>
+                                <td colspan="2">{{card.flavor}}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </md-content>
             </md-tab>
             <md-tab label="Rulings">
