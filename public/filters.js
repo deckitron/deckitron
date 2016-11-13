@@ -67,6 +67,7 @@
         socket.on('cards.deck.update', function (data) {
             const selectedList = $scope.getSelectedList();
             if (data.list === selectedList.listid) {
+                $rootScope.$broadcast('clear-card-wall');
                 socket.emit('cards.get', {
                     list: selectedList.listid,
                     page: {
@@ -125,6 +126,9 @@
 
             cardListToSelect.selected = true;
             selectedList.selected = false;
+
+            offset = 0;
+            $rootScope.$broadcast('clear-card-wall');
 
             // use the last query, but don't scroll to top
             $scope.performSearch(false, lastEvent[$scope.getSelectedList().cacheid]);
