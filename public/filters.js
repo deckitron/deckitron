@@ -9,21 +9,25 @@
         $scope.cardLists = [
             {
                 name: 'All Cards',
+                listid: '',
                 icon: 'public/icons/all_cards.svg',
                 selected: true
             },
             {
                 name: 'Deck',
+                listid: 'cards',
                 icon: 'public/icons/deck.svg',
                 selected: false
             },
             {
                 name: 'Sideboard',
+                listid: 'sideboard',
                 icon: 'public/icons/sideboard.svg',
                 selected: false
             },
             {
                 name: 'Linked',
+                listid: 'linked',
                 icon: 'public/icons/linked.svg',
                 selected: false
             }
@@ -42,7 +46,9 @@
 
             cardListToSelect.selected = true;
             selectedList.selected = false;
-            socket.emit('cards.get');
+            socket.emit('cards.get', {
+                list: cardListToSelect.listid
+            });
         };
 
         $scope.getSelectedList = function () {
