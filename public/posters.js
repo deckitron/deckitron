@@ -69,12 +69,23 @@
                 }
             });
         }
+        function cardCount (card, list) {
+            const deck = $room.getDeck();
+            if (!deck || !deck[list]) {
+                return 0;
+            }
+            for (let i = 0; i < deck[list].length; i += 1) {
+                if (card.id === deck[list][i].id) {
+                    return deck[list][i].count;
+                }
+            }
+        }
 
         function DialogController ($scope, card) {
             $scope.card = card;
             $scope.card.manaList = getManaList($scope.card.manaCost);
             $scope.card.manaText = getManaText($scope.card.text);
-
+            $scope.count = 1;
             $scope.hide = function () {
                 $mdDialog.hide();
             };
@@ -83,7 +94,18 @@
                 $mdDialog.hide();
             };
 
-            $scope.addCard = addCard;
+            $scope.listCount = function (list) {
+                return cardCount(card, list);
+            };
+
+            $scope.addCard = function (list, count) {
+                addCard($scope.card, list, count || $scope.count);
+                $mdDialog.hide();
+            };
+            $scope.removeCard = function (list, count) {
+                removeCard($scope.card, list, count || $scope.count);
+                $mdDialog.hide();
+            };
 
             $scope.answer = function (answer) {
                 $mdDialog.hide(answer);

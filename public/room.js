@@ -5,7 +5,6 @@
 
     const room = angular.module('room', []);
     const socket = io();
-    let deck = {};
 
     room.service('room', [function () {
         return {
@@ -16,7 +15,7 @@
                 return socket.user;
             },
             getDeck: () => {
-                return deck;
+                return socket.deck;
             }
         };
     }]);
@@ -27,12 +26,12 @@
     });
 
     socket.on('cards.deck.update', (data) => {
-        deck = data.deck;
+        socket.deck = data.deck;
         console.log('cards.deck.update', data);
     });
 
     socket.on('cards.deck.current', (data) => {
-        deck = data;
+        socket.deck = data;
         console.log('cards.deck.current', data);
     });
 }());
