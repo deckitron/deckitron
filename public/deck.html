@@ -227,7 +227,7 @@
                             <span ng-if="message.message" class="chatMessage {{message.type}}">{{message.message}}</span>
                             <span ng-if="message.card">
                                 <div class="card" md-ink-ripple="rgba(16, 16, 16, 1.0)" ng-click="cardSelected($event, message.card)">
-                                    <img ng-src={{getCardImageURL(message.card.multiverseid)}}></img>
+                                    <img ng-src={{getCardImageURL(message.card.multiverseid)}} draggable="false"></img>
                                     <span ng-if="cardCount(message.card, 'cards') > 0" class="circle cardCount deckCount">
                                         {{cardCount(message.card, 'cards')}}
                                     </span>
