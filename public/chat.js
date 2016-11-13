@@ -199,6 +199,8 @@
             socket.on('chat.user.disconnected', userDisconnected);
             socket.on('chat.user.updated', userUpdated);
             socket.on('chat.connected', chatConnected);
+
+            socket.emit('chat.connect');
         }
 
         connectChat();
