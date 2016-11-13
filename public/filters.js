@@ -213,6 +213,9 @@
 
             socket.emit('cards.get', queryEvent);
         };
+        $scope.clearFilters = function () {
+            $rootScope.$broadcast('clear-filters');
+        };
     }]);
 
     filters.run(($log) => {
