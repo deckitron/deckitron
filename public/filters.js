@@ -54,6 +54,7 @@
 
         let cardTypes = null;
         let cardSuperTypes = null;
+        let cardSubtypes = null;
         let manaColor = null;
         let cardRarity = null;
         let offset = 0;
@@ -69,6 +70,9 @@
         });
         $scope.$on('card-super-types', function (evt, types) {
             cardSuperTypes = types;
+        });
+        $scope.$on('card-sub-types', function (evt, types) {
+            cardSubtypes = types;
         });
         $scope.$on('mana-color', function (evt, color) {
             manaColor = color;
@@ -162,7 +166,7 @@
         function buildQuery () {
             const queryEvent = {
                 list: $scope.getSelectedList().listid
-            }
+            };
             const query = {};
             const formElements = document.forms.filter.children;
 
@@ -172,15 +176,15 @@
             if (convertedManaCost) {
                 query.cmc = convertedManaCost;
             }
-            const power = formElements[9].children[1].value;
+            const power = formElements[10].children[1].value;
             if (power) {
                 query.power = power;
             }
-            const toughness = formElements[10].children[1].value;
+            const toughness = formElements[11].children[1].value;
             if (toughness) {
                 query.toughness = toughness;
             }
-            const artist = formElements[11].children[1].value;
+            const artist = formElements[12].children[1].value;
             if (artist) {
                 query.artist = artist;
             }
@@ -201,6 +205,12 @@
                 query.supertypes = [];
                 for (let i = 0; i < cardSuperTypes.length; i++) {
                     query.supertypes.push(cardSuperTypes[i].name);
+                }
+            }
+            if (cardSubtypes) {
+                query.subtypes = [];
+                for (let i = 0; i < cardSubtypes.length; i++) {
+                    query.subtypes.push(cardSubtypes[i].name);
                 }
             }
             if (cardRarity) {
