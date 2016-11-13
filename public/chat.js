@@ -150,6 +150,9 @@
             });
         }
         $scope.sendMessage = function () {
+            if (!$scope.newMessage) {
+                return false;
+            }
             $room.getSocket()
                 .emit('chat.newmessage', $scope.newMessage);
             $scope.newMessage = '';
