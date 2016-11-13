@@ -5,16 +5,12 @@
     const posterwall = angular.module('posterwall', ['room', 'ngMaterial']);
 
 
-    posterwall.controller('posterwall', ['$scope', 'room', '$mdDialog', '$timeout', function ($scope, $room, $mdDialog, $timeout) {
+    posterwall.controller('posterwall', ['$scope', '$rootScope', 'room', '$mdDialog', '$timeout', function ($scope, $rootScope, $room, $mdDialog, $timeout) {
         $scope.permitBigLoad = false;
         function gotCards (data) {
             $timeout(() => {
                 if ($scope.askForBigLoad()) {
-                    // HACK Since $emit only works up/down, not side-to-side
-                    const e = new Event('block-paged-load', {
-                        cancelable: true
-                    });
-                    window.dispatchEvent(e);
+                    $rootScope.$broadcast('block-paged-load');
                     return;
                 }
                 if (Array.isArray(data.result)) {
