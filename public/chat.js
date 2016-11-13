@@ -159,7 +159,7 @@
             return false;
         };
         $scope.changeName = function (ev) {
-            // const confirm = $mdDialog.prompt()
+            const confirm = $mdDialog.prompt()
                  .title('What would you name to be')
                  .textContent('By default you will be named after a random Planeswalker.')
                  .clickOutsideToClose(true)
@@ -169,7 +169,7 @@
                  .ok('Update Name')
                  .cancel('Keep "' + $scope.me.name + '"');
 
-            // $mdDialog.show(confirm)
+            $mdDialog.show(confirm)
                 .then((newName) => {
                     if (!newName || newName === $scope.me.name) {
                         return;
