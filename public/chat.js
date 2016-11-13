@@ -4,7 +4,7 @@
 
     const chat = angular.module('chat', ['room']);
 
-    chat.controller('chat', ['$scope', '$q', '$timeout', 'room', function ($scope, $q, $timeout, $room) {
+    chat.controller('chat', ['$scope', '$q', '$timeout', 'room', '$mdDialog', function ($scope, $q, $timeout, $room, $mdDialog) {
         const chatEl = document.getElementById('chat-messages');
         $scope.messages = [];
         $scope.connectedUsers = [];
@@ -128,15 +128,27 @@
             scrollToBottomOfChat();
             return false;
         };
-        $scope.changeName = function () {
-            const newName = prompt('Change username', $scope.me.name);
-            if (!newName || newName === $scope.me.name) {
-                return;
-            }
-            $scope.me.name = newName;
+        $scope.changeName = function (ev) {
+            const confirm = $mdDialog.prompt()
+                 .title('What would you name to be')
+                 .textContent('By default you will be named after a random Planeswalker.')
+                 .clickOutsideToClose(true)
+                 .placeholder('Input name')
+                 .ariaLabel('Input name')
+                 .targetEvent(ev)
+                 .ok('UPdate Name')
+                 .cancel('Keep "' + $scope.me.name + '"');
 
-            $room.getSocket()
-                .emit('chat.user.update', $scope.me);
+            $mdDialog.show(confirm)
+                .then((newName) => {
+                    if (!newName || newName === $scope.me.name) {
+                        return;
+                    }
+                    $scope.me.name = newName;
+
+                    $room.getSocket()
+                        .emit('chat.user.update', $scope.me);
+                });
         };
         $scope.getUsername = function (user) {
             for (let i = 0; i < $scope.connectedUsers.length; i++) {

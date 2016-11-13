@@ -174,7 +174,7 @@
                             <md-icon md-svg-icon="public/icons/right_arrow.svg"></md-icon>
                         </md-button>
                         <span flex></span>
-                        <span id='me' ng-if="me" ng-click="changeName()">
+                        <span id='me' ng-if="me" ng-click="changeName($event)">
                             {{me.name}}
                         </span>
                     </div>
@@ -203,7 +203,7 @@
                             <input ng-model="newMessage" placeholder="Type Here!" class="chatInput" autocomplete="off">
                         </md-input-container>
 
-                        <md-button type="submit" class="md-icon-button" aria-label="send">
+                        <md-button type="submit" class="md-icon-button chatSubmit" aria-label="send">
                             <md-icon md-svg-icon="public/icons/send.svg"></md-icon>
                         </md-button>
                     </form>
