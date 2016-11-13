@@ -4,6 +4,9 @@
         "node": true,
         "es6": true
     },
+    "global": {
+        "angular": true
+    },
     "rules": {
         "no-cond-assign": ["warn"],
         "no-console": ["off"],
@@ -33,7 +36,7 @@
         "no-unsafe-finally": ["error"],
         "no-unsafe-negation": ["warn"],
         "use-isnan": ["error"],
-        "valid-jsdoc": ["warn", {
+        "valid-jsdoc": ["off", {
             "prefer": {
                 "return": "returns"
             },
@@ -130,7 +133,7 @@
         "no-undef": ["error"],
         "no-undefined": ["error"],
         "no-unused-vars": ["warn"],
-        "no-use-before-define": ["error"],
+        "no-use-before-define": ["off"],
         "callback-return": ["warn"],
         "global-require": ["off"],
         "handle-callback-err": ["warn"],
@@ -173,7 +176,7 @@
             "after": "always"
         }],
         "max-depth": ["warn"],
-        "max-len": ["warn", {
+        "max-len": ["off", {
             "code": 80,
             "tabWidth": 4,
             "ignoreUrls": true
@@ -229,7 +232,7 @@
         "quotes": ["warn", "single", {
             "allowTemplateLiterals": true
         }],
-        "require-jsdoc": ["warn"],
+        "require-jsdoc": ["off"],
         "semi-spacing": ["warn"],
         "semi": ["error"],
         "sort-keys": ["off"],
@@ -262,7 +265,7 @@
         "no-useless-rename": ["warn"],
         "no-var": ["warn"],
         "object-shorthand": ["off"],
-        "prefer-arrow-callback": ["warn"],
+        "prefer-arrow-callback": ["off"],
         "prefer-const": ["warn"],
         "prefer-numeric-literals": ["warn"],
         "prefer-reflect": ["warn"],
