@@ -77,6 +77,7 @@
         socket.on('cards.deck.update', function (data) {
             const selectedList = $scope.getSelectedList();
             if (data.list === selectedList.listid) {
+                $rootScope.$broadcast('clear-card-wall');
                 socket.emit('cards.get', {
                     list: selectedList.listid,
                     page: {
