@@ -120,7 +120,9 @@
 
             cardListToSelect.selected = true;
             selectedList.selected = false;
-            $scope.performSearch(lastEvent[$scope.getSelectedList().cacheid]);
+
+            // use the last query, but don't scroll to top
+            $scope.performSearch(false, lastEvent[$scope.getSelectedList().cacheid]);
         };
 
         $scope.getSelectedList = function () {
@@ -181,8 +183,11 @@
             queryEvent.query = query;
             return queryEvent;
         }
-        $scope.performSearch = function (eventToSend) {
+        $scope.performSearch = function (scrollToTop, eventToSend) {
             let queryEvent = null;
+            if (scrollToTop) {
+                document.getElementById('cardContent').scrollTop = 0;
+            }
             if (!eventToSend) {
                 queryEvent = buildQuery();
             } else {
