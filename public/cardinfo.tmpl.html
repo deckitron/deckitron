@@ -84,13 +84,13 @@
 
     <md-dialog-actions layout="row" flex>
         <div class='addremove'>
-            <button type='button' class='md-ink-ripple' ng-click="removeCard('cards')" ng-disabled="listCount('cards') < 1">&minus;</button>
-            <span>Deck ({{listCount('cards')}})</span>
+            <button type='button' class='md-ink-ripple' ng-click="removeCard('cards')" ng-disabled="cardsCount < 1">&minus;</button>
+            <span>Deck ({{cardsCount}})</span>
             <button type='button' class='md-ink-ripple' ng-click="addCard('cards')">&plus;</button>
         </div>
         <div class='addremove'>
-            <button type='button' class='md-ink-ripple' ng-click="removeCard('sideboard')" ng-disabled="listCount('sideboard') < 1">&minus;</button>
-            <span>Sideboard ({{listCount('sideboard')}})</span>
+            <button type='button' class='md-ink-ripple' ng-click="removeCard('sideboard')" ng-disabled="sideboardCount < 1">&minus;</button>
+            <span>Sideboard ({{sideboardCount}})</span>
             <button type='button' class='md-ink-ripple' ng-click="addCard('sideboard')">&plus;</button>
         </div>
         <md-button class="md-primary md-raised" ng-click="addCard('linked', 1)" title="Link to Chat">Share</md-button>
