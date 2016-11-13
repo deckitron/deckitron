@@ -36,7 +36,7 @@
 }
 
 #friendIconsContainer {
-    padding: 15px 15px 5px;
+    margin-top: 15px;
 }
 
 #friendIconsContainer>* {
@@ -150,11 +150,30 @@ md-dialog {
 }
 
 .card:hover {
+    overflow:visible;
     -webkit-transform: scale(1.25, 1.25);
     -moz-transform: scale(1.25, 1.25);
     -ms-transform: scale(1.25, 1.25);
     -o-transform: scale(1.25, 1.25);
     transform: scale(1.25, 1.25);
+    -moz-transition: all 200ms;
+    -webkit-transition: all 200ms;
+    -o-transition: all 200ms;
+    z-index: 1;
+}
+
+#chat .card {
+    margin-left: 20px;
+    width: 70%;
+    height: 70%;
+}
+
+#chat .card:hover {
+    -webkit-transform: scale(1.05, 1.05);
+    -moz-transform: scale(1.05, 1.05);
+    -ms-transform: scale(1.05, 1.05);
+    -o-transform: scale(1.05, 1.05);
+    transform: scale(1.05, 1.05);
     -moz-transition: all 200ms;
     -webkit-transition: all 200ms;
     -o-transition: all 200ms;
@@ -234,9 +253,6 @@ md-dialog {
     line-height: 1.5em;
     text-align: center;
     color: white;
-    &.self {
-        font-size: 2em;
-    }
 }
 
 .chatSubmit md-icon {
