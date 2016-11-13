@@ -68,7 +68,7 @@
     <div class="container" layout="row" flex>
         <!-- Filters -->
         <div ng-controller="filters" layout="row">
-            <md-sidenav md-component-id="leftSideNav" md-is-locked-open="isLeftSideNavOpen() && $mdMedia('gt-md')" md-whiteframe="10" id="chat" flex>
+            <md-sidenav class="md-sidenav-left" md-component-id="leftSideNav" md-is-locked-open="isLeftSideNavOpen() && $mdMedia('gt-md')" md-whiteframe="10" id="chat" flex>
                 <!-- Sidebar header -->
                 <!-- <md-toolbar class="md-accent md-medium-tall" layout-align="center end" id="chat-top">
                     <div class="md-toolbar-tools" id="card list">
@@ -220,7 +220,7 @@
         </md-content>
 
         <!-- Social -->
-        <md-sidenav  md-is-locked-open="isRightSideNavOpen() && $mdMedia('gt-md')" md-whiteframe="10" id="social" md-disable-scroll-target="content" md-component-id="rightSideNav">
+        <md-sidenav  md-is-locked-open="isRightSideNavOpen() && $mdMedia('gt-md')" class="md-sidenav-right" md-whiteframe="10" id="social" md-disable-scroll-target="content" md-component-id="rightSideNav">
             <md-content ng-controller="chat" id='chat' flex>
                 <md-content>
                     <div id="friendIconsContainer">
