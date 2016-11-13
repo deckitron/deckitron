@@ -5,6 +5,37 @@
     const posterwall = angular.module('posterwall', ['room', 'ngMaterial']);
 
     posterwall.controller('posterwall', ['$scope', 'room', '$mdDialog', '$timeout', function ($scope, $room, $mdDialog, $timeout) {
+        function gotCards (data) {
+            $timeout(() => {
+                if (Array.isArray(data)) {
+                    $scope.cards = data;
+                }
+            });
+        }
+
+        const socket = $room.getSocket();
+        socket.on('cards.get.result', gotCards);
+        socket.on('cards.deck.update', console.log);
+
+        function addCard (card, list, count) {
+            socket.emit('cards.deck.add', {
+                list: list,
+                card: {
+                    id: card.id,
+                    count: count
+                }
+            });
+        }
+        function removeCard (card, list, count) {
+            socket.emit('cards.deck.remove', {
+                list: list,
+                card: {
+                    id: card.id,
+                    count: count
+                }
+            });
+        }
+
         function DialogController ($scope, card) {
             $scope.card = card;
             $scope.hide = function () {
@@ -15,10 +46,13 @@
                 $mdDialog.hide();
             };
 
+            $scope.addCard = addCard;
+
             $scope.answer = function (answer) {
                 $mdDialog.hide(answer);
             };
         }
+
 
         $scope.cardSelected = function (ev, card) {
             $mdDialog.show({
@@ -28,7 +62,9 @@
                 targetEvent: ev,
                 clickOutsideToClose:true,
                 locals: {
-                    card: card
+                    card: card,
+                    addCard: addCard,
+                    removeCard: removeCard
                 }
             })
                 .then((answer) => {
@@ -40,16 +76,6 @@
         $scope.cards = [];
 
 
-        function gotCards (data) {
-            $timeout(() => {
-                if (Array.isArray(data)) {
-                    $scope.cards = data;
-                }
-            });
-        }
-
-        const socket = $room.getSocket();
-        socket.on('cards.get.result', gotCards);
         $scope.getCardImageURL = function (id) {
             let normalizedID = id;
             if (!normalizedID) {

@@ -42,8 +42,14 @@
 
     <md-dialog-actions layout="row">
       <span flex></span>
-      <md-button class="md-primary md-raised" ng-click="answer('not useful')">
+      <md-button class="md-primary md-raised" ng-click="addCard(card, 'cards')">
        Add To Deck
+      </md-button>
+      <md-button class="md-primary md-raised" ng-click="addCard(card, 'sideboard')">
+       Add To Sideboard
+      </md-button>
+      <md-button class="md-primary md-raised" ng-click="addCard(card, 'linked')">
+      Link to Chat
       </md-button>
       <md-button class="md-primary md-raised" ng-click="cancel()">
         Cancel
