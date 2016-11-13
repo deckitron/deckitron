@@ -283,11 +283,9 @@
             <md-content ng-controller="chat" id='chat' class='sidebar' flex>
                 <md-content>
                     <div id="friendIconsContainer">
-                        <div ng-repeat="user in connectedUsers" title={{user.name}}>
-                            <span class='circle friend' ng-class="{'self' : user.id === me.id}" style="background-color: {{user.color}}">
-                                {{user.name.substr(0, 1)}}
-                            </span>
-                        </div>
+                        <span ng-repeat="user in connectedUsers" class='circle friend' ng-class="{'self' : user.id === me.id}" style="background-color: {{user.color}}">
+                            {{user.name.substr(0, 1)}}
+                        </span>
                     </div>
                 </md-content>
                 <md-content class="sidebar-middle" id='chat-messages'>
