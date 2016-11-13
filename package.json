@@ -38,7 +38,8 @@
     "express"
   ],
   "contributors": [
-    "M. Damian Mulligan <robloxianmany@gmail.com> (https://dmulligan.ca/)"
+    "M. Damian Mulligan <robloxianmany@gmail.com> (https://dmulligan.ca/)",
+    "Michael Hall <mike@michaelhall.ca>"
   ],
   "license": "MIT"
 }
