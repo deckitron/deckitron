@@ -34,7 +34,8 @@
                                     <ng-repeat ng-repeat="part in card.manaText track by $index">
                                         <img ng-if="part.mana" src="public/mana/{{part.value}}.jpg" draggable="false"/>
                                         <br ng-if="part.newline" />
-                                        <ng-if ng-if="!part.mana && !part.newline">{{part.value}}</ng-if>
+                                        <span ng-if="part.loyalty" class='loyalty' ng-class='{minus: part.value[0] !== "+"}'>{{part.value}}</span>
+                                        <ng-if ng-if="!part.mana && !part.newline && !part.loyalty">{{part.value}}</ng-if>
                                     </ng-repeat>
                                 </td>
                             </tr>

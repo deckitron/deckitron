@@ -6,6 +6,7 @@
     const rMana = /\{([0-9bgrcwuptx])(?:\/([bgrcwuptx]))?\}/ig;
     const rManaTest = /\{([0-9bgrcwuptx])(?:\/[bgrcwuptx])?\}/i;
     const rNewlineTest = /\n/;
+    const rPlaneswalkerLoyalty = /^([\+\-\−][0-9]+)/;
     const rManaText = /(\{[0-9bgrcwuptx](?:\/[bgrcwuptx])?\}|\n)/ig;
     const app = angular.module(
         'deckitron',
@@ -71,6 +72,40 @@
         }
         return output;
     }
+    function getManaTextPlaneswalker (text) {
+        const parts = text.split(rManaText);
+        const output = [];
+        for (let i = 0; i < parts.length; i++) {
+            if (!parts[i]) {
+                continue;
+            }
+            if (rManaTest.test(parts[i])) {
+                output.push({
+                    mana: true,
+                    value: parts[i].substr(1, parts[i].length - 2).replace('/', '').toLowerCase()
+                });
+            } else if (rNewlineTest.test(parts[i])) {
+                output.push({
+                    newline: true
+                });
+            } else if (rPlaneswalkerLoyalty.test(parts[i])) {
+                let loyaltyMatch = parts[i].split(rPlaneswalkerLoyalty);
+                console.log(loyaltyMatch);
+                output.push({
+                    loyalty: true,
+                    value: loyaltyMatch[1]
+                });
+                output.push({
+                    value: loyaltyMatch[2]
+                });
+            } else {
+                output.push({
+                    value: parts[i]
+                });
+            }
+        }
+        return output;
+    }
     function getCardImageURL (id) {
         let normalizedID = id;
         if (!normalizedID) {
@@ -100,7 +135,13 @@
         function DialogController ($scope, card) {
             $scope.card = card;
             $scope.card.manaList = $scope.card.manaCost ? getManaList($scope.card.manaCost) : null;
-            $scope.card.manaText = $scope.card.text ? getManaText($scope.card.text) : null;
+            if (card.text) {
+                if (card.types[0] === 'Planeswalker') {
+                    $scope.card.manaText = $scope.card.text ? getManaTextPlaneswalker($scope.card.text) : null;
+                } else {
+                    $scope.card.manaText = $scope.card.text ? getManaText($scope.card.text) : null;
+                }
+            }
             $scope.cardsCount = cardCount(card, 'cards');
             $scope.sideboardCount = cardCount(card, 'sideboard');
             $scope.hide = function () {
