@@ -5,6 +5,7 @@
 
     const room = angular.module('room', []);
     const socket = io();
+    window.socket = socket;
 
     room.service('room', [function () {
         return {

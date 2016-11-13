@@ -44,21 +44,41 @@
                 });
             });
         }
+        function addCard (user, card) {
+            $scope.$apply(() => {
+                $scope.messages.push({
+                    user: user,
+                    card: card
+                });
+                $timeout(() => {
+                    scrollToBottomOfChat();
+                });
+            });
+        }
+
+        function raptorize () {
+            jQuery(document)
+                .raptorize({
+                    enterOn: 'timer',
+                    delayTime: 2000
+                });
+            return;
+        }
         /**
          * Recieves a messages from the chat server
          * @param   {Object} data A Chat message and a user Object
          */
         function recieveMessage (data) {
             console.log('recieve message', data);
-            if (data.message === 'raptorize') {
-                jQuery(document)
-                    .raptorize({
-                        enterOn: 'timer',
-                        delayTime: 2000
-                    });
-                return;
-            }
             addMessage(data.user, data.message);
+        }
+        /**
+         * Recieves a messages from the chat server
+         * @param   {Object} data A Chat message and a user Object
+         */
+        function recieveCard (data) {
+            console.log('recieve card', data);
+            addCard(data.user, data.card);
         }
 
         /**
@@ -162,6 +182,8 @@
         function connectChat () {
             const socket = $room.getSocket();
             socket.on('chat.message', recieveMessage);
+            socket.on('chat.card', recieveCard);
+            socket.on('chat.raptorize', raptorize);
             socket.on('chat.user.connected', userConnected);
             socket.on('chat.user.disconnected', userDisconnected);
             socket.on('chat.user.updated', userUpdated);
