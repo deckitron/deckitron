@@ -50,7 +50,7 @@
         function gotCards (data) {
             $timeout(() => {
                 if (Array.isArray(data.result)) {
-                    $scope.cards = data.result;
+                    $scope.cards = $scope.cards.concat(data.result);
                     console.log(data);
                 }
             });
