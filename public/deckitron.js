@@ -165,7 +165,7 @@
             addCard(card, list, 1);
         };
         $scope.menuRemoveCard = function (card, list) {
-            addCard(card, list, 1);
+            removeCard(card, list, 1);
         };
         $scope.menuListCount = function (card, list) {
             return cardCount(card, list);
