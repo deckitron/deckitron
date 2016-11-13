@@ -33,6 +33,7 @@
 
     socket.on('cards.deck.current', (data) => {
         socket.deck = data;
+        socket.emit('cards.deck.getStats');
         // console.log('cards.deck.current', data);
     });
 }());
