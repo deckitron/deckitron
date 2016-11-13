@@ -75,19 +75,19 @@
 
     <md-dialog-actions layout="row" flex>
       <md-input-container>
-          <input ng-model="count" type="number"/>
+          <input ng-model="count" type="number" min="1" max="100" multiple="1"/>
       </md-input-container>
         <span flex></span>
-      <md-button class="md-primary md-raised" style="width: 400px" ng-click="addCard('cards')" title="Add To Deck">
+      <md-button class="md-primary md-raised" ng-disabled="isInvalidCount()" style="width: 400px" ng-click="addCard('cards')" title="Add To Deck">
       Add To Deck
       </md-button>
-      <md-button class="md-primary md-raised" style="width: 400px" ng-style="{display: listCount('cards') ? 'block': 'none'}" ng-click="removeCard('cards')" title="Remove From Deck">
+      <md-button class="md-primary md-raised" ng-disabled="isInvalidCount()" style="width: 400px" ng-style="{display: listCount('cards') ? 'block': 'none'}" ng-click="removeCard('cards')" title="Remove From Deck">
       Remove From Deck
       </md-button>
-      <md-button class="md-primary md-raised" style="width: 400px" ng-click="addCard('sideboard')" title="Add To Sideboard">
+      <md-button class="md-primary md-raised" ng-disabled="isInvalidCount()" style="width: 400px" ng-click="addCard('sideboard')" title="Add To Sideboard">
       Add To Sideboard
       </md-button>
-      <md-button class="md-primary md-raised" style="width: 400px" ng-style="{display: listCount('sideboard') ? 'block': 'none'}" ng-click="removeCard('sideboard')" title="Remove From Sideboard">
+      <md-button class="md-primary md-raised" ng-disabled="isInvalidCount()" style="width: 400px" ng-style="{display: listCount('sideboard') ? 'block': 'none'}" ng-click="removeCard('sideboard')" title="Remove From Sideboard">
       Remove From Sideboard
       </md-button>
       <md-button class="md-primary md-raised" style="width: 300px" ng-click="addCard('linked', 1)" title="Link to Chat">

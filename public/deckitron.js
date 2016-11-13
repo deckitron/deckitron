@@ -95,6 +95,10 @@
                 return cardCount(card, list);
             };
 
+            $scope.isInvalidCount = function () {
+                return $scope.count <= 0 || $scope.count > 100 || $scope.count % 1 !== 0;
+            };
+
             $scope.addCard = function (list, count) {
                 addCard($scope.card, list, count || $scope.count);
                 $mdDialog.hide();
