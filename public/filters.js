@@ -131,7 +131,7 @@
                 debounce = false;
                 return;
             }
-            $scope.performSearch();
+            $scope.performSearch(false, lastEvent[$scope.getSelectedList().cacheid]);
         }
 
         const cardWallElem = document.querySelector('#cardContent');
