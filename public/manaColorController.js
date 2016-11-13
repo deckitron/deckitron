@@ -26,6 +26,7 @@
 
         $scope.$on('clear-filters', function () {
             $scope.selectedCards.length = 0;
+            $scope.onChange();
         });
 
         /**
