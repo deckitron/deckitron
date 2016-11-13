@@ -33,6 +33,15 @@
             }
         ];
 
+        socket.on('cards.deck.update', function (data) {
+            const selectedList = $scope.getSelectedList();
+            if (data.list === selectedList.listid) {
+                socket.emit('cards.get', {
+                    list: selectedList.listid
+                });
+            }
+        });
+
         $timeout(() => {
             socket.emit('cards.get');
         }, 500);
