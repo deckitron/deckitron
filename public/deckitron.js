@@ -3,9 +3,9 @@
     'use strict';
 
 
-    const rMana = /\{([0-9bgrcwuptx]{1,2})\}/ig;
-    const rManaTest = /\{([0-9bgrcwuptx]{1,2})\}/i;
-    const rManaText = /(\{[0-9bgrcwuptx]{1,2}\})/ig;
+    const rMana = /\{([0-9bgrcwuptx])(?:\/([bgrcwuptx]))?\}/ig;
+    const rManaTest = /\{([0-9bgrcwuptx])(?:\/[bgrcwuptx])?\}/i;
+    const rManaText = /(\{[0-9bgrcwuptx](?:\/[bgrcwuptx])?\})/ig;
     const app = angular.module(
         'deckitron',
         [
@@ -34,13 +34,18 @@
         const mana = String(manaCost).toLowerCase();
         let match;
         while (match = rMana.exec(mana)) {
-            costs.push(match[1]);
+            let m = match[1];
+            if (match[2]) {
+                m += match[2];
+            }
+            costs.push(m);
         }
         return costs;
     }
     function getManaText (text) {
         const parts = text.split(rManaText);
         const output = [];
+        console.log(parts);
         for (let i = 0; i < parts.length; i++) {
             if (!parts[i]) {
                 continue;
@@ -48,7 +53,7 @@
             if (rManaTest.test(parts[i])) {
                 output.push({
                     mana: true,
-                    value: parts[i].substr(1, parts[i].length - 2).toLowerCase()
+                    value: parts[i].substr(1, parts[i].length - 2).replace('/', '').toLowerCase()
                 });
             } else {
                 output.push({
