@@ -8,7 +8,8 @@
     posterwall.controller('posterwall', ['$scope', 'room', '$mdDialog', '$timeout', function ($scope, $room, $mdDialog, $timeout) {
         function gotCards (data) {
             $timeout(() => {
-                if ($scope.cards.length >= 500) {
+                if ($scope.cards.length >= 350) {
+                    // TODO Add load more button
                     return;
                 }
                 if (Array.isArray(data.result)) {
