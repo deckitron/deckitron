@@ -2,8 +2,9 @@
 (function () {
     'use strict';
 
-    const filters = angular.module('filters', ['room']);
+    const filters = angular.module('filters', ['manaColorController', 'cardTypesController', 'room']);
 
+    // filters.controller('filters', ['$scope', 'room', '$timeout', 'manaColorController', 'cardTypesController', function ($scope, $room, $timeout, $manaColorController, $cardTypesController) {
     filters.controller('filters', ['$scope', 'room', '$timeout', function ($scope, $room, $timeout) {
         const socket = $room.getSocket();
         $scope.cardLists = [
@@ -70,6 +71,28 @@
                 }
             }
             return null;
+        };
+
+        $scope.performSearch = function () {
+            const formElements = document.forms.filter.children;
+
+            // The input form elements
+            const keywords = formElements[2].children[1].value;
+            const convertedManaCost = formElements[3].children[1].value;
+            const power = formElements[6].children[1].value;
+            const toughness = formElements[7].children[1].value;
+            const artist = formElements[8].children[1].value;
+
+            // The chip form elements
+            const cardTypes = [];// = $cardTypesController.selectedCards;
+            const manaColors = [];//$manaColorController.selectedCards;
+
+
+            socket.emit('cards.get', {
+                list: $scope.getSelectedList().listid,
+                types: cardTypes,
+                keywords: keywords.split(' ')
+            });
         };
     }]);
 

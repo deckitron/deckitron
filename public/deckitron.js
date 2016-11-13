@@ -7,10 +7,10 @@
         [
             'ngMaterial',
             'chat',
-            'filters',
             'posterwall',
             'cardTypesController',
-            'manaColorController'
+            'manaColorController',
+            'filters'
         ]
     );
 

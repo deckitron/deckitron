@@ -8,9 +8,9 @@
     <script src="public/deckitron.js"></script>
 
     <!-- Filters -->
-    <script src="public/filters.js"></script>
     <script src="public/cardTypesController.js"></script>
     <script src="public/manaColorController.js"></script>
+    <script src="public/filters.js"></script>
 
     <!-- Chat -->
     <script src="node_modules/socket.io-client/socket.io.js"></script>
@@ -55,7 +55,7 @@
 
                 <!-- Filter Form -->
                 <md-content layout="column" id="chat-messages" class="autocomplete">
-                    <form name="filter">
+                    <form name="filter" ng-submit="performSearch()">
                         <md-button type="submit" class="md-raised md-primary">
                             <md-icon md-svg-icon="public/icons/search.svg"></md-icon>Search
                         </md-button>
