@@ -9,6 +9,7 @@
 
     <!-- Filters -->
     <script src="public/cardTypesController.js"></script>
+    <script src="public/cardSuperTypesController.js"></script>
     <script src="public/manaColorController.js"></script>
     <script src="public/rarityController.js"></script>
     <script src="public/filters.js"></script>
@@ -112,6 +113,25 @@
                                 <span>{{$chip.name}}</span>
                             </md-chip-template>
                         </div>
+                        <div ng-controller="cardSuperTypesController">
+                             <md-chips ng-model="selectedCards" md-autocomplete-snap
+                                      md-transform-chip="transformChip($chip)"
+                                      md-require-match="autocompleteDemoRequireMatch"
+                                      md-on-add="onChange()"
+                                      md-on-remove="onChange()"
+                                      >
+                             <md-autocomplete
+                                  md-selected-item="selectedItem"
+                                  md-search-text="searchText"
+                                  md-items="item in querySearch(searchText)"
+                                  md-item-text="item.name"
+                                  placeholder="Card Super Type">
+                                  {{item.name}}
+                             </md-autocomplete>
+                             <md-chip-template>
+                                 <span>{{$chip.name}}</span>
+                             </md-chip-template>
+                         </div>
 
                         <!-- Mana Color -->
                        <div ng-controller="manaColorController">

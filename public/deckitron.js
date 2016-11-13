@@ -14,6 +14,7 @@
             'chat',
             'posterwall',
             'cardTypesController',
+            'cardSuperTypesController',
             'manaColorController',
             'rarityController',
             'filters',
