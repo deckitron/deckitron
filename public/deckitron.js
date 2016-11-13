@@ -10,7 +10,8 @@
             'posterwall',
             'cardTypesController',
             'manaColorController',
-            'filters'
+            'filters',
+            'deckStats'
         ]
     );
 

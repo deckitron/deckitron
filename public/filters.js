@@ -80,22 +80,36 @@
         };
 
         $scope.performSearch = function () {
+            const query = {};
             const formElements = document.forms.filter.children;
 
             console.log(cardTypes);
             // The input form elements
-            const keywords = formElements[2].children[1].value;
-            const convertedManaCost = formElements[3].children[1].value;
-            const power = formElements[6].children[1].value;
-            const toughness = formElements[7].children[1].value;
-            const artist = formElements[8].children[1].value;
+            const keywords = formElements[3].children[1].value;
+            const convertedManaCost = formElements[4].children[1].value;
+            if (convertedManaCost) {
+                query.cmc = convertedManaCost;
+            }
+            const power = formElements[7].children[1].value;
+            if (power) {
+                query.power = power;
+            }
+            const toughness = formElements[8].children[1].value;
+            if (toughness) {
+                query.toughness = toughness;
+            }
+            const artist = formElements[9].children[1].value;
+            if (artist) {
+                query.artist = artist;
+            }
 
             // The chip form elements
             const manaColors = [];//$manaColorController.selectedCards;
 
             socket.emit('cards.get', {
                 list: $scope.getSelectedList().listid,
-                keywords: keywords.split(' ')
+                keywords: keywords,
+                query: query
             });
         };
     }]);
