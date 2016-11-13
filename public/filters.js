@@ -126,6 +126,9 @@
             cardListToSelect.selected = true;
             selectedList.selected = false;
 
+            offset = 0;
+            $rootScope.$broadcast('clear-card-wall');
+
             // use the last query, but don't scroll to top
             $scope.performSearch(false, lastEvent[$scope.getSelectedList().cacheid]);
         };
