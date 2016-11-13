@@ -235,7 +235,7 @@
             <md-content ng-controller="chat" id='chat' flex>
                 <md-content>
                     <div id="friendIconsContainer">
-                        <span ng-repeat="user in connectedUsers" class='circle friend' style="background-color: {{user.color}}" title='{{user.name}}'>
+                        <span ng-repeat="user in connectedUsers" class='circle friend' ng-class="{'self' : user.id === me.id}" style="background-color: {{user.color}}" title='{{user.name}}'>
                             {{user.name.substr(0, 1)}}
                         </span>
                     </div>
