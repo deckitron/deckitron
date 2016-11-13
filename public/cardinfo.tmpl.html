@@ -75,14 +75,26 @@
 
     <md-dialog-actions layout="row">
       <span flex></span>
-      <md-button class="md-primary md-raised" ng-click="addCard(card, 'cards')">
+      <md-input-container>
+          <input ng-model="count" type="number"/>
+      </md-input-container>
+      <md-button class="md-primary md-raised" ng-click="addCard('cards')">
        Add To Deck
       </md-button>
-      <md-button class="md-primary md-raised" ng-click="addCard(card, 'sideboard')">
+      <md-button class="md-primary md-raised" ng-style="{display: listCount('cards') ? 'block': 'none'}" ng-click="removeCard('cards')">
+       Remove From Deck
+      </md-button>
+      <md-button class="md-primary md-raised" ng-click="addCard('sideboard')">
        Add To Sideboard
       </md-button>
-      <md-button class="md-primary md-raised" ng-click="addCard(card, 'linked')">
+      <md-button class="md-primary md-raised" ng-style="{display: listCount('sideboard') ? 'block': 'none'}" ng-click="removeCard('sideboard')">
+       Remove From Sideboard
+      </md-button>
+      <md-button class="md-primary md-raised" ng-click="addCard('linked', 1)">
       Link to Chat
+      </md-button>
+      <md-button class="md-primary md-raised" ng-style="{display: listCount('linked') ? 'block': 'none'}" ng-click="removeCard('linked', 1)">
+      Remove from Linked
       </md-button>
       <md-button class="md-primary md-raised" ng-click="cancel()">
         Cancel
