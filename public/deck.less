@@ -158,21 +158,33 @@ md-dialog {
 .circle {
     display: inline-block;
     border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1.0); /* Shadow */
     width: 1.5em;
     height: 1.5em;
     min-width: 1.5em;
     min-height: 1.5em;
+    pointer-events: none;
 }
 
 .cardCount {
     font-size: 0.75em;
-    line-height: 0.75em;
+    line-height: 1.5em;
     text-align: center;
     color: white;
-    position: relative;
-    top: -40px;
+    position: absolute;
+    // padding-top: 10px;
+}
+
+.deckCount {
+    bottom: 20px;
     left: 10px;
-    padding-top: 10px;
+    background-color: #03A9F4;
+}
+
+.sideboardCount {
+    bottom: 20px;
+    left: 30px;
+    background-color: #4CAF50;
 }
 
 .friend {

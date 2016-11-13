@@ -16,20 +16,21 @@
             {
                 name: 'Deck',
                 listid: 'cards',
-                color: 'darkgreen',
+                color: '#03A9F4',
                 icon: 'public/icons/deck.svg',
                 selected: false
             },
             {
                 name: 'Sideboard',
                 listid: 'sideboard',
-                color: 'darkorange',
+                color: '#4CAF50',
                 icon: 'public/icons/sideboard.svg',
                 selected: false
             },
             {
                 name: 'Linked',
                 listid: 'linked',
+                color: '#E040FB',
                 icon: 'public/icons/linked.svg',
                 selected: false
             }

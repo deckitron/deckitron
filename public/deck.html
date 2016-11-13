@@ -151,10 +151,10 @@
                     <md-grid-tile class="cardTile" md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="card in cards">
                         <div class="card" md-ink-ripple="rgba(16, 16, 16, 1.0)" ng-click="cardSelected($event, card)">
                             <img ng-src={{getCardImageURL(card.multiverseid)}}></img>
-                            <span ng-if="cardCount(card, 'cards') > 0" class="circle cardCount" ng-style="{{ {'background-color': 'darkgreen'} }}">
+                            <span ng-if="cardCount(card, 'cards') > 0" class="circle cardCount deckCount">
                                 {{cardCount(card, 'cards')}}
                             </span>
-                            <span ng-if="cardCount(card, 'sideboard') > 0" class="circle cardCount" ng-style="{{ {'background-color': 'darkorange'} }}">
+                            <span ng-if="cardCount(card, 'sideboard') > 0" class="circle cardCount sideboardCount">
                                 {{cardCount(card, 'sideboard')}}
                             </span>
                             <h2 class="missingPosterText" ng-style="{display: card.multiverseid ? 'none' : 'block'}">{{card.name}}</h2>
