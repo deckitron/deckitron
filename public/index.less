@@ -26,6 +26,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    background-attachment: fixed;
 }
 * {
     font-family: 'Open Sans', sans-serif;
@@ -121,4 +122,31 @@ form#url-bar {
     text-align: center;
     font-size: 1.5em;
     content: ' | ';
+}
+
+#loginSection {
+    minHeight: 1280px;
+    height: 100%;
+}
+
+#gettingStarted {
+    text-align: center;
+    background-color: #303030;
+    height: 600px;
+    margin-bottom: 200px;
+}
+
+#gettingStarted h1 {
+    padding-top: 40px;
+    margin: 0 20px 50px;
+    color: @fontWhite;
+    text-shadow: @shadowDistance @shadowDistance @shadowSize/4 @shadowColor;
+}
+
+hr {
+    width: 400px;
+}
+
+#gettingStarted img {
+
 }

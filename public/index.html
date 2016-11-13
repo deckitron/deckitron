@@ -13,28 +13,72 @@
         <script src='public/index.js'></script>
     </head>
     <body>
-        <span>
-            <h1>
-                Deckitron
-            </h1>
-        </span>
-        <p id='description'>
-            Collaborative deck building for Magic: The Gathering
-            <br/>This project was built as part of Node Knockout 2016. Vote for us if you like it!
-            <br/><a href='https://www.nodeknockout.com/entries/15-noun-js'><img src='public/icons/voteko.png'/><img id="nodeGraphic" src="public/icons/node.svg"></img></a>
-        </p>
-        <form id="url-bar" ng-submit="onStart()">
-            <label for="deck-name">deckitron/</label>
-            <input type="text" placeholder="{{placeholder}}" id="deck-name" ng-model="deckName"/>
-            <button type="submit" class="md-raised md-primary">Start</button>
-        </form>
-        <div id='error'>
-            <p>{{ErrMsg}}</p>
-        </div>
+        <div id="loginSection">
+            <span>
+                <h1>
+                    Deckitron
+                </h1>
+            </span>
+            <p id='description'>
+                Collaborative deck building for Magic: The Gathering
+                <br/>This project was built as part of Node Knockout 2016. Vote for us if you like it!
+                <br/><a href='https://www.nodeknockout.com/entries/15-noun-js'><img src='public/icons/voteko.png'/><img id="nodeGraphic" src="public/icons/node.svg"></img></a>
+            </p>
+            <form id="url-bar" ng-submit="onStart()">
+                <label for="deck-name">deckitron/</label>
+                <input type="text" placeholder="{{placeholder}}" id="deck-name" ng-model="deckName"/>
+                <button type="submit" class="md-raised md-primary">Start</button>
+            </form>
+            <div id='error'>
+                <p>{{ErrMsg}}</p>
+            </div>
 
-        <h2>Active Decks</h2>
-        <div ng-repeat="deck in decks">
-            <a class="enterRoomButton" href='{{deck.url}}'>"{{deck.name}}"<em class="roomButtonUsers">({{deck.users === 1 ? '1 User': deck.users + ' Users'}})</em></a>
+            <h2>Active Decks</h2>
+            <div ng-repeat="deck in decks">
+                <a class="enterRoomButton" href='{{deck.url}}'>"{{deck.name}}"<em class="roomButtonUsers">({{deck.users === 1 ? '1 User': deck.users + ' Users'}})</em></a>
+            </div>
+        </div>
+        <div id="gettingStarted">
+            <h1>Getting Started</h1>
+            <hr>
+            <table>
+                <tr>
+                    <td>
+                        Login
+                    </td>
+                    <td>
+                        Share
+                    </td>
+                    <td>
+                        Search
+                    </td>
+                    <td>
+                        Browse
+                    </td>
+                    <td>
+                        Vote
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                    <tr>
+                        <td>
+                            Login
+                        </td>
+                        <td>
+                            Share
+                        </td>
+                        <td>
+                            Search
+                        </td>
+                        <td>
+                            Browse
+                        </td>
+                        <td>
+                            Vote
+                        </td>
+                    </tr>
+            </table>
         </div>
 
         <script>
