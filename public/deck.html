@@ -181,16 +181,35 @@
                 <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-gt-sm="3" md-cols-gt-md="4" md-cols-gt-md="5" md-cols-gt-lg="6" md-cols-gt-xl="5" md-row-height="1:1.39"md-gutter="8px" md-gutter-gt-sm="8px">
 
                     <md-grid-tile class="cardTile" md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="card in cards">
-                        <div class="card" md-ink-ripple="rgba(16, 16, 16, 1.0)" ng-click="cardSelected($event, card)">
-                            <img ng-src={{getCardImageURL(card.multiverseid)}} draggable="false"></img>
-                            <span ng-if="cardCount(card, 'cards') > 0" class="circle cardCount deckCount">
-                                {{cardCount(card, 'cards')}}
-                            </span>
-                            <span ng-if="cardCount(card, 'sideboard') > 0" class="circle cardCount sideboardCount">
-                                {{cardCount(card, 'sideboard')}}
-                            </span>
-                            <h2 class="missingPosterText" ng-style="{display: card.multiverseid ? 'none' : 'block'}">{{card.name}}</h2>
-                        </div>
+                        <md-menu md-offset="0 -7" mousepoint-menu>
+                            <div class="card" md-ink-ripple="rgba(16, 16, 16, 1.0)" ng-click="cardSelected($event, card)" ng-right-click="$mdOpenMousepointMenu($event)">
+                                <img ng-src={{getCardImageURL(card.multiverseid)}} draggable="false"></img>
+                                <span ng-if="cardCount(card, 'cards') > 0" class="circle cardCount deckCount">
+                                    {{cardCount(card, 'cards')}}
+                                </span>
+                                <span ng-if="cardCount(card, 'sideboard') > 0" class="circle cardCount sideboardCount">
+                                    {{cardCount(card, 'sideboard')}}
+                                </span>
+                                <h2 class="missingPosterText" ng-style="{display: card.multiverseid ? 'none' : 'block'}">{{card.name}}</h2>
+                            </div>
+                          <md-menu-content width="4">
+                            <md-menu-item>
+                              <md-button ng-click="menuAddCard(card, 'cards')"> <span md-menu-align-target>Add to Deck</span> </md-button>
+                            </md-menu-item>
+                            <md-menu-item ng-if="menuListCount(card, 'cards') > 0">
+                              <md-button ng-click="menuRemoveCard(card, 'cards')"> <span md-menu-align-target>Remove from Deck</span> </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                              <md-button ng-click="menuAddCard(card, 'sideboard')"> <span md-menu-align-target>Add to Sideboard</span> </md-button>
+                            </md-menu-item>
+                            <md-menu-item ng-if="menuListCount(card, 'sideboard') > 0">
+                              <md-button ng-click="menuRemoveCard(card, 'sideboard')"> <span md-menu-align-target>Remove from Sideboard</span> </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                              <md-button ng-click="menuAddCard(card, 'linked')"> <span md-menu-align-target>Share</span> </md-button>
+                            </md-menu-item>
+                          </md-menu-content>
+                        </md-menu>
                     </md-grid-tile>
 
                 </md-grid-list>
@@ -226,16 +245,32 @@
                             <span class='circle friend' title='{{getUsername(message.user)}}' style="background-color: {{message.user.color}}">{{getUsername(message.user).substr(0, 1)}}</span>
                             <span ng-if="message.message" class="chatMessage {{message.type}}">{{message.message}}</span>
                             <span ng-if="message.card">
-                                <div class="card" md-ink-ripple="rgba(16, 16, 16, 1.0)" ng-click="cardSelected($event, message.card)">
-                                    <img ng-src={{getCardImageURL(message.card.multiverseid)}} draggable="false"></img>
-                                    <span ng-if="cardCount(message.card, 'cards') > 0" class="circle cardCount deckCount">
-                                        {{cardCount(message.card, 'cards')}}
-                                    </span>
-                                    <span ng-if="cardCount(message.card, 'sideboard') > 0" class="circle cardCount sideboardCount">
-                                        {{cardCount(message.card, 'sideboard')}}
-                                    </span>
-                                    <h2 class="missingPosterText" ng-style="{display: message.card.multiverseid ? 'none' : 'block'}">{{message.card.name}}</h2>
-                                </div>
+                                <md-menu md-offset="0 -7" mousepoint-menu>
+                                    <div class="card" md-ink-ripple="rgba(16, 16, 16, 1.0)" ng-click="cardSelected($event, message.card)" ng-right-click="$mdOpenMousepointMenu($event)">
+                                        <img ng-src={{getCardImageURL(message.card.multiverseid)}} draggable="false"></img>
+                                        <span ng-if="cardCount(message.card, 'cards') > 0" class="circle cardCount deckCount">
+                                            {{cardCount(message.card, 'cards')}}
+                                        </span>
+                                        <span ng-if="cardCount(message.card, 'sideboard') > 0" class="circle cardCount sideboardCount">
+                                            {{cardCount(message.card, 'sideboard')}}
+                                        </span>
+                                        <h2 class="missingPosterText" ng-style="{display: message.card.multiverseid ? 'none' : 'block'}">{{message.card.name}}</h2>
+                                    </div>
+                                  <md-menu-content width="4">
+                                    <md-menu-item>
+                                      <md-button ng-click="menuAddCard(card, 'cards')"> <span md-menu-align-target>Add to Deck</span> </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item ng-if="menuListCount(card, 'cards') > 0">
+                                      <md-button ng-click="menuRemoveCard(card, 'cards')"> <span md-menu-align-target>Remove from Deck</span> </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                      <md-button ng-click="menuAddCard(card, 'sideboard')"> <span md-menu-align-target>Add to Sideboard</span> </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item ng-if="menuListCount(card, 'sideboard') > 0">
+                                      <md-button ng-click="menuRemoveCard(card, 'sideboard')"> <span md-menu-align-target>Remove from Sideboard</span> </md-button>
+                                    </md-menu-item>
+                                  </md-menu-content>
+                                </md-menu>
                             </span>
                             <md-divider inset></md-divider>
                         </md-list-item>

@@ -114,7 +114,9 @@
                     count: count
                 }
             });
-            socket.emit('chat.sharecard', card.id);
+            if (list === 'linked') {
+                socket.emit('chat.sharecard', card.id);
+            }
         }
         function removeCard (card, list, count) {
             socket.emit('cards.deck.remove', {
@@ -159,9 +161,50 @@
                 $scope.status = 'You cancelled the dialog.';
             });
         };
+        $scope.menuAddCard = function (card, list) {
+            addCard(card, list, 1);
+        };
+        $scope.menuRemoveCard = function (card, list) {
+            addCard(card, list, 1);
+        };
+        $scope.menuListCount = function (card, list) {
+            return cardCount(card, list);
+        };
     }]);
 
     app.run(($log) => {
         $log.debug('Deckitron ready');
+    });
+
+    app.directive('ngRightClick', function($parse) {
+        return function(scope, element, attrs) {
+            var fn = $parse(attrs.ngRightClick);
+            element.bind('contextmenu', function(event) {
+                scope.$apply(function() {
+                    event.preventDefault();
+                    fn(scope, {$event:event});
+                });
+            });
+        };
+    });
+    app.directive('mousepointMenu', function () {
+        return {
+            restrict: 'A',
+            require: 'mdMenu',
+            link: function($scope, $element, $attrs, mdMenuCtrl) {
+                var MousePointMenuCtrl = mdMenuCtrl;
+
+                $scope.$mdOpenMousepointMenu = function($event) {
+                    MousePointMenuCtrl.offsets = function() {
+                        return {
+                            left: $event.offsetX,
+                            top: $event.offsetY
+                        };
+                    };
+                    MousePointMenuCtrl.open($event);
+                };
+            }
+
+        };
     });
 }());
