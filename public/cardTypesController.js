@@ -17,7 +17,6 @@
         $scope.transformChip = transformChip;
 
         $scope.onChange = function () {
-            console.log($scope.selectedCards)
             if ($scope.selectedCards.length < 1) {
                 $scope.$emit('card-types', null);
             } else {

@@ -16,6 +16,14 @@
         $scope.autocompleteDemoRequireMatch = true;
         $scope.transformChip = transformChip;
 
+        $scope.onChange = function () {
+            if ($scope.selectedCards.length < 1) {
+                $scope.$emit('mana-cost', null);
+            } else {
+                $scope.$emit('mana-cost', $scope.selectedCards);
+            }
+        };
+
         /**
          * Return the proper object when the append is called.
          */

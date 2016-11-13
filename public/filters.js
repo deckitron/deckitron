@@ -41,7 +41,10 @@
 
         $scope.$on('card-types', function (evt, types) {
             cardTypes = types;
-        })
+        });
+        $scope.$on('mana-cost', function (evt, cost) {
+            manaCost = cost;
+        });
 
         socket.on('cards.deck.update', function (data) {
             const selectedList = $scope.getSelectedList();
