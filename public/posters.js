@@ -49,8 +49,9 @@
     posterwall.controller('posterwall', ['$scope', 'room', '$mdDialog', '$timeout', function ($scope, $room, $mdDialog, $timeout) {
         function gotCards (data) {
             $timeout(() => {
-                if (Array.isArray(data)) {
-                    $scope.cards = data;
+                if (Array.isArray(data.result)) {
+                    $scope.cards = data.result;
+                    console.log(data);
                 }
             });
         }

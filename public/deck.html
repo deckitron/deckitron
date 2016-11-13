@@ -9,6 +9,7 @@
 
     <!-- Filters -->
     <script src="public/filters.js"></script>
+    <script src="public/cardTypesController.js"></script>
 
     <!-- Chat -->
     <script src="node_modules/socket.io-client/socket.io.js"></script>
@@ -52,13 +53,69 @@
                 </md-toolbar>
 
                 <!-- Filter Form -->
-                <md-content layout="column" id="chat-messages">
+                <md-content layout="column" id="chat-messages" class="autocomplete">
                     <form name="filter">
-                        <md-chips ng-model="convertedManaCost" name="manaCost">
-                            <md-chip-template>
-                                <strong>{{$chip}}</strong>
-                            </md-chip-template>
-                        </md-chips>
+                        <md-button type="submit" class="md-raised md-accent">
+                            <md-icon md-svg-icon="public/icons/search.svg"></md-icon>Search
+                        </md-button>
+                        <md-button type="reset" class="md-raised md-accent">
+                            Clear
+                        </md-button>
+
+                        <!-- Keyword -->
+                        <md-input-container>
+                            <input ng-model="keyword" placeholder="Keyword" class="search md-accent" autocomplete="off">
+                        </md-input-container>
+
+                        <!-- CMC -->
+                        <md-input-container>
+                            <input ng-model="cmc" placeholder="Converted Mana Cost" class="search md-accent" autocomplete="off">
+                        </md-input-container>
+
+                        <!-- Card Type -->
+                       <div ng-controller="cardTypesController">
+                            <md-chips ng-model="cardTypes" md-autocomplete-snap
+                                     md-transform-chip="transformChip($chip)"
+                                     md-require-match="autocompleteDemoRequireMatch">
+                             <md-autocomplete
+                                 md-selected-item="selectedItem"
+                                 md-search-text="searchText"
+                                 md-items="item in querySearch(searchText)"
+                                 md-item-text="item.name"
+                                 placeholder="Card Type">
+                        </div>
+
+                        <!-- Card Type -->
+                        <md-input-container>
+                            <md-contact-chips
+                                md-contacts="cardTypes"
+                                md-contact-name="name"
+                                md-contact-image="image"
+                                md-contact-email="email"
+                                md-require-match="true"
+                                md-highlight-flags="i"
+                                filter-selected="ctrl.filterSelected"
+                                placeholder="To">
+                            </md-contact-chips>
+                            <!-- <md-chips md-padding ng-model="cardTypes" readonly="false" md-removable="true" placeholder="Card Type">
+                                <md-autocomplete></md-autocomplete>
+                            </md-chips> -->
+                        </md-input-container>
+
+                        <!-- Creature Power -->
+                        <md-input-container>
+                            <input ng-model="power" placeholder="Power" class="search md-accent" autocomplete="off">
+                        </md-input-container>
+
+                        <!-- Creature Toughness -->
+                        <md-input-container>
+                            <input ng-model="toughness" placeholder="Toughness" class="search md-accent" autocomplete="off">
+                        </md-input-container>
+
+                        <!-- Artist -->
+                        <md-input-container>
+                            <input ng-model="artist" placeholder="Artist" class="search md-accent" autocomplete="off">
+                        </md-input-container>
                     </form>
                 </md-content>
 
