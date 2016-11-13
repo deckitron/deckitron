@@ -18,9 +18,9 @@
 
         $scope.onChange = function () {
             if ($scope.selectedCards.length < 1) {
-                $scope.$emit('mana-cost', null);
+                $scope.$emit('mana-color', null);
             } else {
-                $scope.$emit('mana-cost', $scope.selectedCards);
+                $scope.$emit('mana-color', $scope.selectedCards);
             }
         };
 
