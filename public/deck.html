@@ -74,15 +74,19 @@
 
                         <!-- Card Type -->
                        <div ng-controller="cardTypesController">
-                            <md-chips ng-model="cardTypes" md-autocomplete-snap
+                            <md-chips ng-model="selectedCards" md-autocomplete-snap
                                      md-transform-chip="transformChip($chip)"
                                      md-require-match="autocompleteDemoRequireMatch">
-                             <md-autocomplete
+                            <md-autocomplete
                                  md-selected-item="selectedItem"
                                  md-search-text="searchText"
                                  md-items="item in querySearch(searchText)"
                                  md-item-text="item.name"
                                  placeholder="Card Type">
+                            </md-autocomplete>
+                            <md-chip-template>
+                                <span>{{$chip.name}}</span>
+                            </md-chip-template>
                         </div>
 
                         <!-- Card Type -->
