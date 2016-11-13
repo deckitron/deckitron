@@ -137,6 +137,8 @@
             cardListToSelect.selected = true;
             selectedList.selected = false;
 
+            $scope.$emit('list-selected', cardListToSelect.name);
+
             offset = 0;
             $rootScope.$broadcast('clear-card-wall');
 

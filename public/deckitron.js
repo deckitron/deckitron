@@ -72,6 +72,11 @@
 
         const socket = $room.getSocket();
 
+        $scope.currentListName = 'All Cards';
+        $scope.$on('list-selected', function (evt, name) {
+            $scope.currentListName = name;
+        });
+
         $scope.getCardImageURL = getCardImageURL;
         function DialogController ($scope, card) {
             $scope.card = card;
