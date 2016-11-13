@@ -32,7 +32,7 @@
 
         <h2>Active Decks</h2>
         <div ng-repeat="deck in decks">
-            <a href='{{deck.name}}'>{{deck.name}}</a> ({{deck.users === 1 ? '1 User': deck.users + ' Users'}})
+            <a href='{{deck.url}}'>{{deck.name}}</a> ({{deck.users === 1 ? '1 User': deck.users + ' Users'}})
         </div>
     </body>
 </html>

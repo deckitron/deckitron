@@ -38,6 +38,7 @@
         ];
         let cardTypes = null;
         let manaColor = null;
+        let cardRarity = null;
 
         $scope.$on('card-types', function (evt, types) {
             cardTypes = types;
@@ -45,6 +46,10 @@
         $scope.$on('mana-color', function (evt, color) {
             manaColor = color;
         });
+        $scope.$on('card-rarity', function (evt, rarities) {
+            cardRarity = rarities;
+        });
+
 
         socket.on('cards.deck.update', function (data) {
             const selectedList = $scope.getSelectedList();
@@ -56,7 +61,7 @@
         });
 
         $timeout(() => {
-            socket.emit('cards.get');
+            $scope.performSearch();
         }, 500);
 
 
@@ -87,20 +92,20 @@
             const formElements = document.forms.filter.children;
 
             // The input form elements
-            const keywords = formElements[3].children[1].value;
+            const cardName = formElements[3].children[1].value;
             const convertedManaCost = formElements[4].children[1].value;
             if (convertedManaCost) {
                 query.cmc = convertedManaCost;
             }
-            const power = formElements[7].children[1].value;
+            const power = formElements[8].children[1].value;
             if (power) {
                 query.power = power;
             }
-            const toughness = formElements[8].children[1].value;
+            const toughness = formElements[9].children[1].value;
             if (toughness) {
                 query.toughness = toughness;
             }
-            const artist = formElements[9].children[1].value;
+            const artist = formElements[10].children[1].value;
             if (artist) {
                 query.artist = artist;
             }
@@ -117,10 +122,16 @@
                     query.types.push(cardTypes[i].name);
                 }
             }
+            if (cardRarity) {
+                query.rarity = [];
+                for (let i = 0; i < cardRarity.length; i++) {
+                    query.rarity.push(cardRarity[i].name);
+                }
+            }
 
             socket.emit('cards.get', {
                 list: $scope.getSelectedList().listid,
-                keywords: keywords,
+                keywords: cardName,
                 query: query
             });
         };
