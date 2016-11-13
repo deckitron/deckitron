@@ -61,7 +61,7 @@
             <md-button class="md-icon-button" aria-label="Collapse Chat" ng-click="toggleRightSideNav()">
                 <md-icon class="flippableIcon" md-svg-icon="public/icons/right_arrow.svg" ng-class="{'flipIconRight': !isRightSideNavOpen()}"></md-icon>
             </md-button>
-            <div ng-controller="chat">
+            <div>
                 <span id='me' ng-if="me" ng-click="changeName($event)" title="Change Your Name">
                     {{me.name}}
                 </span>

@@ -158,28 +158,6 @@
             scrollToBottomOfChat();
             return false;
         };
-        $scope.changeName = function (ev) {
-            const confirm = $mdDialog.prompt()
-                 .title('What would you name to be')
-                 .textContent('By default you will be named after a random Planeswalker.')
-                 .clickOutsideToClose(true)
-                 .placeholder('Input name')
-                 .ariaLabel('Input name')
-                 .targetEvent(ev)
-                 .ok('Update Name')
-                 .cancel('Keep "' + $scope.me.name + '"');
-
-            $mdDialog.show(confirm)
-                .then((newName) => {
-                    if (!newName || newName === $scope.me.name) {
-                        return;
-                    }
-                    $scope.me.name = newName;
-
-                    $room.getSocket()
-                        .emit('chat.user.update', $scope.me);
-                });
-        };
         $scope.getUsername = function (user) {
             for (let i = 0; i < $scope.connectedUsers.length; i++) {
                 if ($scope.connectedUsers[i].id === user.id) {
