@@ -77,7 +77,7 @@
          * @param   {Object} data A Chat message and a user Object
          */
         function recieveMessage (data) {
-            console.log('recieve message', data);
+            // console.log('recieve message', data);
             addMessage(data.user, data.message);
         }
         /**
@@ -85,7 +85,7 @@
          * @param   {Object} data A Chat message and a user Object
          */
         function recieveCard (data) {
-            console.log('recieve card', data);
+            // console.log('recieve card', data);
             addCard(data.user, data.card);
         }
 
@@ -94,7 +94,7 @@
          * @param   {Object} user A user Object
          */
         function userConnected (user) {
-            console.log('user connected', user);
+            // console.log('user connected', user);
             addMessage(user, `${user.name} joined the room`, 'room');
             $scope.$apply(() => {
                 $scope.connectedUsers.push(user);
@@ -106,7 +106,7 @@
          * @param   {Object} user A user Object
          */
         function userDisconnected (user) {
-            console.log('user disconnected', user);
+            // console.log('user disconnected', user);
             addMessage(user, `${user.name} left the room`, 'room');
             for (let i = 0; i < $scope.connectedUsers.length; i++) {
                 const item = $scope.connectedUsers[i];
@@ -124,7 +124,7 @@
          * @param   {Object} user A user Object
          */
         function userUpdated (user) {
-            console.log('user updated', user);
+            // console.log('user updated', user);
             for (let i = 0; i < $scope.connectedUsers.length; i++) {
                 const item = $scope.connectedUsers[i];
                 if (item.id === user.id) {
@@ -142,7 +142,7 @@
          * @param   {Object} data Initial chat data
          */
         function chatConnected (data) {
-            console.log('connected', data);
+            // console.log('connected', data);
             // $scope.messages = data.messages = [];
             $scope.connectedUsers = data.users;
             $scope.me = $room.getUser();

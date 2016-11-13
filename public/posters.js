@@ -15,7 +15,7 @@
                 }
                 if (Array.isArray(data.result)) {
                     $scope.cards = $scope.cards.concat(data.result);
-                    console.log(data);
+                    // console.log(data);
                 }
             });
         }

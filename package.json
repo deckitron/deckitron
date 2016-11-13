@@ -1,7 +1,7 @@
 {
-  "name": "nko2016-sample",
+  "name": "deckitron",
   "version": "0.0.1",
-  "description": "A barebones Node.js app using Express 4",
+  "description": "A collaborative MTG deck building app.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -21,7 +21,7 @@
     "unzip": "^0.1.11"
   },
   "engines": {
-    "node": "4.4.5"
+    "node": "6.7.0"
   },
   "repository": {
     "type": "git",
@@ -29,13 +29,18 @@
   },
   "keywords": [
     "node",
-    "heroku",
+    "mtg",
+    "magic",
+    "gathering",
+    "deck",
+    "building",
+    "builder",
     "express"
   ],
-  "author": "Mark Pundsack",
   "contributors": [
-    "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)",
-    "Jacques Crocker <jacques@nodeknockout.com> (https://www.nodeknockout.com)"
+    "M. Damian Mulligan <robloxianmany@gmail.com> (https://dmulligan.ca/)",
+    "Michael Hall <mike@michaelhall.ca>",
+    "Sean Turnbull <sean.turnbull@gmail.com"
   ],
   "license": "MIT"
 }
