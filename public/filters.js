@@ -36,6 +36,15 @@
                 selected: false
             }
         ];
+        let cardTypes = null;
+        let manaColor = null;
+
+        $scope.$on('card-types', function (evt, types) {
+            cardTypes = types;
+        });
+        $scope.$on('mana-color', function (evt, color) {
+            manaColor = color;
+        });
 
         socket.on('cards.deck.update', function (data) {
             const selectedList = $scope.getSelectedList();
@@ -96,10 +105,18 @@
                 query.artist = artist;
             }
 
-            // The chip form elements
-            const cardTypes = [];// = $cardTypesController.selectedCards;
-            const manaColors = [];//$manaColorController.selectedCards;
-
+            if (manaColor) {
+                query.colorIdentity = [];
+                for (let i = 0; i < manaColor.length; i++) {
+                    query.colorIdentity.push(manaColor[i].queryParam);
+                }
+            }
+            if (cardTypes) {
+                query.types = [];
+                for (let i = 0; i < cardTypes.length; i++) {
+                    query.types.push(cardTypes[i].name);
+                }
+            }
 
             socket.emit('cards.get', {
                 list: $scope.getSelectedList().listid,
