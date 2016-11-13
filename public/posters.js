@@ -5,10 +5,12 @@
     const posterwall = angular.module('posterwall', ['room', 'ngMaterial']);
 
 
-    posterwall.controller('posterwall', ['$scope', 'room', '$mdDialog', '$timeout', function ($scope, $room, $mdDialog, $timeout) {
+    posterwall.controller('posterwall', ['$scope', '$rootScope', 'room', '$mdDialog', '$timeout', function ($scope, $rootScope, $room, $mdDialog, $timeout) {
+        $scope.permitBigLoad = false;
         function gotCards (data) {
             $timeout(() => {
-                if ($scope.cards.length >= 500) {
+                if ($scope.askForBigLoad()) {
+                    $rootScope.$broadcast('block-paged-load');
                     return;
                 }
                 if (Array.isArray(data.result)) {
@@ -21,6 +23,14 @@
         const socket = $room.getSocket();
         socket.on('cards.get.result', gotCards);
         $scope.cards = [];
+
+        $scope.allowBigLoad = function () {
+            $scope.permitBigLoad = true;
+        };
+
+        $scope.askForBigLoad = function () {
+            return $scope.cards.length >= 350 && !$scope.permitBigLoad;
+        };
 
         $scope.getCardBackURL = function () {
             return 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=0&type=card';
