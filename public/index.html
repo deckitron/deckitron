@@ -21,6 +21,7 @@
         <script src='node_modules/angular-slug/angular-slug.js'></script>
         <script src="node_modules/less/dist/less.min.js"></script>
         <script src='public/index.js'></script>
+        <link rel="icon" type="image/jpeg" href="public/mana/c.jpg" />
     </head>
     <body>
         <div id="loginSection">
@@ -32,7 +33,6 @@
             <p id='description'>
                 Collaborative deck building for Magic: The Gathering
                 <br/>This project was built as part of Node Knockout 2016. Vote for us if you like it!
-                <br/><a href='https://www.nodeknockout.com/entries/15-noun-js'><img src='public/icons/voteko.png'/><img id="nodeGraphic" src="public/icons/node.svg"></img></a>
             </p>
             <form id="url-bar" ng-submit="onStart()">
                 <label for="deck-name">deckitron/</label>
@@ -65,9 +65,6 @@
                     <th class="GSstep-title">
                         Browse
                     </th>
-                    <th>
-                        Vote
-                    </th>
                 </tr>
                 <tr>
                     <td>
@@ -81,9 +78,6 @@
                     </td>
                     <td>
                         <img class="GSstep" src="public/images/browse.PNG"></img>
-                    </td>
-                    <td>
-                        <a href='https://www.nodeknockout.com/entries/15-noun-js'><img class="voteStep" src='public/images/vote.png'/></a>
                     </td>
                 </tr>
                 <tr>
@@ -99,20 +93,17 @@
                     <td class="comment">
                         Browse the Magic Gatherer database
                     </td>
-                    <td class="comment">
-                        If you like what you see, vote for us!
-                    </td>
                 </tr>
             </table>
         </div>
 
         <script>
             var images = [
-                /*island*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Island-MtG-Art-by-Yeong-Hao-Han.jpg',
-                /*swamp*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Swamp-Kaladesh-MtG-Art.jpg',
-                /*Plains*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Plains-Kaladesh-MtG-Art.jpg',
-                /*Mountain*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Mountain-Kaladesh-MtG-Art.jpg',
-                /*Forest*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Kaladesh-MtG-Art-by-Chase-Stone.jpg',
+                // /*island*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Island-MtG-Art-by-Yeong-Hao-Han.jpg',
+                // /*swamp*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Swamp-Kaladesh-MtG-Art.jpg',
+                // /*Plains*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Plains-Kaladesh-MtG-Art.jpg',
+                // /*Mountain*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Mountain-Kaladesh-MtG-Art.jpg',
+                // /*Forest*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Kaladesh-MtG-Art-by-Chase-Stone.jpg',
                 /*special*/'http://www.artofmtg.com/wp-content/uploads/2016/09/Spirebluff-Canal-Kaladesh-Art.jpg'
             ];
             var index = Math.floor(Math.random() * images.length);
