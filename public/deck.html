@@ -33,6 +33,9 @@
     <!-- Posters -->
     <script src="public/posters.js"></script>
 
+    <!-- URL Sharing -->
+    <script src="node_modules/clipboard-js/clipboard.min.js"></script>
+
     <!-- Design -->
     <link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.min.css" />
     <script src="node_modules/angular-animate/angular-animate.min.js"></script>
@@ -58,7 +61,8 @@
     <md-toolbar class="md-accent" layout="row" layout-align="center end">
         <div class="md-toolbar-tools" id="card list"  md-whiteframe="11" flex>
             <!-- Left side of top bar -->
-            <span style="width: 7em;"></span> <!-- Spacer for the open close of the search pane -->
+            <span></span> <!-- hacky spacer -->
+            <md-button class="md-raised md-primary" aria-label="Share URL" ng-click="copyURLToClipboard($event)" title="Copy URL to clipboard">Share Link to Deck</md-button>
             <md-button class="md-icon-button" aria-label="Collapse Search" ng-click="toggleLeftSideNav()">
                 <md-icon class="flippableIcon" md-svg-icon="public/icons/left_arrow.svg" ng-class="{'flipIconLeft': !isLeftSideNavOpen()}"></md-icon>
             </md-button>
@@ -70,9 +74,10 @@
                 <md-icon class="flippableIcon" md-svg-icon="public/icons/right_arrow.svg" ng-class="{'flipIconRight': !isRightSideNavOpen()}"></md-icon>
             </md-button>
             <div>
-                <span id='me' ng-if="me" ng-click="changeName($event)" title="Change Your Name">
+                <md-button class="md-raised md-primary" ng-if="me" ng-click="changeName($event)" title="Change Your Name">{{me.name}}</md-button>
+                <!-- <span id='me' ng-if="me" ng-click="changeName($event)" title="Change Your Name">
                     {{me.name}}
-                </span>
+                </span> -->
             </div>
         </div>
     </md-toolbar>

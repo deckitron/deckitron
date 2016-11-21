@@ -1,4 +1,5 @@
 /* global angular*/
+/* global clipboard*/
 (function () {
     'use strict';
 
@@ -56,7 +57,9 @@
             if (rManaTest.test(parts[i])) {
                 output.push({
                     mana: true,
-                    value: parts[i].substr(1, parts[i].length - 2).replace('/', '').toLowerCase()
+                    value: parts[i].substr(1, parts[i].length - 2)
+                                    .replace('/', '')
+                                    .toLowerCase()
                 });
             } else if (rNewlineTest.test(parts[i])) {
                 output.push({
@@ -82,7 +85,9 @@
             if (rManaTest.test(parts[i])) {
                 output.push({
                     mana: true,
-                    value: parts[i].substr(1, parts[i].length - 2).replace('/', '').toLowerCase()
+                    value: parts[i].substr(1, parts[i].length - 2)
+                                    .replace('/', '')
+                                    .toLowerCase()
                 });
             } else if (rNewlineTest.test(parts[i])) {
                 output.push({
@@ -118,8 +123,9 @@
         return id == null;
     }
 
-    app.controller('DeckitronCore', ['$scope', 'room', '$mdDialog', '$timeout', '$mdSidenav', '$mdMedia', function ($scope, $room, $mdDialog, $timeout, $mdSidenav, $mdMedia) {
+    app.controller('DeckitronCore', ['$scope', 'room', '$mdDialog', '$timeout', '$mdSidenav', '$mdMedia', '$mdToast', function ($scope, $room, $mdDialog, $timeout, $mdSidenav, $mdMedia, $mdToast) {
         $scope.title = 'Deckitron';
+        $scope.deckURL = document.URL;
         $scope.roomName = window.location.pathname.substr(1);
 
         const socket = $room.getSocket();
@@ -258,6 +264,32 @@
         };
         $scope.menuListCount = function (card, list) {
             return cardCount(card, list);
+        };
+
+        $scope.copyURLToClipboard = function (ev) {
+            clipboard.copy($scope.deckURL)
+                .then(() => {
+                    $mdToast.show(
+                        $mdToast.simple()
+                        .textContent($scope.deckURL + ' copied to clipboard')
+                        .position('top left')
+                        .hideDelay(2000)
+                    );
+                })
+                .catch(() => {
+                    $mdDialog.show(
+                        $mdDialog.prompt()
+                        .clickOutsideToClose(true)
+                        .title('Could not automatically copy the deck URL to clipboard')
+                        .textContent('Copy this URL and share it with your friends')
+                        .ariaLabel('URL Copy Dialog')
+                        .placeholder($scope.deckURL)
+                        .initialValue($scope.deckURL)
+                        .ok('Done')
+                        .cancel('cancel')
+                        .targetEvent(ev)
+                    );
+                });
         };
 
         $scope.changeName = function (ev) {
