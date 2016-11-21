@@ -271,7 +271,7 @@
                 .then(() => {
                     $mdToast.show(
                         $mdToast.simple()
-                        .textContent($scope.deckURL + ' copied to clipboard')
+                        .textContent('Link to deck copied, share it with your friends!')
                         .position('top left')
                         .hideDelay(2000)
                     );
