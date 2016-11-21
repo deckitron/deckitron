@@ -274,6 +274,9 @@
                         .textContent('Link to deck copied, share it with your friends!')
                         .position('top left')
                         .hideDelay(2000)
+                        .action('CLOSE')
+                        .highlightAction(true)
+                        .highlightClass('md-primary')
                     );
                 })
                 .catch(() => {
