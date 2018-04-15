@@ -255,7 +255,7 @@
                             <div class="card" md-ink-ripple="rgba(16, 16, 16, 1.0)" ng-click="cardSelected($event, card)" ng-right-click="$mdOpenMousepointMenu($event)">
                                 <img ng-src={{getCardImageURL(card.multiverseid)}} draggable="false"></img>
                                 <div class="missingManaContainer" ng-if="hasNoImage(card.multiverseid)">
-                                    <img ng-repeat="mana in getManaList(card.manaCost) track by $index" src="public/mana/{{mana}}.jpg" draggable="false"/>
+                                    <img ng-repeat="mana in getManaList(card.manaCost) track by $index" ng-src="public/mana/{{mana}}.jpg" draggable="false"/>
                                 </div>
                                 </span>
                                 <span ng-if="cardCount(card, 'cards') > 0" class="circle cardCount deckCount">
