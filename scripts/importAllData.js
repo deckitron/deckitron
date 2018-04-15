@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const cardSchema = require('../lib/models/cardSchema');
 const setSchema = require('../lib/models/setSchema');
 
+const Duplex = require('stream').Duplex;
 const https = require('https');
 const unzip = require('unzip');
 const url = require('url');
@@ -36,6 +37,32 @@ function getFromServer (uri, callback) {
         method: 'GET'
     }, (response) => {
         if (!errored) {
+            const len = Number.parseInt(response.headers['content-length']);
+            if (!isFinite(len) || len < 1) {
+                callback(new Error('Invalid content length'), null);
+                return;
+            }
+            let data = new Buffer(len);
+            let position = 0;
+            let lastLog = 0;
+            response.on('data', (chunk) => {
+                let buffer = chunk;
+                if (!Buffer.isBuffer(buffer)) {
+                    buffer = new Buffer(chunk, 'utf-8');
+                }
+                buffer.copy(data, position);
+                position += buffer.length;
+                if (position - lastLog > 1000000) {
+                    console.log(`Processed ${position} of ${len} bytes (${((position / len) * 100).toFixed(2)}%)`);
+                    lastLog = position;
+                }
+            });
+            response.on('end', () => {
+                const dup = new Duplex();
+                dup.push(data);
+                dup.push(null);
+                callback(null, dup);
+            });
             callback(null, response);
             return;
         }
@@ -167,14 +194,26 @@ mongoose.connect(db, (err) => {
             console.error(err);
             return;
         }
-        stream.pipe(unzip.Parse())
+        stream.on('error', (err) => {
+            console.error(`ERROR: ${err}`);
+            process.exit(1);
+        })
+        .pipe(unzip.Parse())
         .on('entry', (entry) => {
             const filename = entry.path;
             const type = entry.type;
             const size = entry.size;
-            console.log(`Processing ${filename} from archive...`);
+            let processed = 0;
+            let lastLog = 0;
+            console.log(`Processing ${filename} from archive (${size} bytes)...`);
             if (filename.endsWith('.json')) {
                 entry.on('data', (chunk) => {
+                    const len = Buffer.byteLength(chunk);
+                    processed += len;
+                    if (processed / size - lastLog < 0.001) {
+                        lastLog = processed / size;
+                        console.log(`Processed ${(lastLog * 100).toFixed(0)}%`);
+                    }
                     if (typeof chunk === 'string') {
                         serverData += chunk;
                     } else {
@@ -188,6 +227,6 @@ mongoose.connect(db, (err) => {
             } else {
                 entry.autodrain();
             }
-        })
+        });
     });
 });
