@@ -2,6 +2,8 @@
 
 Collaborative deck building for Magic: The Gathering.
 
+![screenshot](https://raw.githubusercontent.com/Matthew-Smith/deckitron/master/docs/screenshot.png)
+
 ## Description
 
 Deckitron is a tool for creating a deck for Magic: The Gathering with friends.
