@@ -1,5 +1,11 @@
-node_modules
-npm-debug.log
+# Packages
+/**/node_modules/
+/**/bower_components/
+/**/jspm_packages/
 
-#vscode meta data
-.vscode/
+# Package Managers
+/**/yarn-error.log
+/**/npm-debug.log
+
+# Editors
+/.vscode/
