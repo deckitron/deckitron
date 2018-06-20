@@ -29,7 +29,8 @@
     },
     "engines": {},
     "scripts": {
-        "start": "node index.js"
+        "start": "node index.js",
+        "test": "echo 'No test commands given!' && exit 1"
     },
     "dependencies": {
         "angular": "^1.5.8",
