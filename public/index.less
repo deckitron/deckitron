@@ -1,8 +1,10 @@
 @btnColor: #3f51b5;
 @fontWhite: #fefefe;
 
-@shadowDistance: 0px;
-@shadowSize: 10px;
+@shadowOneDistance: 0px;
+@shadowOneSize: 10px;
+@shadowTwoDistance: 2px;
+@shadowTwoSize: 4px;
 @shadowColor: rgba(16, 16, 16, 1.0);
 
 html {
@@ -32,26 +34,44 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+.backgroundImage {
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  -webkit-filter: blur(0.1em);
+  -moz-filter: blur(0.1em);
+  -o-filter: blur(0.1em);
+  -ms-filter: blur(0.1em);
+  filter: blur(0.1em);
+}
+
 h1 {
     padding-top: 100px;
     margin: 0 20px 50px;
     color: @fontWhite;
-    text-shadow: @shadowDistance @shadowDistance @shadowSize @shadowColor;
+    text-shadow: @shadowOneDistance @shadowOneDistance @shadowOneSize @shadowColor, @shadowTwoDistance @shadowTwoDistance @shadowTwoSize @shadowColor;
 }
 
 h2 {
     color: @fontWhite;
-    text-shadow: @shadowDistance @shadowDistance @shadowSize @shadowColor;
+    text-shadow: @shadowOneDistance @shadowOneDistance @shadowOneSize @shadowColor, @shadowTwoDistance @shadowTwoDistance @shadowTwoSize @shadowColor;
 }
 #description {
     font-size: 18px;
     margin: 50px;
     color: @fontWhite;
-    text-shadow: @shadowDistance @shadowDistance @shadowSize @shadowColor;
+    text-shadow: @shadowOneDistance @shadowOneDistance @shadowOneSize @shadowColor, @shadowTwoDistance @shadowTwoDistance @shadowTwoSize @shadowColor;
 }
 
 form#url-bar {
-    box-shadow: @shadowDistance @shadowDistance @shadowSize/2 @shadowColor;
+    box-shadow: @shadowOneDistance @shadowOneDistance @shadowOneSize/2 @shadowColor;
     background: #fff;
     margin: auto;
     border: 1px inset #222;
@@ -109,7 +129,7 @@ form#url-bar {
 
     text-decoration: none;
     color: initial;
-    box-shadow: @shadowDistance @shadowDistance @shadowSize/2 @shadowColor;
+    box-shadow: @shadowOneDistance @shadowOneDistance @shadowOneSize/2 @shadowColor;
 }
 
 .enterRoomButton:hover {
@@ -132,7 +152,6 @@ form#url-bar {
     margin-top: 20px;
     text-align: center;
     background-color: rgba(48,48,48, 0.9);
-    height: 600px;
     margin-bottom: 200px;
 }
 
@@ -140,7 +159,7 @@ form#url-bar {
     padding-top: 40px;
     margin: 0 20px 50px;
     color: @fontWhite;
-    text-shadow: @shadowDistance @shadowDistance @shadowSize/4 @shadowColor;
+    text-shadow: @shadowOneDistance @shadowOneDistance @shadowOneSize/4 @shadowColor;
 }
 
 hr {
