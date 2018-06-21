@@ -11,18 +11,18 @@
     "angular-animate": "^1.5.8",
     "angular-aria": "^1.5.8",
     "angular-material": "^1.1.1",
+    "angular-material-icons": "^0.7.1",
     "angular-slug": "0.0.3",
     "body-parser": "^1.15.2",
+    "clipboard-js": "^0.3.1",
     "express": "^4.13.3",
     "less": "^2.7.1",
     "mongoose": "^4.6.7",
     "socket.io": "^1.5.1",
     "swearjar": "^0.1.3",
-    "unzip": "^0.1.11",
-    "clipboard-js": "^0.3.1"
+    "unzip": "^0.1.11"
   },
-  "engines": {
-  },
+  "engines": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/rumblex-community/nodeknockout-2016-starter"

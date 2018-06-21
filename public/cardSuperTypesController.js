@@ -57,7 +57,7 @@
          * Create filter function for a query string
          */
         function createFilterFor (query) {
-            const lowercaseQuery = angular.lowercase(query);
+            const lowercaseQuery = query.toLowerCase();
 
             return function filterFn (card) {
                 return card._lowername.indexOf(lowercaseQuery) === 0;
