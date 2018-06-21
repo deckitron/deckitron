@@ -3,6 +3,8 @@
 
     const rarityController = angular.module('rarityController', []);
 
+    const DEFAULT_RARITY = 'mythic rare';
+
     rarityController.controller('rarityController', ['$scope', 'room', function ($scope, $room) {
         const socket = $room.getSocket();
         $scope.readonly = false;
@@ -56,7 +58,7 @@
          * Create filter function for a query string
          */
         function createFilterFor (query) {
-            const lowercaseQuery = angular.lowercase(query);
+            const lowercaseQuery = query.toLowerCase();
 
             return function filterFn (card) {
                 return card._lowername.indexOf(lowercaseQuery) === 0;
@@ -74,11 +76,18 @@
                         name: data.result[i]
                     });
                 }
-                const mapped = rarities.map((card) => {
-                    card._lowername = card.name.toLowerCase();
-                    return card;
+                const mapped = rarities.map((rarity) => {
+                    rarity._lowername = rarity.name.toLowerCase();
+                    return rarity;
                 });
-                $scope.selectedCards.push(rarities[rarities.length - 1]);
+
+                // Set the default card rarity to mythic rare so we have an interesting landing page
+                for (let i = 0; i < rarities.length; i++) {
+                    if (rarities[i]._lowername === DEFAULT_RARITY) {
+                        $scope.selectedCards.push(rarities[i]);
+                        break;
+                    }
+                }
                 $scope.$emit('card-rarity', $scope.selectedCards);
                 $scope.rarities = mapped;
             }
